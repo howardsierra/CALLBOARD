@@ -1,0 +1,12 @@
+{
+    "display_name": "CALLBOARD Suite",
+    "loading_order": 100,
+    "requires": [],
+    "optional": ["regex"],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "howardsierra",
+    "version": "0.1.0",
+    "homePage": "https://github.com/howardsierra/callboard",
+    "auto_update": true
+}
