@@ -3,13 +3,29 @@
 A modular SillyTavern roleplay preset, plus **CALLBOARD Suite**, an extension that gives the preset a stage manager's control board. Your host is Xavi, the stage manager: he runs the show from the wings, calls the cues and stays out of the story.
 
 ```
-preset/CALLBOARD_v1_4_0.json   ← the preset (prompts + all of its regex)
-index.js · style.css · src/    ← the CALLBOARD Suite extension
+preset/CALLBOARD_v1_4_0.json        ← the full preset (prompts + all of its regex)
+preset/CALLBOARD_Lite_v1_4_0.json   ← the Lite preset: same show, ~2.9k tokens instead of ~13.7k
+index.js · style.css · src/         ← the CALLBOARD Suite extension
 ```
+
+## Full or Lite?
+
+| | Full | Lite |
+|---|---|---|
+| Prompt tokens with the default toggles | ~13.7k | **~2.9k** |
+| Core charters + prose rules | 15 separate prompts | merged into 🫀 The Charter + ✒️ Prose That Hits |
+| Wings (all 14 + stackers) | ✓ | ✓ full strength |
+| Trackers, boards, chat panels, press, Y2K Comms | ✓ on by default: Twitch, Discord, X, Reddit, Press | ✓ same formats, shorter explanations, off until you want them |
+| 📣 Cue Calls · 🎟️ The Program | ✓ Everything / Visuals only | ✓ one compact Lite tier |
+| CoT | Dramatic · Wholesome · Fantasy | one Lite CoT (≤120 words) |
+| Xavi's Patter & Mood, Pop/Rock flavors | ✓ | his flirty default only |
+| Hand-written HTML/JS visuals, EXTREME images, echoes | ✓ | — |
+
+Lite is for cheaper models, small context windows, or long chats where every message counts. Both presets carry the same regex, and the extension works with either one.
 
 ## Setup
 
-1. **Import the preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_4_0.json` from the preset dropdown (**AI Response Configuration → Import preset**).
+1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_4_0.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
 2. **Allow its regex.** Every card, chat panel, STANDBY slip and the Program is drawn by regex that ships inside the preset. You don't import a separate bundle. SillyTavern ignores a preset's regex until you allow it, so say yes when it asks. You can also allow it under **Extensions → Regex → Preset scripts**. If you skip this step, the chat shows raw lines like `T>` and `CUE>` instead of cards.
 3. **Install the extension (optional, recommended).** Go to **Extensions → Install extension**, paste `https://github.com/howardsierra/callboard`, then open the board from the wand menu or with `/cb`. If you skipped step 2, the extension's Notes tab catches it and allows the regex in one click.
 

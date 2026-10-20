@@ -28,6 +28,7 @@ export const SECTIONS = [
             { toggle: 'cb_houserules' },
             { group: 'mode', label: 'Mode', required: true, pick: ['cb_impersonate', 'cb_story_mode'], labels: { cb_impersonate: '🎭 Impersonate', cb_story_mode: '🖊️ Story Mode' }, hint: 'Impersonate: Xavi writes your character too. Story Mode: you write yours.' },
             { toggle: 'cb_manual' },
+            { toggle: 'cb_charter_lite' },
             { toggle: 'cb_alive' },
             { toggle: 'cb_world' },
             { toggle: 'cb_senses' },
@@ -42,6 +43,7 @@ export const SECTIONS = [
     {
         key: 'prose', title: 'Prose Charter', icon: '✒️',
         items: [
+            { toggle: 'cb_prose_lite' },
             { toggle: 'cb_prose' },
             { group: 'sensory', label: 'Sensory', none: 'Off', pick: ['cb_sensory_vivid', 'cb_sensory_amplified'] },
             { toggle: 'cb_killstyle' },
@@ -146,7 +148,7 @@ export const SECTIONS = [
     {
         key: 'utils', title: 'Utilities', icon: '🧭',
         items: [
-            { group: 'cues', label: 'Cue calls', none: 'Off', pick: ['cb_cue_full', 'cb_cue_visual'], labels: { cb_cue_full: '📣 Everything', cb_cue_visual: '📣 Visuals only' }, hint: 'A STANDBY slip above anything about to pop up, explained the first time.' },
+            { group: 'cues', label: 'Cue calls', none: 'Off', pick: ['cb_cue_full', 'cb_cue_visual'], labels: { cb_cue_full: '📣 Everything' }, hint: 'A STANDBY slip above anything about to pop up, explained the first time.' },
             { toggle: 'cb_program' },
             { group: 'model', label: 'Model layer', none: 'None', pick: ['cb_model_claude', 'cb_model_glm', 'cb_model_mimo', 'cb_model_kimi'] },
             { group: 'cot', label: 'Callboard CoT', none: 'None', pick: ['cb_callboard_cot', 'cb_cot_wholesome', 'cb_cot_fantasy'] },
