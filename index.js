@@ -202,7 +202,8 @@ function lint() {
             add('error', 'No CB regex scripts found. Import CALLBOARD_regex_bundle.json (Extensions → Regex) or nothing will render.');
         }
     }
-    return notes;
+    const rank = { error: 0, warn: 1, info: 2 };
+    return notes.sort((a, b) => rank[a.level] - rank[b.level]);
 }
 
 // ──────────────────────────────── loadouts ────────────────────────────────
@@ -289,13 +290,21 @@ function matches(id) {
     return `${id} ${p?.name ?? ''}`.toLowerCase().includes(filter);
 }
 
+const SECTION_HUES = {
+    stage: '#c9a6ff', core: '#e0b46c', prose: '#7fc8b8', wings: '#e58f74', systems: '#8fb4ff',
+    spotlight: '#ff9fd0', content: '#ff6f7d', state: '#9ce07a', panels: '#b48cff', visuals: '#6fd0ff',
+    utils: '#d8c9a3', unsorted: '#9a92a8',
+};
+const hue = (key) => SECTION_HUES[key] ?? SECTION_HUES.unsorted;
+
 function renderToggle(id) {
     if (!has(id) || !matches(id)) return '';
-    return `<label class="cb-row ${lit(id) ? 'is-lit' : ''}">
-        <input type="checkbox" data-cb-toggle="${esc(id)}" ${lit(id) ? 'checked' : ''}>
+    const on = lit(id);
+    return `<label class="cb-row ${on ? 'is-lit' : ''}">
+        <input class="cb-switch" type="checkbox" role="switch" data-cb-toggle="${esc(id)}" ${on ? 'checked' : ''}>
         <span class="cb-name">${esc(nameOf(id))}</span>
-        <span class="cb-tok" title="Approximate tokens">~${tokensOf(id)}</span>
-        <button class="cb-peek fa-solid fa-eye" data-cb-peek="${esc(id)}" title="Read this module"></button>
+        <span class="cb-tok" title="Approximate tokens">${tokensOf(id)}</span>
+        <button class="cb-peek fa-solid fa-eye" data-cb-peek="${esc(id)}" title="Read this module" aria-label="Read this module"></button>
     </label>`;
 }
 
@@ -307,7 +316,7 @@ function renderBand(item) {
     const chips = choices.map(id => `<button class="cb-chip ${lit(id) ? 'is-lit' : ''}" data-cb-pick="${esc(item.group)}" data-cb-id="${esc(id)}" title="${esc(prompt(id)?.name)} · ~${tokensOf(id)} tokens">${esc(item.labels?.[id] ?? nameOf(id, true))}</button>`);
     if (item.none) chips.push(`<button class="cb-chip cb-chip-none ${anyLit ? '' : 'is-lit'}" data-cb-pick="${esc(item.group)}" data-cb-id="">${esc(item.none)}</button>`);
     return `<div class="cb-band">
-        <div class="cb-band-label" ${item.hint ? `title="${esc(item.hint)}"` : ''}>${esc(item.label)}</div>
+        <div class="cb-band-label">${esc(item.label)}${item.hint ? `<span class="cb-band-hint">${esc(item.hint)}</span>` : ''}</div>
         <div class="cb-chips">${chips.join('')}</div>
     </div>`;
 }
@@ -318,10 +327,17 @@ function renderSection(s, items) {
     const ids = items.flatMap(i => i.group ? i.pick : [i.toggle]).filter(has);
     const on = ids.filter(lit).length;
     const open = filter || !settings().collapsed[s.key];
-    return `<details class="cb-section" data-cb-section="${esc(s.key)}" ${open ? 'open' : ''}>
-        <summary><span>${s.icon} ${esc(s.title)}</span><span class="cb-count">${on}/${ids.length}</span></summary>
+    const pct = ids.length ? Math.round(on / ids.length * 100) : 0;
+    return `<details class="cb-section" data-cb-section="${esc(s.key)}" style="--cb-accent:${hue(s.key)}" ${open ? 'open' : ''}>
+        <summary>
+            <span class="cb-sec-icon">${s.icon}</span>
+            <span class="cb-sec-title">${esc(s.title)}</span>
+            <span class="cb-sec-meter"><span style="width:${pct}%"></span></span>
+            <span class="cb-count">${on}<i>/${ids.length}</i></span>
+            <span class="cb-chev fa-solid fa-chevron-down"></span>
+        </summary>
         ${s.hint ? `<div class="cb-hint">${esc(s.hint)}</div>` : ''}
-        ${body}
+        <div class="cb-sec-body">${body}</div>
     </details>`;
 }
 
@@ -330,48 +346,122 @@ function renderBoard() {
     const unsorted = allModules().filter(id => !mapped.has(id)).map(id => ({ toggle: id }));
     const sections = SECTIONS.map(s => renderSection(s, s.items));
     if (unsorted.length) sections.push(renderSection({ key: 'unsorted', title: 'Unsorted', icon: '📦', hint: 'In the preset but not on the board map yet.' }, unsorted));
-    return `<input class="text_pole cb-search" type="search" placeholder="Find a module…" value="${esc(filter)}">
-        ${sections.join('') || '<div class="cb-empty">Nothing matches.</div>'}`;
+    return `<div class="cb-search-wrap"><span class="fa-solid fa-magnifying-glass"></span>
+            <input class="cb-search" type="search" placeholder="Find a module…" value="${esc(filter)}"></div>
+        ${sections.join('') || '<div class="cb-empty"><div class="cb-empty-mark">🔦</div>Nothing by that name backstage.</div>'}`;
 }
 
 function renderNotes(notes) {
-    if (!notes.length) return '<div class="cb-empty">🎧 Board\'s clean. Places, everyone.</div>';
-    const icon = { error: '⛔', warn: '⚠️', info: '💡' };
+    if (!notes.length) {
+        return `<div class="cb-empty cb-allclear"><div class="cb-empty-mark">🎧</div>
+            <div class="cb-empty-title">All clear</div>Board's clean. Places, everyone.</div>`;
+    }
+    const icon = { error: 'fa-circle-exclamation', warn: 'fa-triangle-exclamation', info: 'fa-lightbulb' };
+    const label = { error: 'Stop', warn: 'Standby', info: 'Note' };
     return notes.map((n, i) => `<div class="cb-note cb-${n.level}">
-        <div>${icon[n.level]} ${esc(n.text)}</div>
-        ${n.fixes.length ? `<div class="cb-fixes">${n.fixes.map((f, j) => `<button class="menu_button" data-cb-fix="${i}:${j}">${esc(f.label)}</button>`).join('')}</div>` : ''}
+        <div class="cb-note-head"><span class="fa-solid ${icon[n.level]}"></span>${label[n.level]}</div>
+        <div class="cb-note-text">${esc(n.text)}</div>
+        ${n.fixes.length ? `<div class="cb-fixes">${n.fixes.map((f, j) => `<button class="cb-btn" data-cb-fix="${i}:${j}">${esc(f.label)}</button>`).join('')}</div>` : ''}
     </div>`).join('');
+}
+
+function splitEmoji(name) {
+    const m = String(name).match(/^(\p{Extended_Pictographic}️?)\s*(.*)$/u);
+    return m ? [m[1], m[2]] : ['🎟️', name];
 }
 
 function renderLoadouts() {
     const c = ctx();
     const pin = c.chatMetadata?.[PIN_KEY];
     const saved = Object.entries(settings().loadouts).sort((a, b) => a[0].localeCompare(b[0]));
-    const row = (name, kind) => `<div class="cb-load">
-        <span class="cb-name">${esc(name)}</span>
-        <button class="menu_button" data-cb-apply="${kind}" data-cb-name="${esc(name)}" title="Apply">Apply</button>
-        ${kind === 'saved' ? `
-            <button class="menu_button fa-solid fa-thumbtack" data-cb-pin="${esc(name)}" title="Apply and pin to this chat"></button>
-            <button class="menu_button fa-solid fa-file-export" data-cb-export="${esc(name)}" title="Export"></button>
-            <button class="menu_button fa-solid fa-trash" data-cb-delete="${esc(name)}" title="Delete"></button>` : ''}
-    </div>`;
+    const savedCard = ([name, l]) => {
+        const [mark, label] = splitEmoji(name);
+        return `<div class="cb-card">
+            <div class="cb-card-mark">${mark}</div>
+            <div class="cb-card-main"><div class="cb-card-title">${esc(label)}</div>
+                <div class="cb-card-sub">${l.on?.length ?? 0} modules lit${l.savedAt ? ` · ${new Date(l.savedAt).toLocaleDateString()}` : ''}</div></div>
+            <div class="cb-card-actions">
+                <button class="cb-btn cb-btn-go" data-cb-apply="saved" data-cb-name="${esc(name)}">Apply</button>
+                <button class="cb-icon fa-solid fa-thumbtack" data-cb-pin="${esc(name)}" title="Apply and pin to this chat"></button>
+                <button class="cb-icon fa-solid fa-file-export" data-cb-export="${esc(name)}" title="Export"></button>
+                <button class="cb-icon cb-danger fa-solid fa-trash" data-cb-delete="${esc(name)}" title="Delete"></button>
+            </div>
+        </div>`;
+    };
+    const starterCard = (st) => {
+        const [mark, label] = splitEmoji(st.name);
+        return `<button class="cb-starter" data-cb-apply="starter" data-cb-name="${esc(st.name)}">
+            <span class="cb-starter-mark">${mark}</span>
+            <span class="cb-starter-title">${esc(label)}</span>
+            ${st.blurb ? `<span class="cb-starter-sub">${esc(st.blurb)}</span>` : ''}
+        </button>`;
+    };
     return `
         <div class="cb-sub">This chat</div>
-        ${pin ? `<div class="cb-load"><span class="cb-name">📌 ${esc(pin.name)}</span>
-                <button class="menu_button" data-cb-apply="pin">Re-apply</button>
-                <button class="menu_button" data-cb-unpin>Unpin</button></div>`
-        : `<div class="cb-hint">No pin. Pin a loadout and this chat re-dresses the stage every time you open it.</div>
-           <div class="cb-load"><button class="menu_button" data-cb-pin-current>📌 Pin the current board to this chat</button></div>`}
+        ${pin ? `<div class="cb-ticket">
+                <div class="cb-ticket-stub">📌</div>
+                <div class="cb-card-main"><div class="cb-card-title">${esc(pin.name)}</div>
+                    <div class="cb-card-sub">Re-dresses the stage whenever this chat opens</div></div>
+                <div class="cb-card-actions">
+                    <button class="cb-btn cb-btn-go" data-cb-apply="pin">Re-apply</button>
+                    <button class="cb-btn" data-cb-unpin>Unpin</button>
+                </div></div>`
+        : `<button class="cb-ticket cb-ticket-empty" data-cb-pin-current>
+                <div class="cb-ticket-stub">📌</div>
+                <div class="cb-card-main"><div class="cb-card-title">Pin the current board to this chat</div>
+                    <div class="cb-card-sub">Opening this chat will set the board back to exactly this</div></div></button>`}
         <div class="cb-sub">Save the current board</div>
-        <div class="cb-load"><input class="text_pole cb-save-name" placeholder="Loadout name"><button class="menu_button" data-cb-save>Save</button></div>
+        <div class="cb-save-row"><input class="cb-input cb-save-name" placeholder="🎀 Name it — an emoji up front becomes its icon">
+            <button class="cb-btn cb-btn-go" data-cb-save>Save</button></div>
         <div class="cb-sub">Your loadouts</div>
-        ${saved.length ? saved.map(([n]) => row(n, 'saved')).join('') : '<div class="cb-hint">None yet.</div>'}
-        <div class="cb-load">
-            <button class="menu_button" data-cb-export-all>Export all</button>
-            <label class="menu_button">Import…<input type="file" accept=".json,application/json" data-cb-import hidden></label>
+        ${saved.length ? saved.map(savedCard).join('') : '<div class="cb-hint">Nothing saved yet. Dress the stage, then save it above.</div>'}
+        <div class="cb-io">
+            <button class="cb-btn" data-cb-export-all><span class="fa-solid fa-file-export"></span> Export all</button>
+            <label class="cb-btn"><span class="fa-solid fa-file-import"></span> Import<input type="file" accept=".json,application/json" data-cb-import hidden></label>
         </div>
-        <div class="cb-sub">Starters <span class="cb-hint">(patches — they only touch what they name)</span></div>
-        ${STARTERS.map(s => row(s.name, 'starter')).join('')}`;
+        <div class="cb-sub">Starters <span class="cb-sub-note">only change the modules they name</span></div>
+        <div class="cb-starters">${STARTERS.map(starterCard).join('')}</div>`;
+}
+
+/** The "now showing" strip: the choices that define the show, at a glance. */
+function renderMarquee() {
+    const litIn = (key) => GROUPS[key]?.pick.find(id => has(id) && lit(id));
+    const label = (key, id) => GROUPS[key].labels?.[id] ?? nameOf(id, true);
+    const cue = (key, section, fallback) => {
+        const id = litIn(key);
+        return `<button class="cb-cue ${id ? '' : 'is-dark'}" data-cb-jump="${section}" style="--cb-accent:${hue(section)}">
+            <span class="cb-cue-k">${esc(GROUPS[key]?.label ?? key)}</span>
+            <span class="cb-cue-v">${esc(id ? label(key, id) : fallback)}</span></button>`;
+    };
+    const overlays = ['cb_wing_college', 'cb_wing_fantasy_magic', 'cb_wing_omega'].filter(id => has(id) && lit(id));
+    const wing = litIn('wing');
+    const wingText = [wing ? label('wing', wing) : '—', ...overlays.map(id => nameOf(id).replace(/^\S+\s*/, '+ '))].join(' ');
+    return `<button class="cb-cue ${wing ? '' : 'is-dark'}" data-cb-jump="wings" style="--cb-accent:${hue('wings')}">
+            <span class="cb-cue-k">Wing</span><span class="cb-cue-v">${esc(wingText)}</span></button>
+        ${cue('mode', 'core', '—')}
+        ${cue('tracker', 'state', 'No tracker')}
+        ${cue('cot', 'utils', 'No CoT')}
+        ${cue('model', 'utils', 'No model layer')}`;
+}
+
+function renderMeter() {
+    const parts = [];
+    let total = 0;
+    const mapped = mappedIds();
+    const sectionOf = new Map();
+    for (const s of SECTIONS) for (const i of s.items) (i.group ? i.pick : [i.toggle]).forEach(id => sectionOf.set(id, s));
+    const sums = {};
+    for (const id of allModules()) {
+        if (!lit(id)) continue;
+        const key = mapped.has(id) ? sectionOf.get(id).key : 'unsorted';
+        sums[key] = (sums[key] ?? 0) + tokensOf(id);
+        total += tokensOf(id);
+    }
+    for (const s of [...SECTIONS, { key: 'unsorted', title: 'Unsorted' }]) {
+        if (!sums[s.key]) continue;
+        parts.push(`<span style="flex:${sums[s.key]};background:${hue(s.key)}" title="${esc(s.title)} · ~${sums[s.key].toLocaleString()} tokens"></span>`);
+    }
+    return { total, bar: parts.join('') };
 }
 
 let lastNotes = [];
@@ -383,24 +473,30 @@ function render() {
     const hadFocus = document.activeElement?.classList.contains('cb-search');
 
     const presetName = ctx().getPresetManager?.('openai')?.getSelectedPresetName?.() ?? '';
-    panel.querySelector('.cb-preset').textContent = presetName;
+    panel.querySelector('.cb-preset').textContent = presetName || 'no preset';
 
-    if (!isLive()) {
-        panel.querySelector('.cb-budget').textContent = '';
-        panel.querySelector('.cb-tabs').hidden = true;
-        body.innerHTML = `<div class="cb-empty">🎧 No CALLBOARD on the board.<br><br>
-            Switch to a Chat Completion API and load the CALLBOARD preset — then I'm all yours, director.</div>`;
+    const live = isLive();
+    panel.classList.toggle('is-dark', !live);
+    if (!live) {
+        panel.querySelector('.cb-marquee').innerHTML = '';
+        panel.querySelector('.cb-meter').innerHTML = '';
+        panel.querySelector('.cb-total').textContent = '';
+        body.innerHTML = `<div class="cb-empty"><div class="cb-empty-mark">🎧</div>
+            <div class="cb-empty-title">House lights are up</div>
+            Switch to a Chat Completion API and load the CALLBOARD preset. Then I'm all yours, director.</div>`;
         return;
     }
 
     lastNotes = lint();
-    const budget = allModules().filter(lit).reduce((n, id) => n + tokensOf(id), 0);
-    panel.querySelector('.cb-budget').textContent = `~${budget.toLocaleString()} tokens lit`;
-    const tabs = panel.querySelector('.cb-tabs');
-    tabs.hidden = false;
+    const { total, bar } = renderMeter();
+    panel.querySelector('.cb-marquee').innerHTML = renderMarquee();
+    panel.querySelector('.cb-meter').innerHTML = bar;
+    panel.querySelector('.cb-total').innerHTML = `<b>~${total.toLocaleString()}</b> tokens lit`;
     const bad = lastNotes.filter(n => n.level !== 'info').length;
-    tabs.querySelector('[data-cb-tab="notes"]').innerHTML = `Notes${bad ? ` <span class="cb-badge">${bad}</span>` : ''}`;
-    tabs.querySelectorAll('[data-cb-tab]').forEach(b => b.classList.toggle('is-active', b.dataset.cbTab === tab));
+    const badge = panel.querySelector('.cb-badge');
+    badge.textContent = bad || '';
+    badge.classList.toggle('is-error', lastNotes.some(n => n.level === 'error'));
+    panel.querySelectorAll('[data-cb-tab]').forEach(b => b.classList.toggle('is-active', b.dataset.cbTab === tab));
 
     body.innerHTML = tab === 'notes' ? renderNotes(lastNotes) : tab === 'loadouts' ? renderLoadouts() : renderBoard();
     body.scrollTop = scroll;
@@ -417,11 +513,29 @@ function queueRefresh() {
     requestAnimationFrame(() => { refreshQueued = false; render(); });
 }
 
+function jumpTo(key) {
+    tab = 'board';
+    filter = '';
+    if (settings().collapsed[key]) {
+        settings().collapsed[key] = false;
+        save();
+    }
+    render();
+    const el = panel.querySelector(`[data-cb-section="${key}"]`);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    el.classList.remove('is-flash');
+    void el.offsetWidth;
+    el.classList.add('is-flash');
+}
+
 async function peek(id) {
     const p = prompt(id);
     if (!p) return;
     const c = ctx();
-    const html = `<h3>${esc(p.name)}</h3><pre class="cb-peek-text">${esc(p.content)}</pre>`;
+    const html = `<div class="cb-peek-pop"><div class="cb-peek-title">${esc(p.name)}</div>
+        <div class="cb-peek-meta">${esc(id)} · ~${tokensOf(id)} tokens · ${lit(id) ? 'lit' : 'dark'}</div>
+        <pre class="cb-peek-text">${esc(p.content)}</pre></div>`;
     if (c.callGenericPopup) await c.callGenericPopup(html, c.POPUP_TYPE?.TEXT ?? 1, '', { wide: true, large: true, allowVerticalScrolling: true });
 }
 
@@ -432,6 +546,7 @@ function onClick(ev) {
 
     if ('cbClose' in d) return togglePanel(false);
     if (d.cbTab) { tab = d.cbTab; return render(); }
+    if (d.cbJump) return jumpTo(d.cbJump);
     if (d.cbPeek) { ev.preventDefault(); return peek(d.cbPeek); }
     if (d.cbPick !== undefined) {
         const id = d.cbId || null;
@@ -487,16 +602,26 @@ function buildPanel() {
     panel = document.createElement('div');
     panel.id = 'cb_board';
     panel.hidden = true;
+    panel.tabIndex = -1;
+    panel.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') togglePanel(false); });
     panel.innerHTML = `
         <div class="cb-head">
-            <div class="cb-title">🎧 CALLBOARD<div class="cb-preset"></div></div>
-            <div class="cb-budget"></div>
-            <button class="cb-close fa-solid fa-xmark" data-cb-close title="Close"></button>
+            <div class="cb-bulbs" aria-hidden="true"></div>
+            <div class="cb-head-row">
+                <div class="cb-title-wrap">
+                    <div class="cb-eyebrow">Stage manager's console</div>
+                    <div class="cb-title">CALLBOARD</div>
+                    <div class="cb-preset"></div>
+                </div>
+                <button class="cb-close fa-solid fa-xmark" data-cb-close title="Close" aria-label="Close"></button>
+            </div>
+            <div class="cb-marquee"></div>
+            <div class="cb-meter-row"><div class="cb-meter"></div><div class="cb-total"></div></div>
         </div>
-        <div class="cb-tabs">
-            <button data-cb-tab="board">Board</button>
-            <button data-cb-tab="notes">Notes</button>
-            <button data-cb-tab="loadouts">Loadouts</button>
+        <div class="cb-tabs" role="tablist">
+            <button data-cb-tab="board" role="tab"><span class="fa-solid fa-sliders"></span>Board</button>
+            <button data-cb-tab="notes" role="tab"><span class="fa-solid fa-clipboard-list"></span>Notes<span class="cb-badge"></span></button>
+            <button data-cb-tab="loadouts" role="tab"><span class="fa-solid fa-box-archive"></span>Loadouts</button>
         </div>
         <div class="cb-body"></div>`;
     document.body.append(panel);
@@ -518,6 +643,7 @@ function buildPanel() {
 function togglePanel(force) {
     if (!panel) buildPanel();
     panel.hidden = force === undefined ? !panel.hidden : !force;
+    if (!panel.hidden) panel.focus({ preventScroll: true });
     render();
 }
 
