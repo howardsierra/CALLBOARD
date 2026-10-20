@@ -116,7 +116,7 @@ export const SECTIONS = [
         ],
     },
     {
-        key: 'panels', title: 'Chat Panels & Press', icon: '💬',
+        key: 'panels', title: 'Chat Panels, Apps & Press', icon: '💬',
         hint: 'Regex-drawn panels: the model writes data lines, the regex draws the window.',
         items: [
             { group: 'twitch', label: 'Twitch', none: 'Off', pick: ['cb_twitch_rx', 'cb_twitch'], labels: { cb_twitch_rx: '💜 Regex panel', cb_twitch: '💜 Freeform HTML' } },
@@ -125,6 +125,11 @@ export const SECTIONS = [
             { toggle: 'cb_reddit_rx' },
             { toggle: 'cb_press' },
             { toggle: 'cb_y2k_comms' },
+            { toggle: 'cb_dating_rx' },
+            { toggle: 'cb_browser_rx' },
+            { toggle: 'cb_insta_rx' },
+            { toggle: 'cb_private_rx' },
+            { toggle: 'cb_creator_rx' },
         ],
     },
     {
@@ -199,6 +204,8 @@ export const REQUIRES = [
 /** Soft pairings: worth a note, not an error. */
 export const ADVISORIES = [
     { when: ['cb_y2k_comms'], unless: ['cb_wing_y2k'], text: 'Y2K Comms is lit without the Y2K wing — AIM and flip phones in a modern story?' },
+    { when: ['cb_insta_rx'], unless: ['cb_wing_modern', 'cb_wing_urban', 'cb_wing_paranormal', 'cb_wing_cyberpunk', 'cb_wing_scifi'], text: 'Instagram is lit on a wing where it doesn\'t exist yet (or anymore).' },
+    { when: ['cb_dating_rx'], unless: ['cb_wing_modern', 'cb_wing_y2k', 'cb_wing_urban', 'cb_wing_paranormal', 'cb_wing_cyberpunk', 'cb_wing_scifi'], text: 'The Dating App is lit on a wing without dating apps.' },
     { when: ['cb_deaddove', 'cb_trauma_guards'], text: 'Dead Dove and Trauma Guards are both lit — the Guards win where they overlap.' },
     { when: ['cb_cot_fantasy'], unless: ['cb_wing_fantasy', 'cb_wing_westeros', 'cb_wing_medieval', 'cb_wing_wuxia', 'cb_wing_urban', 'cb_wing_paranormal'], text: 'The Fantasy CoT is lit on a non-fantasy wing.' },
 ];
@@ -281,6 +288,13 @@ export const STARTERS = [
         picks: { wing: 'cb_wing_urban', tracker: 'cb_tracker_modern', irony: 'cb_irony_behind' },
         on: ['cb_mystery', 'cb_wing_fantasy_magic', 'cb_board_codex'],
         off: ['cb_wing_college'],
+    },
+    {
+        name: '📲 Extremely Online',
+        blurb: 'Dating app, Instagram, browser, private photos',
+        picks: { wing: 'cb_wing_modern', tracker: 'cb_tracker_modern' },
+        on: ['cb_dating_rx', 'cb_insta_rx', 'cb_browser_rx', 'cb_private_rx', 'cb_board_relationship'],
+        off: ['cb_wing_fantasy_magic', 'cb_y2k_comms'],
     },
     {
         name: '🎩 Gilded Age Scandal',

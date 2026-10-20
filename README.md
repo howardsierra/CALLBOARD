@@ -3,8 +3,8 @@
 A modular SillyTavern roleplay preset, plus **CALLBOARD Suite**, an extension that gives the preset a stage manager's control board. Your host is Xavi, the stage manager: he runs the show from the wings, calls the cues and stays out of the story.
 
 ```
-preset/CALLBOARD_v1_4_0.json        ← the full preset (prompts + all of its regex)
-preset/CALLBOARD_Lite_v1_4_0.json   ← the Lite preset: same show, ~2.9k tokens instead of ~13.7k
+preset/CALLBOARD_v1_5_0.json        ← the full preset (prompts + all of its regex)
+preset/CALLBOARD_Lite_v1_5_0.json   ← the Lite preset: same show, ~2.9k tokens instead of ~13.7k
 index.js · style.css · src/         ← the CALLBOARD Suite extension
 ```
 
@@ -25,7 +25,7 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 
 ## Setup
 
-1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_4_0.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
+1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_5_0.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
 2. **Allow its regex.** Every card, chat panel, STANDBY slip and the Program is drawn by regex that ships inside the preset. You don't import a separate bundle. SillyTavern ignores a preset's regex until you allow it, so say yes when it asks. You can also allow it under **Extensions → Regex → Preset scripts**. If you skip this step, the chat shows raw lines like `T>` and `CUE>` instead of cards.
 3. **Install the extension (optional, recommended).** Go to **Extensions → Install extension**, paste `https://github.com/howardsierra/callboard`, then open the board from the wand menu or with `/cb`. If you skipped step 2, the extension's Notes tab catches it and allows the regex in one click.
 
@@ -41,6 +41,20 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 | **CoT** (one or none) | Dramatic · Wholesome · Fantasy |
 
 Everything else is optional: boards, story systems, spotlight and fame, chat panels, visuals and content modules.
+
+## New in v1.5: apps
+
+Five new regex-drawn panels for modern wings, all off until you switch them on, in both Full and Lite:
+
+| Panel | Tag · prefix | What you see |
+|---|---|---|
+| 💘 Dating App | `[[DATING]]` · `DT>` | Profile with photos, prompt answers and detail chips, an "It's a Match!" banner, and the first chat |
+| 🌐 Web Browser | `[[BROWSER]]` / `[[INCOGNITO]]` · `BR>` | Tabs and address bar, searches with revealing autocomplete, results, an open page, and **browsing history**; a dark window for incognito |
+| 📸 Instagram | `[[INSTA]]` · `IG>` | Profile header, feed posts (carousel, likes, caption, comments) and stories |
+| 🔒 Private Photos | `[[PRIVATE]]` · `PX>` | A private thread between partners: photos are frosted tiles you **tap to reveal**, with view-once/replay and "took a screenshot!" alerts |
+| 💎 Creator Page | `[[CREATOR]]` · `CR>` | A subscription page: free posts, 🔒 locked posts you can tap to peek, tips, fan DMs, pay-per-view messages and an earnings line |
+
+Everyone in a dating profile, private photo or creator page is an adult. Each prompt states which eras it fits: Y2K gets desktop dating sites, IE and grainy picture messages, and none of these appear in period wings. Cue Calls explain each panel the first time it shows up. The extension has a matching 📲 Extremely Online starter.
 
 ## New in v1.4
 
