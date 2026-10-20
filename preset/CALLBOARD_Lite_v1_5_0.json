@@ -1614,6 +1614,10 @@
                     "enabled": true
                 },
                 {
+                    "identifier": "jailbreak",
+                    "enabled": true
+                },
+                {
                     "identifier": "div_prose",
                     "enabled": true
                 },
@@ -1908,10 +1912,6 @@
                 {
                     "identifier": "cb_callboard_cot",
                     "enabled": false
-                },
-                {
-                    "identifier": "jailbreak",
-                    "enabled": true
                 },
                 {
                     "identifier": "cb_notice",

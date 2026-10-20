@@ -2352,6 +2352,10 @@
                     "enabled": true
                 },
                 {
+                    "identifier": "jailbreak",
+                    "enabled": true
+                },
+                {
                     "identifier": "div_prose",
                     "enabled": true
                 },
@@ -2790,10 +2794,6 @@
                 {
                     "identifier": "cb_cot_fantasy",
                     "enabled": false
-                },
-                {
-                    "identifier": "jailbreak",
-                    "enabled": true
                 },
                 {
                     "identifier": "cb_notice",
