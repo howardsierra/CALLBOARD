@@ -54,9 +54,12 @@ export const SECTIONS = [
     },
     {
         key: 'wings', title: 'Setting', icon: '🏛️',
-        hint: 'One wing. College stacks on Modern or Y2K; Magic stacks on a fantastical wing; Omegaverse stacks on anything.',
+        hint: 'One wing. College stacks on Modern or Y2K; Magic stacks on Fantasy, Urban, Paranormal or Wuxia; Omegaverse stacks on anything.',
         items: [
-            { group: 'wing', label: 'Wing', none: 'None', required: true, pick: ['cb_wing_modern', 'cb_wing_y2k', 'cb_wing_westeros', 'cb_wing_medieval', 'cb_wing_regency', 'cb_wing_fantasy', 'cb_wing_urban', 'cb_wing_paranormal'] },
+            {
+                group: 'wing', label: 'Wing', none: 'None', required: true,
+                pick: ['cb_wing_modern', 'cb_wing_y2k', 'cb_wing_twenties', 'cb_wing_victorian', 'cb_wing_regency', 'cb_wing_westeros', 'cb_wing_medieval', 'cb_wing_fantasy', 'cb_wing_wuxia', 'cb_wing_urban', 'cb_wing_paranormal', 'cb_wing_scifi', 'cb_wing_cyberpunk', 'cb_wing_postapoc'],
+            },
             { toggle: 'cb_wing_college' },
             { toggle: 'cb_wing_fantasy_magic' },
             { toggle: 'cb_wing_omega' },
@@ -143,6 +146,8 @@ export const SECTIONS = [
     {
         key: 'utils', title: 'Utilities', icon: '🧭',
         items: [
+            { group: 'cues', label: 'Cue calls', none: 'Off', pick: ['cb_cue_full', 'cb_cue_visual'], labels: { cb_cue_full: '📣 Everything', cb_cue_visual: '📣 Visuals only' }, hint: 'A STANDBY slip above anything about to pop up, explained the first time.' },
+            { toggle: 'cb_program' },
             { group: 'model', label: 'Model layer', none: 'None', pick: ['cb_model_claude', 'cb_model_glm', 'cb_model_mimo', 'cb_model_kimi'] },
             { group: 'cot', label: 'Callboard CoT', none: 'None', pick: ['cb_callboard_cot', 'cb_cot_wholesome', 'cb_cot_fantasy'] },
             { toggle: 'cb_ooc' },
@@ -178,7 +183,7 @@ export function shortName(name, inBand = false) {
 export const REQUIRES = [
     { id: 'cb_manual', any: ['cb_impersonate'], why: 'Manual Mode is a switch for Impersonate; it does nothing in Story Mode.', fix: 'off' },
     { id: 'cb_wing_college', any: ['cb_wing_modern', 'cb_wing_y2k'], why: 'College AU is a sub-wing of Modern (or Y2K).' },
-    { id: 'cb_wing_fantasy_magic', any: ['cb_wing_fantasy', 'cb_wing_urban', 'cb_wing_paranormal'], why: 'Magic With Laws stacks on a fantastical wing.' },
+    { id: 'cb_wing_fantasy_magic', any: ['cb_wing_fantasy', 'cb_wing_urban', 'cb_wing_paranormal', 'cb_wing_wuxia'], why: 'Magic With Laws stacks on a fantastical wing.' },
     { id: 'cb_fame_pop', any: ['cb_fame'], why: 'The Pop Star flavor rides on the Fame Engine.' },
     { id: 'cb_fame_rock', any: ['cb_fame'], why: 'The Rockstar flavor rides on the Fame Engine.' },
     { id: 'cb_css_mood', any: ['cb_html_master'], why: 'CSS Mood Effects needs the diegetic HTML master.' },
@@ -193,7 +198,7 @@ export const REQUIRES = [
 export const ADVISORIES = [
     { when: ['cb_y2k_comms'], unless: ['cb_wing_y2k'], text: 'Y2K Comms is lit without the Y2K wing — AIM and flip phones in a modern story?' },
     { when: ['cb_deaddove', 'cb_trauma_guards'], text: 'Dead Dove and Trauma Guards are both lit — the Guards win where they overlap.' },
-    { when: ['cb_cot_fantasy'], unless: ['cb_wing_fantasy', 'cb_wing_westeros', 'cb_wing_medieval', 'cb_wing_urban', 'cb_wing_paranormal'], text: 'The Fantasy CoT is lit on a non-fantasy wing.' },
+    { when: ['cb_cot_fantasy'], unless: ['cb_wing_fantasy', 'cb_wing_westeros', 'cb_wing_medieval', 'cb_wing_wuxia', 'cb_wing_urban', 'cb_wing_paranormal'], text: 'The Fantasy CoT is lit on a non-fantasy wing.' },
 ];
 
 /** Which tracker each wing wants. */
@@ -202,6 +207,12 @@ export const WING_TRACKER = {
     cb_wing_y2k: 'cb_tracker_modern',
     cb_wing_urban: 'cb_tracker_modern',
     cb_wing_paranormal: 'cb_tracker_modern',
+    cb_wing_twenties: 'cb_tracker_modern',
+    cb_wing_scifi: 'cb_tracker_modern',
+    cb_wing_cyberpunk: 'cb_tracker_modern',
+    cb_wing_postapoc: 'cb_tracker_modern',
+    cb_wing_wuxia: 'cb_tracker_period',
+    cb_wing_victorian: 'cb_tracker_regency',
     cb_wing_westeros: 'cb_tracker_period',
     cb_wing_medieval: 'cb_tracker_period',
     cb_wing_fantasy: 'cb_tracker_period',
@@ -268,6 +279,48 @@ export const STARTERS = [
         picks: { wing: 'cb_wing_urban', tracker: 'cb_tracker_modern', irony: 'cb_irony_behind' },
         on: ['cb_mystery', 'cb_wing_fantasy_magic', 'cb_board_codex'],
         off: ['cb_wing_college'],
+    },
+    {
+        name: '🎩 Gilded Age Scandal',
+        blurb: 'Reputation, high society, slow burn',
+        picks: { wing: 'cb_wing_victorian', tracker: 'cb_tracker_regency', pacing: 'cb_pacing_chapter', twitch: null },
+        on: ['cb_slowburn', 'cb_board_relationship', 'cb_living_world'],
+        off: ['cb_wing_college', 'cb_y2k_comms', 'cb_discord_rx', 'cb_x_rx', 'cb_reddit_rx', 'cb_fame', 'cb_fame_pop', 'cb_fame_rock'],
+    },
+    {
+        name: '🥂 Speakeasy Nights',
+        blurb: 'Prohibition, the mob, worthy adversary',
+        picks: { wing: 'cb_wing_twenties', tracker: 'cb_tracker_modern', twitch: null },
+        on: ['cb_worthy_adversary', 'cb_living_world', 'cb_board_cast'],
+        off: ['cb_wing_college', 'cb_y2k_comms', 'cb_discord_rx', 'cb_x_rx', 'cb_reddit_rx'],
+    },
+    {
+        name: '🏯 Jianghu Wanderer',
+        blurb: 'Sects, grudges, cultivation with costs',
+        picks: { wing: 'cb_wing_wuxia', tracker: 'cb_tracker_period', cot: 'cb_cot_fantasy', twitch: null },
+        on: ['cb_wing_fantasy_magic', 'cb_worthy_adversary', 'cb_board_codex'],
+        off: ['cb_wing_college', 'cb_y2k_comms', 'cb_discord_rx', 'cb_x_rx', 'cb_reddit_rx', 'cb_fame', 'cb_fame_pop', 'cb_fame_rock'],
+    },
+    {
+        name: '🚀 Space Opera',
+        blurb: 'Crew, empires, distance that bites',
+        picks: { wing: 'cb_wing_scifi', tracker: 'cb_tracker_modern', twitch: null },
+        on: ['cb_living_world', 'cb_ensemble', 'cb_board_cast'],
+        off: ['cb_wing_college', 'cb_wing_fantasy_magic', 'cb_y2k_comms'],
+    },
+    {
+        name: '🌆 Cyberpunk Noir',
+        blurb: 'Chrome, debt, mystery in the rain',
+        picks: { wing: 'cb_wing_cyberpunk', tracker: 'cb_tracker_modern', difficulty: 'cb_diff_merciless' },
+        on: ['cb_mystery', 'cb_board_status', 'cb_board_codex'],
+        off: ['cb_wing_college', 'cb_wing_fantasy_magic', 'cb_y2k_comms'],
+    },
+    {
+        name: '☢️ Wasteland Survival',
+        blurb: 'Scarcity, status and inventory boards',
+        picks: { wing: 'cb_wing_postapoc', tracker: 'cb_tracker_modern', difficulty: 'cb_diff_merciless', twitch: null },
+        on: ['cb_board_status', 'cb_board_inventory', 'cb_worthy_adversary'],
+        off: ['cb_wing_college', 'cb_wing_fantasy_magic', 'cb_y2k_comms', 'cb_discord_rx', 'cb_x_rx', 'cb_reddit_rx', 'cb_fame', 'cb_fame_pop', 'cb_fame_rock'],
     },
 ];
 

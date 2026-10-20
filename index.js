@@ -185,7 +185,7 @@ function lint() {
         add('info', a.text);
     }
 
-    const needsRegex = allModules().some(id => lit(id) && /tracker|board|_rx$|press|y2k_comms|curtain_(line|notes|talkback)|cot|ext_/.test(id));
+    const needsRegex = allModules().some(id => lit(id) && /tracker|board|_rx$|press|y2k_comms|curtain_(line|notes|talkback)|cot|ext_|cue_|program/.test(id));
     const rx = regexHealth();
     if (needsRegex && rx) {
         if (rx.preset && !rx.presetAllowed) {
