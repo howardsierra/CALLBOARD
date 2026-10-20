@@ -19,11 +19,16 @@
     --cb-accent: var(--cb-violet);
     --cb-ease: cubic-bezier(.2, .8, .2, 1);
 
+    /* Explicit height, not top+bottom: SillyTavern puts a transform on <html>, which makes it the
+       containing block for fixed elements, and on mobile <body> is position:fixed, so <html>
+       collapses to ~0px tall. Stretching between top and bottom would give a 0px panel there. */
     position: fixed;
     top: var(--topBarBlockSize, 0);
     right: 0;
-    bottom: 0;
     width: min(460px, 100vw);
+    width: min(460px, 100dvw);
+    height: calc(100vh - var(--topBarBlockSize, 0px));
+    height: calc(100dvh - var(--topBarBlockSize, 0px));
     z-index: 3500;
     display: flex;
     flex-direction: column;
@@ -106,6 +111,7 @@
     padding: 0 16px 2px;
     overflow-x: auto;
     scrollbar-width: none;
+    touch-action: pan-x;
 }
 #cb_board .cb-marquee::-webkit-scrollbar { display: none; }
 #cb_board .cb-marquee:empty { display: none; }
@@ -214,6 +220,10 @@
     overflow-y: auto;
     padding: 10px 14px 48px;
     overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    /* SillyTavern sets touch-action:none on <body> on mobile; allow panning in here explicitly. */
+    touch-action: pan-y;
+    padding-bottom: calc(48px + env(safe-area-inset-bottom, 0px));
     scrollbar-width: thin;
     scrollbar-color: rgba(201, 166, 255, .25) transparent;
 }
@@ -586,12 +596,29 @@
 .cb-settings small { display: block; opacity: .7; margin-top: 6px; }
 
 @media (max-width: 480px) {
-    #cb_board { font-size: 14.5px; }
-    #cb_board .cb-title { font-size: 22px; }
+    #cb_board { font-size: 14.5px; border-left: 0; }
+    #cb_board .cb-head { padding: 12px 12px 9px; }
+    #cb_board .cb-bulbs { inset: 4px 12px auto; }
+    #cb_board .cb-eyebrow { display: none; }
+    #cb_board .cb-title { font-size: 20px; letter-spacing: .24em; margin: 0; }
+    #cb_board .cb-preset { font-size: 11px; }
+    #cb_board .cb-marquee { margin: 8px -12px 0; padding: 0 12px 2px; }
+    #cb_board .cb-cue { padding: 5px 9px 5px 11px; }
+    #cb_board .cb-meter-row { margin-top: 8px; }
+    #cb_board .cb-tabs { margin: 8px 10px 2px; }
+    #cb_board .cb-tabs button { padding: 8px 0; }
+    #cb_board .cb-body { padding-left: 10px; padding-right: 10px; }
     #cb_board .cb-row { padding: 9px 8px; }
+    #cb_board .cb-chip { padding: 7px 12px; }
+    #cb_board .cb-starters { grid-template-columns: 1fr 1fr; gap: 6px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
     #cb_board,
     #cb_board * { animation: none !important; transition: none !important; }
 }
+
+/* Taps register immediately on touch screens (no double-tap-zoom delay). */
+#cb_board button,
+#cb_board .cb-row,
+#cb_board summary { touch-action: manipulation; }
