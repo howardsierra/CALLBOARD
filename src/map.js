@@ -163,6 +163,7 @@ export const SECTIONS = [
             { toggle: 'cb_persona_echo' },
             { toggle: 'cb_last_check' },
             { toggle: 'cb_standing_order' },
+            { toggle: 'cb_notice' },
         ],
     },
 ];

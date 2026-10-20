@@ -1481,6 +1481,20 @@
             "injection_order": 100,
             "forbid_overrides": false,
             "injection_trigger": []
+        },
+        {
+            "identifier": "cb_notice",
+            "name": "📌 Callboard Notice",
+            "role": "user",
+            "content": "",
+            "system_prompt": false,
+            "marker": false,
+            "enabled": true,
+            "injection_position": 0,
+            "injection_depth": 4,
+            "injection_order": 100,
+            "forbid_overrides": false,
+            "injection_trigger": []
         }
     ],
     "prompt_order": [
@@ -1894,6 +1908,14 @@
                 {
                     "identifier": "cb_callboard_cot",
                     "enabled": false
+                },
+                {
+                    "identifier": "jailbreak",
+                    "enabled": true
+                },
+                {
+                    "identifier": "cb_notice",
+                    "enabled": true
                 }
             ]
         }
