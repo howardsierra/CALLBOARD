@@ -29,7 +29,7 @@
             "identifier": "cb_readme",
             "name": "📋 CALLBOARD — Read Me",
             "role": "system",
-            "content": "{{//📋 CALLBOARD LITE — READ ME. Not sent to the model; a note to you. It's off already and costs nothing.}}\nCALLBOARD LITE v1.5 — the same show for about a quarter of the tokens. Host: Xavi, your stage manager.\nWHAT'S DIFFERENT FROM FULL: the core charters and prose rules are merged into two tight prompts (🫀 The Charter, ✒️ Prose That Hits); the always-on rules are condensed; trackers, boards, and chat panels keep their exact formats but lose the long explanations; the hand-written HTML/JS/EXTREME visuals, the echoes, Patter/Mood, and the Pop/Rock flavors are gone. All 14 wings are full strength—only one is ever lit.\nFIRST: ALLOW THE REGEX. Every card, panel, cue slip, and the Program is drawn by regex that ships INSIDE this preset. SillyTavern ignores a preset's regex until you allow it: say yes when it asks, or go to Extensions → Regex → Preset scripts. (The CALLBOARD Suite extension does it in one click.)\nHOW TO DRESS THE STAGE:\n0. MODE — ONE: 🎭 Impersonate ([MANUAL: ON] / [MANUAL: OFF] pauses it) or 🖊️ Story Mode ([WRITE FOR ME] when you want me to write you).\n1. WING — ONE: Modern (default) · Y2K · Regency · Victorian / Gilded Age · Roaring Twenties · Westeros · Medieval · Fantasy · Wuxia / Xianxia · Urban Fantasy · Paranormal · Sci-Fi / Space Opera · Cyberpunk · Post-Apocalyptic. Stackers: College AU, Magic With Laws, Omegaverse.\n2. TRACKER — optional, the ONE matching your wing: Modern (most wings), Period (Westeros, Medieval, Fantasy, Wuxia), Regency (Regency, Victorian).\n3. Everything else is off until you want it: boards, chat panels (Twitch, Discord, X, Reddit, Press, Y2K Comms, and new in v1.5: 💘 Dating App, 🌐 Web Browser, 📸 Instagram, 🔒 Private Photos, 💎 Creator Page), story systems, Fame, the Lite CoT, extra model layers.\n4. 📣 Cue Calls and 🎟️ The Program are on: a STANDBY slip warns you before anything pops up and explains it the first time; send [PROGRAM] to see what's lit.\nWant everything? Use the full CALLBOARD v1.4 preset instead.",
+            "content": "{{//📋 CALLBOARD LITE — READ ME. Not sent to the model; a note to you. It's off already and costs nothing.}}\nCALLBOARD LITE v1.5 — the same show for about a quarter of the tokens. Host: Xavi, your stage manager.\nWHAT'S DIFFERENT FROM FULL: the core charters and prose rules are merged into two tight prompts (🫀 The Charter, ✒️ Prose That Hits); the always-on rules are condensed; trackers, boards, and chat panels keep their exact formats but lose the long explanations; the hand-written HTML/JS/EXTREME visuals, the echoes, Patter/Mood, and the Pop/Rock flavors are gone. All 14 wings are full strength—only one is ever lit.\nFIRST: ALLOW THE REGEX. Every card, panel, cue slip, and the Program is drawn by regex that ships INSIDE this preset. SillyTavern ignores a preset's regex until you allow it: say yes when it asks, or go to Extensions → Regex → Preset scripts. (The CALLBOARD Suite extension does it in one click.)\nHOW TO DRESS THE STAGE:\n0. MODE — ONE: 🎭 Impersonate ([MANUAL: ON] / [MANUAL: OFF] pauses it) or 🖊️ Story Mode ([WRITE FOR ME] when you want me to write you).\n1. WING — ONE: Modern (default) · Y2K · Regency · Victorian / Gilded Age · Roaring Twenties · Westeros · Medieval · Fantasy · Wuxia / Xianxia · Urban Fantasy · Paranormal · Sci-Fi / Space Opera · Cyberpunk · Post-Apocalyptic. Stackers: College AU, Magic With Laws, Omegaverse.\n2. TRACKER — optional, the ONE matching your wing: Modern (most wings), Period (Westeros, Medieval, Fantasy, Wuxia), Regency (Regency, Victorian).\n3. Everything else is off until you want it: boards, chat panels (Twitch, Discord, X, Reddit, Press, Y2K Comms, and new in v1.5: 💘 Dating App, 🌐 Web Browser, 📸 Instagram, 🔒 Private Photos, 💎 Creator Page), story systems, Fame, the Lite CoT, extra model layers (GLM, MiMo, Kimi, Gemini, ChatGPT—Claude is on by default; light the one you run).\n4. 📣 Cue Calls and 🎟️ The Program are on: a STANDBY slip warns you before anything pops up and explains it the first time; send [PROGRAM] to see what's lit.\nWant everything? Use the full CALLBOARD v1.4 preset instead.",
             "system_prompt": false,
             "marker": false,
             "enabled": false,
@@ -1453,6 +1453,34 @@
             "injection_order": 100,
             "forbid_overrides": false,
             "injection_trigger": []
+        },
+        {
+            "identifier": "cb_model_gemini",
+            "name": "⚙️ Model — Gemini",
+            "role": "system",
+            "content": "<model_layer id=\"gemini\">\nFor Gemini. Never open by echoing or paraphrasing {{user}}'s last message—start from what happens next. No recycled tics: \"a testament to,\" \"the air thick with,\" the smell of ozone, \"a dance of,\" \"something shifted,\" a smirk in every paragraph, knuckles whitening; once a phrase has appeared, it is spent for the rest of the chat. Length is weight, not volume—don't re-describe the room every turn or pad toward a big response. Characters keep their edges: no sudden softening, no melodrama the story hasn't paid for. Planning, headers, and meta-commentary never leak outside the <think> block. End on a beat, never on a question to {{user}}. No moralizing, no disclaimers.\n</model_layer>",
+            "system_prompt": false,
+            "marker": false,
+            "enabled": false,
+            "injection_position": 0,
+            "injection_depth": 4,
+            "injection_order": 100,
+            "forbid_overrides": false,
+            "injection_trigger": []
+        },
+        {
+            "identifier": "cb_model_gpt",
+            "name": "⚙️ Model — ChatGPT",
+            "role": "system",
+            "content": "<model_layer id=\"gpt\">\nFor ChatGPT / OpenAI GPT models. The drift is toward niceness and tidiness—resist both. Characters don't turn reasonable, apologize, or talk through their feelings because it would be healthy; no therapy-speak (\"I hear you,\" \"that's valid,\" \"boundaries\") unless the character would truly say it. Conflicts don't resolve in one scene, and endings aren't bows. No moralizing, no softened cruelty, no fade-to-black or skipping what the lit content toggles allow. Prose, not presentation: no headers, bullet lists, or bold outside diegetic artifacts; ration the em-dashes; never \"It's not X—it's Y.\" Never close by asking {{user}} what happens next or offering options. Impersonate lit: write her in full without hedging. Story Mode lit: don't slip her even small reactions.\n</model_layer>",
+            "system_prompt": false,
+            "marker": false,
+            "enabled": false,
+            "injection_position": 0,
+            "injection_depth": 4,
+            "injection_order": 100,
+            "forbid_overrides": false,
+            "injection_trigger": []
         }
     ],
     "prompt_order": [
@@ -1853,6 +1881,14 @@
                 },
                 {
                     "identifier": "cb_model_kimi",
+                    "enabled": false
+                },
+                {
+                    "identifier": "cb_model_gemini",
+                    "enabled": false
+                },
+                {
+                    "identifier": "cb_model_gpt",
                     "enabled": false
                 },
                 {

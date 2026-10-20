@@ -37,7 +37,7 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 | **Wing** (one) | 📱 Modern · 📟 Y2K · 🥂 Roaring Twenties · 🎩 Victorian / Gilded Age · 🎀 Regency · ⚔️ Westeros · 🏰 Medieval · 🐉 Fantasy · 🏯 Wuxia / Xianxia · 🌃 Urban Fantasy · 👻 Paranormal · 🚀 Sci-Fi / Space Opera · 🌆 Cyberpunk · ☢️ Post-Apocalyptic |
 | **Stackers** | 🎓 College AU (on Modern or Y2K) · 🔮 Magic With Laws (on Fantasy, Urban, Paranormal or Wuxia) · 🐺 Omegaverse (on anything) |
 | **Tracker** (matches the wing) | **Modern:** Modern, College, Y2K, Twenties, Urban, Paranormal, Sci-Fi, Cyberpunk, Post-Apocalyptic · **Period:** Westeros, Medieval, Fantasy, Wuxia · **Regency:** Regency, Victorian |
-| **Model layer** (one or none) | Claude · GLM · MiMo · Kimi |
+| **Model layer** (one or none) | Claude · GLM · MiMo · Kimi · Gemini · ChatGPT |
 | **CoT** (one or none) | Dramatic · Wholesome · Fantasy |
 
 Everything else is optional: boards, story systems, spotlight and fame, chat panels, visuals and content modules.

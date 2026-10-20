@@ -155,7 +155,7 @@ export const SECTIONS = [
         items: [
             { group: 'cues', label: 'Cue calls', none: 'Off', pick: ['cb_cue_full', 'cb_cue_visual'], labels: { cb_cue_full: '📣 Everything' }, hint: 'A STANDBY slip above anything about to pop up, explained the first time.' },
             { toggle: 'cb_program' },
-            { group: 'model', label: 'Model layer', none: 'None', pick: ['cb_model_claude', 'cb_model_glm', 'cb_model_mimo', 'cb_model_kimi'] },
+            { group: 'model', label: 'Model layer', none: 'None', pick: ['cb_model_claude', 'cb_model_glm', 'cb_model_mimo', 'cb_model_kimi', 'cb_model_gemini', 'cb_model_gpt'] },
             { group: 'cot', label: 'Callboard CoT', none: 'None', pick: ['cb_callboard_cot', 'cb_cot_wholesome', 'cb_cot_fantasy'] },
             { toggle: 'cb_ooc' },
             { toggle: 'cb_momentum' },
