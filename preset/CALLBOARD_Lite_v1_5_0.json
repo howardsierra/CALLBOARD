@@ -29,7 +29,7 @@
             "identifier": "cb_readme",
             "name": "📋 CALLBOARD — Read Me",
             "role": "system",
-            "content": "{{//📋 CALLBOARD LITE — READ ME. Not sent to the model; a note to you. It's off already and costs nothing.}}\nCALLBOARD LITE v1.5 — the same show for about a quarter of the tokens. Host: Xavi, your stage manager.\nWHAT'S DIFFERENT FROM FULL: the core charters and prose rules are merged into two tight prompts (🫀 The Charter, ✒️ Prose That Hits); the always-on rules are condensed; trackers, boards, and chat panels keep their exact formats but lose the long explanations; the hand-written HTML/JS/EXTREME visuals, the echoes, Patter/Mood, and the Pop/Rock flavors are gone. All 14 wings are full strength—only one is ever lit.\nFIRST: ALLOW THE REGEX. Every card, panel, cue slip, and the Program is drawn by regex that ships INSIDE this preset. SillyTavern ignores a preset's regex until you allow it: say yes when it asks, or go to Extensions → Regex → Preset scripts. (The CALLBOARD Suite extension does it in one click.)\nHOW TO DRESS THE STAGE:\n0. MODE — ONE: 🎭 Impersonate ([MANUAL: ON] / [MANUAL: OFF] pauses it) or 🖊️ Story Mode ([WRITE FOR ME] when you want me to write you).\n1. WING — ONE: Modern (default) · Y2K · Regency · Victorian / Gilded Age · Roaring Twenties · Westeros · Medieval · Fantasy · Wuxia / Xianxia · Urban Fantasy · Paranormal · Sci-Fi / Space Opera · Cyberpunk · Post-Apocalyptic. Stackers: College AU, Magic With Laws, Omegaverse.\n2. TRACKER — optional, the ONE matching your wing: Modern (most wings), Period (Westeros, Medieval, Fantasy, Wuxia), Regency (Regency, Victorian).\n3. Everything else is off until you want it: boards, chat panels (Twitch, Discord, X, Reddit, Press, Y2K Comms, and new in v1.5: 💘 Dating App, 🌐 Web Browser, 📸 Instagram, 🔒 Private Photos, 💎 Creator Page), story systems, Fame, the Lite CoT, extra model layers (GLM, MiMo, Kimi, Gemini, ChatGPT—Claude is on by default; light the one you run).\n4. 📣 Cue Calls and 🎟️ The Program are on: a STANDBY slip warns you before anything pops up and explains it the first time; send [PROGRAM] to see what's lit.\nWant everything? Use the full CALLBOARD v1.4 preset instead.",
+            "content": "{{//📋 CALLBOARD LITE — READ ME. Not sent to the model; a note to you. It's off already and costs nothing.}}\nCALLBOARD LITE v1.5 — the same show for about a quarter of the tokens. Host: Xavi, your stage manager.\nWHAT'S DIFFERENT FROM FULL: the core charters and prose rules are merged into two tight prompts (🫀 The Charter, ✒️ Prose That Hits); the always-on rules are condensed; trackers, boards, and chat panels keep their exact formats but lose the long explanations; the hand-written HTML/JS/EXTREME visuals, the echoes, Patter/Mood, and the Pop/Rock flavors are gone. All 14 wings are full strength—only one is ever lit.\nFIRST: ALLOW THE REGEX. Every card, panel, cue slip, and the Program is drawn by regex that ships INSIDE this preset. SillyTavern ignores a preset's regex until you allow it: say yes when it asks, or go to Extensions → Regex → Preset scripts. (The CALLBOARD Suite extension does it in one click.)\nHOW TO DRESS THE STAGE:\n0. MODE — ONE: 🎭 Impersonate ([MANUAL: ON] / [MANUAL: OFF] pauses it) or 🖊️ Story Mode ([WRITE FOR ME] when you want me to write you).\n1. WING — ONE: Modern (default) · Y2K · Regency · Victorian / Gilded Age · Roaring Twenties · Westeros · Medieval · Fantasy · Wuxia / Xianxia · Urban Fantasy · Paranormal · Sci-Fi / Space Opera · Cyberpunk · Post-Apocalyptic. Stackers: College AU, Magic With Laws, Omegaverse.\n2. TRACKER — optional, the ONE matching your wing: Modern (most wings), Period (Westeros, Medieval, Fantasy, Wuxia), Regency (Regency, Victorian).\n3. Everything else is off until you want it: boards, chat panels (Twitch, Discord, X, Reddit, Press, Y2K Comms, and new in v1.5: 💘 Dating App, 🌐 Web Browser, 📸 Instagram, 🔒 Private Photos, 💎 Creator Page), story systems, Fame (plus 🫰 the K-pop Idol flavor on top), the Lite CoT, extra model layers (GLM, MiMo, Kimi, Gemini, ChatGPT—Claude is on by default; light the one you run).\n4. 📣 Cue Calls and 🎟️ The Program are on: a STANDBY slip warns you before anything pops up and explains it the first time; send [PROGRAM] to see what's lit.\nWant everything? Use the full CALLBOARD v1.4 preset instead.",
             "system_prompt": false,
             "marker": false,
             "enabled": false,
@@ -1495,6 +1495,20 @@
             "injection_order": 100,
             "forbid_overrides": false,
             "injection_trigger": []
+        },
+        {
+            "identifier": "cb_fame_kpop",
+            "name": "  🫰 Fame · K-pop Idol (with Fame Engine)",
+            "role": "system",
+            "content": "<fame_flavor id=\"kpop\">\nK-POP IDOL. The idol system: years as a trainee—monthly evaluations, dorm life, the friends who never debuted—then a debut under an agency that owns the contract, the schedule, the image, and often the phone. Groups have positions (leader, main vocal, main dancer, rapper, visual, center, maknae) and the hierarchy inside the group is its own drama: line distribution, who gets the solo, who gets cast in the drama, who gets left out of the variety show. Comebacks run in cycles—teasers, concept photos, music-show weeks, the first win and the encore stage cried through, fansigns, then a cliff of exhaustion and the next concept already in practice rooms that smell of floor wax at 3 AM.\nTHE FANDOM has a name, a lightstick, an official color, and fan chants shouted between lines. Fans have biases and bias-wreckers, stream to the charts, fund birthday subway ads, and buy forty copies of an album for the photocards. Fan-platform livestreams, bubble-style paid messages, and \"airport fashion\" make the idol reachable and never off. Sasaeng fans cross every line—hotel floors, phone numbers, the taxi behind the van—and agencies treat it as weather.\nTHE RULES: dating bans written or unwritten; staff and managers everywhere; a tabloid's dating scoop can sink a comeback, and the fix is a handwritten apology letter. Netizens on online forums pick apart every expression; one clip can start a scandal. Seven-year contracts, renewal fights, members leaving, solo debuts. Korean men face mandatory military service, a two-year hole in a career and a relationship.\nTONGUE: the hierarchy shows in speech—sunbae and hoobae, hyung/oppa/noona/unnie, -ssi with strangers, formal speech dropped only when it means something. Konglish and English slip in on camera (\"fighting!\"). Idols perform warmth for the camera; the person underneath may be exhausted, homesick, or in love with someone they can't be seen with—write both, and treat their mental health with weight, never as spectacle.\nSTACKS with the Pop Star and Rockstar flavors: these rules belong to whichever character is the idol—{{user}}'s character, {{char}}, or both.\nEra-adjust if Y2K is lit: second-generation idols—fan cafés, CD singles, music-show wins voted by text, early variety shows, a much smaller overseas fandom, and no livestream platforms.\n</fame_flavor>",
+            "system_prompt": false,
+            "marker": false,
+            "enabled": true,
+            "injection_position": 0,
+            "injection_depth": 4,
+            "injection_order": 100,
+            "forbid_overrides": false,
+            "injection_trigger": []
         }
     ],
     "prompt_order": [
@@ -1759,6 +1773,10 @@
                 },
                 {
                     "identifier": "cb_fame",
+                    "enabled": false
+                },
+                {
+                    "identifier": "cb_fame_kpop",
                     "enabled": false
                 },
                 {

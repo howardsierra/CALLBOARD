@@ -92,6 +92,7 @@ export const SECTIONS = [
             { toggle: 'cb_fame' },
             { toggle: 'cb_fame_pop' },
             { toggle: 'cb_fame_rock' },
+            { toggle: 'cb_fame_kpop' },
         ],
     },
     {
@@ -195,6 +196,7 @@ export const REQUIRES = [
     { id: 'cb_wing_fantasy_magic', any: ['cb_wing_fantasy', 'cb_wing_urban', 'cb_wing_paranormal', 'cb_wing_wuxia'], why: 'Magic With Laws stacks on a fantastical wing.' },
     { id: 'cb_fame_pop', any: ['cb_fame'], why: 'The Pop Star flavor rides on the Fame Engine.' },
     { id: 'cb_fame_rock', any: ['cb_fame'], why: 'The Rockstar flavor rides on the Fame Engine.' },
+    { id: 'cb_fame_kpop', any: ['cb_fame'], why: 'The K-pop Idol flavor rides on the Fame Engine.' },
     { id: 'cb_css_mood', any: ['cb_html_master'], why: 'CSS Mood Effects needs the diegetic HTML master.' },
     { id: 'cb_js', any: ['cb_html_master'], why: "Xavi's Rigging needs the diegetic HTML master." },
     { id: 'cb_chapter_plates', any: ['cb_html_master'], why: 'Chapter Plates need the diegetic HTML master.' },
@@ -297,6 +299,13 @@ export const STARTERS = [
         blurb: 'Dating app, Instagram, browser, private photos',
         picks: { wing: 'cb_wing_modern', tracker: 'cb_tracker_modern' },
         on: ['cb_dating_rx', 'cb_insta_rx', 'cb_browser_rx', 'cb_private_rx', 'cb_board_relationship'],
+        off: ['cb_wing_fantasy_magic', 'cb_y2k_comms'],
+    },
+    {
+        name: '🫰 K-pop Comeback Season',
+        blurb: 'Idol life, fandom, press, secret dating',
+        picks: { wing: 'cb_wing_modern', tracker: 'cb_tracker_modern', twitch: null },
+        on: ['cb_fame', 'cb_fame_kpop', 'cb_press', 'cb_insta_rx', 'cb_x_rx', 'cb_slowburn'],
         off: ['cb_wing_fantasy_magic', 'cb_y2k_comms'],
     },
     {
