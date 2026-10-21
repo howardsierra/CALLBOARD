@@ -1416,7 +1416,7 @@
             "identifier": "cb_insta_rx",
             "name": "📸 Instagram — profiles, posts, stories (regex)",
             "role": "system",
-            "content": "<visual id=\"instagram\">\nINSTAGRAM. When someone posts, scrolls, checks a story, or stalks a profile, show it. You write DATA LINES; the companion regex draws it. Never write the HTML yourself.\n[[INSTA]]\nIG> profile|username|display name|posts|followers|following|bio\nIG> post|username|location (or empty)|✓ (or empty)\nIG> photo|what the photo shows (repeat for a carousel)\nIG> stats|likes|time\nIG> caption|username|caption text with #hashtags and @mentions\nIG> comment|username|comment|likes\nIG> story|username|what the story shows, including any text or sticker on it|time\n[[/INSTA]]\nDATA DISCIPLINE: a profile view starts with profile; a post is post → photo(s) → stats → caption → 0–6 comments; a story stands alone. 3–12 lines; empty fields are two pipes touching; never a | inside a field. Likes and counts look like 1,204 or 88.4K; time like 2h or 3 DAYS AGO.\nPOSTING IS PERFORMANCE: the soft launch (a hand, a second coffee, a sleeve that isn't hers), the hard launch, the photo dump that's really about one photo, the caption that's a subtweet, the story posted for exactly one viewer, the close-friends list, the like from someone who shouldn't be looking, the account that suddenly archives every photo of them together. Comments are the chorus. Modern wings only (2010 onward); in Y2K use MySpace via Y2K Comms. Then back to prose—someone reacts.\n</visual>",
+            "content": "<visual id=\"instagram\">\nINSTAGRAM. When someone posts, scrolls, checks a story, or stalks a profile, show it. You write DATA LINES; the companion regex draws it. Never write the HTML yourself.\n[[INSTA]]\nIG> profile|username|display name|posts|followers|following|bio\nIG> post|username|location (or empty)|✓ (or empty)\nIG> photo|what the photo shows (repeat for a carousel)\nIG> stats|likes|time\nIG> caption|username|caption text with #hashtags and @mentions\nIG> comment|username|comment|likes (optional)\nIG> story|username|what the story shows, including any text or sticker on it|time\n[[/INSTA]]\nDATA DISCIPLINE: usernames are written without the @ (lexhayes, not @lexhayes); @ is only for mentions inside a caption or comment. A profile view starts with profile; a post is post → photo(s) → stats → caption → 0–6 comments; a story stands alone. 3–12 lines; empty fields are two pipes touching; never a | inside a field. Likes and counts look like 1,204 or 88.4K; time like 2h or 3 DAYS AGO.\nPOSTING IS PERFORMANCE: the soft launch (a hand, a second coffee, a sleeve that isn't hers), the hard launch, the photo dump that's really about one photo, the caption that's a subtweet, the story posted for exactly one viewer, the close-friends list, the like from someone who shouldn't be looking, the account that suddenly archives every photo of them together. Comments are the chorus. Modern wings only (2010 onward); in Y2K use MySpace via Y2K Comms. Then back to prose—someone reacts.\n</visual>",
             "system_prompt": false,
             "marker": false,
             "enabled": true,
@@ -3726,7 +3726,7 @@
             {
                 "id": "4648fde2-4a21-4374-aa4c-c0d674e74b3c",
                 "scriptName": "CB · Instagram row — profile",
-                "findRegex": "/^IG(?:&gt;|>)[ \\t]*profile[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]*?)[ \\t]*$/gmi",
+                "findRegex": "/^IG(?:&gt;|>)[ \\t]*profile[ \\t]*\\|[ \\t]*@?([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*(?:\\|[ \\t]*([^|\\n]*?)[ \\t]*)?[ \\t]*$/gmi",
                 "replaceString": "<div style=\"padding:14px 16px 10px;border-bottom:1px solid #efefef;\"><div style=\"display:flex;align-items:center;gap:18px;\"><span style=\"display:inline-block;flex:none;width:72px;height:72px;border-radius:50%;padding:2px;box-sizing:border-box;background:conic-gradient(#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5,#feda75);\"><span style=\"display:block;width:100%;height:100%;border-radius:50%;background:#e9e9ee;border:2px solid #fff;box-sizing:border-box;\"></span></span><div style=\"flex:1;display:flex;justify-content:space-around;text-align:center;font-size:12px;color:#262626;\"><div><b style=\"font-size:16px;\">$3</b><br>posts</div><div><b style=\"font-size:16px;\">$4</b><br>followers</div><div><b style=\"font-size:16px;\">$5</b><br>following</div></div></div><div style=\"margin-top:8px;font-size:13px;font-weight:700;color:#262626;\">$2</div><div style=\"font-size:11.5px;color:#737373;\">@$1</div><div style=\"font-size:13px;color:#262626;line-height:1.4;margin-top:3px;\">$6</div></div><!--cbrow-->",
                 "trimStrings": [],
                 "placement": [
@@ -3744,7 +3744,7 @@
             {
                 "id": "8c0a4ab9-1244-4799-aa60-f992c6369e66",
                 "scriptName": "CB · Instagram row — post header",
-                "findRegex": "/^IG(?:&gt;|>)[ \\t]*post[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]*?)[ \\t]*\\|[ \\t]*([^|\\n]*?)[ \\t]*$/gmi",
+                "findRegex": "/^IG(?:&gt;|>)[ \\t]*post[ \\t]*\\|[ \\t]*@?([^|\\n]+?)[ \\t]*(?:\\|[ \\t]*([^|\\n]*?)[ \\t]*(?:\\|[ \\t]*([^|\\n]*?)[ \\t]*)?)?[ \\t]*$/gmi",
                 "replaceString": "<div style=\"display:flex;align-items:center;gap:10px;padding:10px 12px;\"><span style=\"display:inline-block;flex:none;width:34px;height:34px;border-radius:50%;padding:2px;box-sizing:border-box;background:conic-gradient(#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5,#feda75);\"><span style=\"display:block;width:100%;height:100%;border-radius:50%;background:#e9e9ee;border:2px solid #fff;box-sizing:border-box;\"></span></span><div style=\"line-height:1.25;\"><div style=\"font-size:13px;font-weight:700;color:#262626;\">$1 <span style=\"color:#0095f6;\">$3</span></div><div style=\"font-size:11px;color:#737373;\">$2</div></div><span style=\"margin-left:auto;color:#262626;letter-spacing:1px;\">•••</span></div><!--cbrow-->",
                 "trimStrings": [],
                 "placement": [
@@ -3798,7 +3798,7 @@
             {
                 "id": "87f37c5c-bacb-41a3-9f24-7e68b9429274",
                 "scriptName": "CB · Instagram row — caption",
-                "findRegex": "/^IG(?:&gt;|>)[ \\t]*caption[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*$/gmi",
+                "findRegex": "/^IG(?:&gt;|>)[ \\t]*caption[ \\t]*\\|[ \\t]*@?([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*[ \\t]*$/gmi",
                 "replaceString": "<div style=\"padding:3px 14px;font-size:13px;color:#262626;line-height:1.45;\"><b>$1</b> $2</div><!--cbrow-->",
                 "trimStrings": [],
                 "placement": [
@@ -3816,7 +3816,7 @@
             {
                 "id": "94d2efe0-6056-4cf4-93ce-c54f8e61a372",
                 "scriptName": "CB · Instagram row — comment",
-                "findRegex": "/^IG(?:&gt;|>)[ \\t]*comment[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]*?)[ \\t]*$/gmi",
+                "findRegex": "/^IG(?:&gt;|>)[ \\t]*comment[ \\t]*\\|[ \\t]*@?([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*(?:\\|[ \\t]*([^|\\n]*?)[ \\t]*)?[ \\t]*$/gmi",
                 "replaceString": "<div style=\"display:flex;gap:8px;padding:4px 14px;font-size:12.5px;color:#262626;line-height:1.4;\"><span style=\"flex:1;\"><b>$1</b> $2</span><span style=\"color:#737373;font-size:11px;white-space:nowrap;\">♡ $3</span></div><!--cbrow-->",
                 "trimStrings": [],
                 "placement": [
@@ -3834,7 +3834,7 @@
             {
                 "id": "44c7aceb-55f4-406d-83d7-908ea6643603",
                 "scriptName": "CB · Instagram row — story",
-                "findRegex": "/^IG(?:&gt;|>)[ \\t]*story[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*$/gmi",
+                "findRegex": "/^IG(?:&gt;|>)[ \\t]*story[ \\t]*\\|[ \\t]*@?([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*(?:\\|[ \\t]*([^|\\n]*?)[ \\t]*)?[ \\t]*$/gmi",
                 "replaceString": "<div style=\"margin:10px auto;width:230px;height:380px;border-radius:14px;background:linear-gradient(170deg,#3a2a4f,#b4537a 55%,#f0a868);position:relative;overflow:hidden;color:#fff;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;\"><div style=\"position:absolute;top:8px;left:8px;right:8px;height:2px;border-radius:2px;background:rgba(255,255,255,.35);\"><div style=\"width:45%;height:100%;background:#fff;border-radius:2px;\"></div></div><div style=\"position:absolute;top:18px;left:10px;display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;\"><span style=\"display:inline-block;flex:none;width:26px;height:26px;border-radius:50%;padding:2px;box-sizing:border-box;background:conic-gradient(#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5,#feda75);\"><span style=\"display:block;width:100%;height:100%;border-radius:50%;background:#e9e9ee;border:2px solid #fff;box-sizing:border-box;\"></span></span>$1 <span style=\"font-weight:400;opacity:.8;\">$3</span></div><div style=\"position:absolute;left:14px;right:14px;top:50%;transform:translateY(-50%);text-align:center;font-size:13.5px;line-height:1.5;text-shadow:0 1px 4px rgba(0,0,0,.6);\">$2</div><div style=\"position:absolute;bottom:10px;left:10px;right:10px;padding:7px 12px;border:1px solid rgba(255,255,255,.6);border-radius:20px;font-size:11.5px;opacity:.85;\">Send message</div></div><!--cbrow-->",
                 "trimStrings": [],
                 "placement": [
@@ -3870,7 +3870,7 @@
             {
                 "id": "e39c75bb-8ae1-4e46-b866-1cdf966feda2",
                 "scriptName": "CB · Private row — photo received",
-                "findRegex": "/^PX(?:&gt;|>)[ \\t]*pic[ \\t]*\\|[ \\t]*in[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]*?)[ \\t]*\\|[ \\t]*([^|\\n]*?)[ \\t]*$/gmi",
+                "findRegex": "/^PX(?:&gt;|>)[ \\t]*pic[ \\t]*\\|[ \\t]*in[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*(?:\\|[ \\t]*([^|\\n]*?)[ \\t]*(?:\\|[ \\t]*([^|\\n]*?)[ \\t]*)?)?[ \\t]*$/gmi",
                 "replaceString": "<div style=\"display:flex;margin:6px 14px;\"><details style=\"max-width:78%;\"><summary style=\"list-style:none;cursor:pointer;width:210px;height:160px;border-radius:18px;background:repeating-linear-gradient(135deg,#4a3a5e 0 9px,#3b2e4c 9px 18px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#fff;font-size:12.5px;box-shadow:inset 0 0 50px rgba(255,255,255,.18),0 4px 14px rgba(0,0,0,.35);\"><span style=\"font-size:28px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4));\">📸</span><b>Photo</b><span style=\"opacity:.75;font-size:10.5px;\">tap to view · $4</span><span style=\"opacity:.55;font-size:10px;\">$1</span></summary><div style=\"margin-top:6px;padding:10px 13px;border-radius:14px;background:#1f1a26;border:1px solid #3a2f45;color:#eee6f8;font-size:12.5px;line-height:1.55;font-style:italic;\">$2</div><div style=\"font-size:13px;color:#eee6f8;margin-top:5px;padding:0 4px;\">$3</div></details></div><!--cbrow-->",
                 "trimStrings": [],
                 "placement": [
@@ -3888,7 +3888,7 @@
             {
                 "id": "e96ddc12-6e26-431b-b07c-57225405b2c2",
                 "scriptName": "CB · Private row — photo sent",
-                "findRegex": "/^PX(?:&gt;|>)[ \\t]*pic[ \\t]*\\|[ \\t]*out[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]*?)[ \\t]*\\|[ \\t]*([^|\\n]*?)[ \\t]*$/gmi",
+                "findRegex": "/^PX(?:&gt;|>)[ \\t]*pic[ \\t]*\\|[ \\t]*out[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*(?:\\|[ \\t]*([^|\\n]*?)[ \\t]*(?:\\|[ \\t]*([^|\\n]*?)[ \\t]*)?)?[ \\t]*$/gmi",
                 "replaceString": "<div style=\"display:flex;justify-content:flex-end;margin:6px 14px;\"><details style=\"max-width:78%;\"><summary style=\"list-style:none;cursor:pointer;width:210px;height:160px;border-radius:18px;background:repeating-linear-gradient(135deg,#a8436f 0 9px,#933a62 9px 18px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#fff;font-size:12.5px;box-shadow:inset 0 0 50px rgba(255,255,255,.18),0 4px 14px rgba(0,0,0,.35);\"><span style=\"font-size:28px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4));\">📸</span><b>Photo</b><span style=\"opacity:.75;font-size:10.5px;\">tap to view · $4</span><span style=\"opacity:.55;font-size:10px;\">$1</span></summary><div style=\"margin-top:6px;padding:10px 13px;border-radius:14px;background:#1f1a26;border:1px solid #3a2f45;color:#eee6f8;font-size:12.5px;line-height:1.55;font-style:italic;\">$2</div><div style=\"font-size:13px;color:#eee6f8;margin-top:5px;padding:0 4px;\">$3</div></details></div><!--cbrow-->",
                 "trimStrings": [],
                 "placement": [
@@ -3960,7 +3960,7 @@
             {
                 "id": "2e99e981-23ff-4591-9df0-d5a248166853",
                 "scriptName": "CB · Creator row — header",
-                "findRegex": "/^CR(?:&gt;|>)[ \\t]*head[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]*?)[ \\t]*$/gmi",
+                "findRegex": "/^CR(?:&gt;|>)[ \\t]*head[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*(?:\\|[ \\t]*([^|\\n]*?)[ \\t]*)?[ \\t]*$/gmi",
                 "replaceString": "<div style=\"height:78px;background:linear-gradient(135deg,#00aff0,#7b5cff 60%,#ff6fb5);\"></div><div style=\"padding:0 16px 14px;border-bottom:1px solid #eceef0;\"><div style=\"width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#dfe7ee,#c9d4de);border:3px solid #fff;margin-top:-32px;\"></div><div style=\"font-size:18px;font-weight:800;color:#1b1b1f;margin-top:5px;\">$1 <span style=\"color:#00aff0;font-size:14px;\">✔</span></div><div style=\"font-size:12px;color:#8a8d91;\">$2 · $3 subscribers</div><div style=\"font-size:12.5px;color:#3a3b3f;margin-top:7px;line-height:1.45;\">$5</div><div style=\"margin-top:11px;padding:10px;border-radius:24px;background:#00aff0;color:#fff;text-align:center;font-weight:700;font-size:12.5px;letter-spacing:.6px;\">SUBSCRIBE · $4 / month</div></div><!--cbrow-->",
                 "trimStrings": [],
                 "placement": [
@@ -4014,7 +4014,7 @@
             {
                 "id": "e02b25d0-e41e-428b-b527-dc639c4888d9",
                 "scriptName": "CB · Creator row — tip",
-                "findRegex": "/^CR(?:&gt;|>)[ \\t]*tip[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]*?)[ \\t]*$/gmi",
+                "findRegex": "/^CR(?:&gt;|>)[ \\t]*tip[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*\\|[ \\t]*([^|\\n]+?)[ \\t]*(?:\\|[ \\t]*([^|\\n]*?)[ \\t]*)?[ \\t]*$/gmi",
                 "replaceString": "<div style=\"margin:8px 16px;padding:9px 12px;border-radius:12px;background:#ecfbf2;border:1px solid #c8efd8;font-size:12.5px;color:#1f5e3a;line-height:1.45;\">💸 <b>$1</b> tipped <b>$2</b> <span style=\"font-style:italic;\">$3</span></div><!--cbrow-->",
                 "trimStrings": [],
                 "placement": [
