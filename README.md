@@ -53,6 +53,7 @@ Five new regex-drawn panels for modern wings, all off until you switch them on, 
 | 📸 Instagram | `[[INSTA]]` · `IG>` | Profile header, feed posts (carousel, likes, caption, comments) and stories |
 | 🔒 Private Photos | `[[PRIVATE]]` · `PX>` | A private thread between partners: photos are frosted tiles you **tap to reveal**, with view-once/replay and "took a screenshot!" alerts |
 | 💎 Creator Page | `[[CREATOR]]` · `CR>` | A subscription page: free posts, 🔒 locked posts you can tap to peek, tips, fan DMs, pay-per-view messages and an earnings line |
+| 🫧 Fan Platform | `[[BUBBLE]]` / `[[LIVE]]` · `FP>` | An idol's paid fan chat (selfies, voice memos with transcript, a D+ subscription counter, your private replies) or a fan livestream (● LIVE header, captions of what they say, scrolling chat, heart and gift alerts). Pairs with 🫰 K-pop Idol |
 
 Everyone in a dating profile, private photo or creator page is an adult. Each prompt states which eras it fits: Y2K gets desktop dating sites, IE and grainy picture messages, and none of these appear in period wings. Cue Calls explain each panel the first time it shows up. The extension has a matching 📲 Extremely Online starter.
 

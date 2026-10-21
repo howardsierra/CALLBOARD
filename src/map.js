@@ -131,6 +131,7 @@ export const SECTIONS = [
             { toggle: 'cb_insta_rx' },
             { toggle: 'cb_private_rx' },
             { toggle: 'cb_creator_rx' },
+            { toggle: 'cb_fanplatform_rx' },
         ],
     },
     {
@@ -209,6 +210,7 @@ export const REQUIRES = [
 export const ADVISORIES = [
     { when: ['cb_y2k_comms'], unless: ['cb_wing_y2k'], text: 'Y2K Comms is lit without the Y2K wing — AIM and flip phones in a modern story?' },
     { when: ['cb_insta_rx'], unless: ['cb_wing_modern', 'cb_wing_urban', 'cb_wing_paranormal', 'cb_wing_cyberpunk', 'cb_wing_scifi'], text: 'Instagram is lit on a wing where it doesn\'t exist yet (or anymore).' },
+    { when: ['cb_fanplatform_rx'], unless: ['cb_wing_modern', 'cb_wing_urban', 'cb_wing_paranormal', 'cb_wing_cyberpunk', 'cb_wing_scifi'], text: 'The Fan Platform is lit on a wing without fan apps (Y2K idols used fan cafés).' },
     { when: ['cb_dating_rx'], unless: ['cb_wing_modern', 'cb_wing_y2k', 'cb_wing_urban', 'cb_wing_paranormal', 'cb_wing_cyberpunk', 'cb_wing_scifi'], text: 'The Dating App is lit on a wing without dating apps.' },
     { when: ['cb_pure_html'], unless: [], text: 'Pure HTML is lit: every reply will be in-world objects only, with no prose. It overrides the prose rules of HTML Fun, Text Messages, and the Last Check.' },
     { when: ['cb_deaddove', 'cb_trauma_guards'], text: 'Dead Dove and Trauma Guards are both lit — the Guards win where they overlap.' },
@@ -303,9 +305,9 @@ export const STARTERS = [
     },
     {
         name: '🫰 K-pop Comeback Season',
-        blurb: 'Idol life, fandom, press, secret dating',
+        blurb: 'Idol life, fan app, press, secret dating',
         picks: { wing: 'cb_wing_modern', tracker: 'cb_tracker_modern', twitch: null },
-        on: ['cb_fame', 'cb_fame_kpop', 'cb_press', 'cb_insta_rx', 'cb_x_rx', 'cb_slowburn'],
+        on: ['cb_fame', 'cb_fame_kpop', 'cb_fanplatform_rx', 'cb_press', 'cb_insta_rx', 'cb_x_rx', 'cb_slowburn'],
         off: ['cb_wing_fantasy_magic', 'cb_y2k_comms'],
     },
     {
