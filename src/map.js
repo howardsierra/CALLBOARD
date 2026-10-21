@@ -136,6 +136,7 @@ export const SECTIONS = [
         key: 'visuals', title: 'Visuals', icon: '🖼️',
         items: [
             { toggle: 'cb_html_master' },
+            { toggle: 'cb_pure_html' },
             { toggle: 'cb_phones' },
             { toggle: 'cb_social' },
             { toggle: 'cb_documents' },
@@ -207,6 +208,7 @@ export const ADVISORIES = [
     { when: ['cb_y2k_comms'], unless: ['cb_wing_y2k'], text: 'Y2K Comms is lit without the Y2K wing — AIM and flip phones in a modern story?' },
     { when: ['cb_insta_rx'], unless: ['cb_wing_modern', 'cb_wing_urban', 'cb_wing_paranormal', 'cb_wing_cyberpunk', 'cb_wing_scifi'], text: 'Instagram is lit on a wing where it doesn\'t exist yet (or anymore).' },
     { when: ['cb_dating_rx'], unless: ['cb_wing_modern', 'cb_wing_y2k', 'cb_wing_urban', 'cb_wing_paranormal', 'cb_wing_cyberpunk', 'cb_wing_scifi'], text: 'The Dating App is lit on a wing without dating apps.' },
+    { when: ['cb_pure_html'], unless: [], text: 'Pure HTML is lit: every reply will be in-world objects only, with no prose. It overrides the prose rules of HTML Fun, Text Messages, and the Last Check.' },
     { when: ['cb_deaddove', 'cb_trauma_guards'], text: 'Dead Dove and Trauma Guards are both lit — the Guards win where they overlap.' },
     { when: ['cb_cot_fantasy'], unless: ['cb_wing_fantasy', 'cb_wing_westeros', 'cb_wing_medieval', 'cb_wing_wuxia', 'cb_wing_urban', 'cb_wing_paranormal'], text: 'The Fantasy CoT is lit on a non-fantasy wing.' },
 ];
