@@ -6,6 +6,7 @@
 import {
     SECTIONS, STRUCTURAL, GROUPS, REQUIRES, ADVISORIES, WING_TRACKER, STARTERS, shortName,
 } from './src/map.js';
+import { initStudio, renderStudio, onStudioClick, onStudioInput, openFor, studio } from './src/studio.js';
 
 const MODULE = 'callboard';
 const PIN_KEY = 'callboard_pin';
@@ -201,6 +202,10 @@ function lint() {
         } else if (!rx.preset && !rx.global && !rx.scoped) {
             add('error', 'No CB regex scripts found. Import CALLBOARD_regex_bundle.json (Extensions → Regex) or nothing will render.');
         }
+    }
+    if (has('cb_ext_loader') && lit('cb_ext_loader') && !studio().key.trim()) {
+        add('warn', 'Images are on (EXTREME loader) but there is no Pollinations key in the Studio, so images will not load.',
+            [{ label: 'Open the Studio', run: () => { tab = 'studio'; render(); } }]);
     }
     const rank = { error: 0, warn: 1, info: 2 };
     return notes.sort((a, b) => rank[a.level] - rank[b.level]);
@@ -498,7 +503,7 @@ function render() {
     badge.classList.toggle('is-error', lastNotes.some(n => n.level === 'error'));
     panel.querySelectorAll('[data-cb-tab]').forEach(b => b.classList.toggle('is-active', b.dataset.cbTab === tab));
 
-    body.innerHTML = tab === 'notes' ? renderNotes(lastNotes) : tab === 'loadouts' ? renderLoadouts() : renderBoard();
+    body.innerHTML = tab === 'notes' ? renderNotes(lastNotes) : tab === 'loadouts' ? renderLoadouts() : tab === 'studio' ? renderStudio() : renderBoard();
     body.scrollTop = scroll;
     if (hadFocus) {
         const s = body.querySelector('.cb-search');
@@ -547,6 +552,7 @@ function onClick(ev) {
     if ('cbClose' in d) return togglePanel(false);
     if (d.cbTab) { tab = d.cbTab; return render(); }
     if (d.cbJump) return jumpTo(d.cbJump);
+    if (onStudioClick(ev, render)) return;
     if (d.cbPeek) { ev.preventDefault(); return peek(d.cbPeek); }
     if (d.cbPick !== undefined) {
         const id = d.cbId || null;
@@ -589,6 +595,7 @@ function onClick(ev) {
 }
 
 function onChange(ev) {
+    if (onStudioInput(ev, render)) return;
     const t = ev.target;
     if (t.dataset.cbToggle) {
         if (setLit(t.dataset.cbToggle, t.checked)) commit();
@@ -622,12 +629,14 @@ function buildPanel() {
             <button data-cb-tab="board" role="tab"><span class="fa-solid fa-sliders"></span>Board</button>
             <button data-cb-tab="notes" role="tab"><span class="fa-solid fa-clipboard-list"></span>Notes<span class="cb-badge"></span></button>
             <button data-cb-tab="loadouts" role="tab"><span class="fa-solid fa-box-archive"></span>Loadouts</button>
+            <button data-cb-tab="studio" role="tab"><span class="fa-solid fa-camera-retro"></span>Studio</button>
         </div>
         <div class="cb-body"></div>`;
     document.body.append(panel);
     panel.addEventListener('click', onClick);
     panel.addEventListener('change', onChange);
     panel.addEventListener('input', (ev) => {
+        if (onStudioInput(ev, render)) return;
         if (!ev.target.classList.contains('cb-search')) return;
         filter = ev.target.value.trim().toLowerCase();
         render();
@@ -797,6 +806,15 @@ async function init() {
     settings();
     buildLaunchers();
     registerCommands();
+    await initStudio({
+        getSettings: settings,
+        save,
+        onOpenStudio: (target) => {
+            openFor(target);
+            tab = 'studio';
+            togglePanel(true);
+        },
+    });
 
     const { eventSource, event_types: E } = ctx();
     for (const ev of [E.OAI_PRESET_CHANGED_AFTER, E.SETTINGS_UPDATED, E.MAIN_API_CHANGED, E.CHATCOMPLETION_SOURCE_CHANGED]) {
