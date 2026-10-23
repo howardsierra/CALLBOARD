@@ -4968,7 +4968,7 @@
                 "id": "5ef67c9a-e268-47a1-bc85-de513dacfa37",
                 "scriptName": "CB · Extreme — Pollinations image",
                 "findRegex": "/<cb_img>\\s*prompt:\\s*([^|]+?)\\s*\\|\\s*ar:\\s*([0-9]+):([0-9]+)\\s*<\\/cb_img>/g",
-                "replaceString": "<div data-cb-img=\"1\" data-cb-ar=\"$2:$3\" style=\"clear:both;margin:12px auto;max-width:75%;\"><div style=\"aspect-ratio:$2 / $3;border-radius:14px;border:1px solid #2b2436;background:linear-gradient(160deg,#2a2036,#3b2a4f 55%,#1d2433);display:flex;align-items:flex-end;padding:12px;box-sizing:border-box;box-shadow:0 8px 26px rgba(0,0,0,.5);\"><span data-cb-prompt=\"1\" style=\"background:rgba(0,0,0,.5);color:#eee6f8;font-size:12px;font-style:italic;padding:6px 10px;border-radius:9px;line-height:1.45;\">🖼️ $1</span></div></div>",
+                "replaceString": "<div style=\"clear:both;margin:12px auto;max-width:75%;\">\n  <img src=\"https://gen.pollinations.ai/image/$1?model=flux&width=1024&height=1024&seed=0&enhance=false&key=sk_tu3mMpFFgO1dU9hKk0hXPpEywJcxyT0g\"\n       alt=\"$1\"\n       loading=\"lazy\"\n       style=\"display:block;width:100%;aspect-ratio:$2 / $3;object-fit:cover;border-radius:14px;border:1px solid #2b2436;box-shadow:0 8px 26px rgba(0,0,0,.5);\">\n</div>",
                 "trimStrings": [],
                 "placement": [
                     2
