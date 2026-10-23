@@ -58,6 +58,7 @@ let ctx = () => SillyTavern.getContext();
 let getSettings = () => ({});
 let save = () => {};
 let onOpenStudio = () => {};
+let getFallbackKey = () => '';   // a key the user put in the preset's image regex, if any
 let chats = null;            // ../../../chats.js, for isExternalMediaAllowed
 let observer = null;
 
@@ -144,7 +145,8 @@ export function buildUrl(rawPrompt, ar, state = {}, { withKey = true } = {}) {
     if (s.quality && modelInfo(id).quality !== false) p.set('quality', s.quality);
     if (s.safe) p.set('safe', 'true');
     if (s.useRefs && refs.length) p.set('image', refs.join('|'));
-    if (withKey && s.key.trim()) p.set('key', s.key.trim());
+    const key = s.key.trim() || state.key || getFallbackKey();
+    if (withKey && key) p.set('key', key);
     return { url: BASE + encodeURIComponent(text) + '?' + p.toString(), text, width, height };
 }
 
@@ -165,10 +167,16 @@ export function hydrate(root = document.getElementById('chat')) {
     for (const img of root.querySelectorAll('.mes_text img[src^="https://gen.pollinations.ai/image/"]:not([data-cb-shot])')) {
         if (img.closest('[data-cb-img]')) continue;
         let prompt = '';
-        try { prompt = decodeURIComponent(new URL(img.src).pathname.replace(/^\/image\//, '')); } catch { continue; }
+        let key = '';
+        try {
+            const u = new URL(img.src);
+            prompt = decodeURIComponent(u.pathname.replace(/^\/image\//, ''));
+            key = u.searchParams.get('key') ?? '';
+        } catch { continue; }
         const m = (img.getAttribute('style') || '').match(/aspect-ratio:\s*(\d+)\s*\/\s*(\d+)/);
         const holder = document.createElement('div');
         holder.style.cssText = 'clear:both;margin:12px auto;max-width:75%;';
+        if (key) holder.dataset.cbKey = key;   // the regex's own key: used when the Studio has none
         (img.parentElement?.childElementCount === 1 ? img.parentElement : img).replaceWith(holder);
         mount(holder, prompt, m ? `${m[1]}:${m[2]}` : '1:1');
     }
@@ -184,7 +192,7 @@ function mount(el, prompt, ar) {
             <small>SillyTavern is blocking external media for this chat. Allow it (User Settings → Forbid External Media, or the chat's media toggle) to see images.</small></div>`;
         return;
     }
-    const state = imageState(hash(prompt));
+    const state = { ...imageState(hash(prompt)), key: el.dataset.cbKey };
     const { url } = buildUrl(prompt, ar, state);
     el.innerHTML = `<figure class="cb-shot" style="aspect-ratio:${w} / ${h}">
         <img data-cb-shot src="${esc(url)}" alt="${esc(state.prompt ?? prompt)}" loading="lazy">
@@ -201,7 +209,7 @@ function mount(el, prompt, ar) {
     const wait = el.querySelector('.cb-shot-wait');
     img.addEventListener('load', () => wait.remove(), { once: true });
     img.addEventListener('error', () => {
-        wait.textContent = studio().key.trim()
+        wait.textContent = (studio().key.trim() || el.dataset.cbKey || getFallbackKey())
             ? 'Pollinations refused this one (budget, model, or size). Try another model in the Studio.'
             : 'No Pollinations key yet — add one in CALLBOARD → Studio.';
         wait.classList.add('is-error');
@@ -397,6 +405,7 @@ export function onStudioInput(ev, rerender) {
 
 export async function initStudio(opts) {
     ({ getSettings, save, onOpenStudio } = opts);
+    if (opts.getFallbackKey) getFallbackKey = opts.getFallbackKey;
     try { chats = await import('../../../../chats.js'); } catch { chats = null; }
     studio();
     const chat = document.getElementById('chat');

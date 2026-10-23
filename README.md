@@ -77,7 +77,7 @@ Everyone in a dating profile, private photo or creator page is an adult. Each pr
 - **Per-chat pins:** pin a loadout to a chat, and the board resets to it whenever that chat opens.
 - **Wing → tracker auto-match:** if a tracker is on and you switch wings, the tracker follows.
 - **🎨 Studio (Pollinations images):** fine-tune every image the EXTREME tier draws.
-  - **Your key, kept local:** paste your Pollinations key in the Studio. It's saved only in your SillyTavern settings on your device; the preset, cards and chat text never contain it. Never put a key in a preset, a card or a regex.
+  - **Key:** the Studio uses the Pollinations key in your image regex if it has one. A key pasted into the Studio overrides it, and is saved only in your SillyTavern settings on your device.
   - **Camera:** model (Z-Image Turbo, FLUX, Kontext, Gemini, GPT-Image, Seedream, Ideogram, Qwen, or any id), true aspect ratios at S/M/L size, seeds (stable per image so re-renders don't cost Pollen again, one fixed seed for a consistent look, or random), quality levels where the model has them, and the optional safety filter.
   - **Look:** style presets (cinematic, candid photo, anime, manhwa, oil, watercolor, K-drama poster, Y2K digicam, dark fantasy), plus "always add" and "avoid" text.
   - **Lookbook:** save each character's appearance (and an optional reference image URL). Whenever a prompt names them, their look is woven in so faces stay consistent.

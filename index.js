@@ -141,6 +141,21 @@ function regexHealth() {
     return { global, scoped, preset, presetAllowed };
 }
 
+/** A Pollinations key the user put into their local image regex, if any. */
+function presetImageKey() {
+    if (!regex?.getScriptsByType || !regex.SCRIPT_TYPES) return '';
+    for (const type of Object.values(regex.SCRIPT_TYPES)) {
+        let scripts = [];
+        try { scripts = regex.getScriptsByType(type) ?? []; } catch { continue; }
+        for (const s of scripts) {
+            if (s?.disabled || !String(s?.scriptName ?? '').includes('Pollinations')) continue;
+            const m = String(s.replaceString ?? '').match(/[?&]key=([A-Za-z0-9_-]+)/);
+            if (m) return m[1];
+        }
+    }
+    return '';
+}
+
 function lint() {
     const notes = [];
     const add = (level, text, fixes = []) => notes.push({ level, text, fixes });
@@ -203,8 +218,8 @@ function lint() {
             add('error', 'No CB regex scripts found. Import CALLBOARD_regex_bundle.json (Extensions → Regex) or nothing will render.');
         }
     }
-    if (has('cb_ext_loader') && lit('cb_ext_loader') && !studio().key.trim()) {
-        add('warn', 'Images are on (EXTREME loader) but there is no Pollinations key in the Studio, so images will not load.',
+    if (has('cb_ext_loader') && lit('cb_ext_loader') && !studio().key.trim() && !presetImageKey()) {
+        add('warn', 'Images are on (EXTREME loader) but there is no Pollinations key, in the Studio or in the image regex, so images will not load.',
             [{ label: 'Open the Studio', run: () => { tab = 'studio'; render(); } }]);
     }
     const rank = { error: 0, warn: 1, info: 2 };
@@ -809,6 +824,7 @@ async function init() {
     await initStudio({
         getSettings: settings,
         save,
+        getFallbackKey: presetImageKey,
         onOpenStudio: (target) => {
             openFor(target);
             tab = 'studio';
