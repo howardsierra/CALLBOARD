@@ -222,6 +222,17 @@ function lint() {
         add('warn', 'Images are on (EXTREME loader) but there is no Pollinations key, in the Studio or in the image regex, so images will not load.',
             [{ label: 'Open the Studio', run: () => { tab = 'studio'; render(); } }]);
     }
+    if (has('cb_iig') && lit('cb_iig')) {
+        const iig = ctx().extensionSettings?.revamped_image_gen;
+        if (!window.RevampedImageGen) {
+            add('error', 'The Stills Department is lit, but the Revamped Image Gen extension is not installed or not enabled, so image tags will show as broken images.',
+                [{ label: 'Get the extension', run: () => window.open('https://github.com/howardsierra/revampedimagegen', '_blank', 'noopener') }]);
+        } else if (iig && iig.enabled === false) {
+            add('warn', 'Revamped Image Gen is installed but switched off in its own settings, so image tags will not be drawn.');
+        } else if (iig && iig.inject === false) {
+            add('info', 'Revamped Image Gen\'s own AI instructions are off: the Stills Department uses its fallback tag format, without reference-photo names or your example prompts. Turn them back on in that extension for the best results.');
+        }
+    }
     const rank = { error: 0, warn: 1, info: 2 };
     return notes.sort((a, b) => rank[a.level] - rank[b.level]);
 }

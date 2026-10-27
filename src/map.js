@@ -148,7 +148,7 @@ export const SECTIONS = [
             { toggle: 'cb_js' },
             { toggle: 'cb_chapter_plates' },
             { toggle: 'cb_scene_ledger' },
-            { toggle: 'cb_ext_loader' },
+            { group: 'imageengine', label: 'Image engine', none: 'Off', pick: ['cb_iig', 'cb_ext_loader'], labels: { cb_iig: '📸 Stills Dept · Revamped Image Gen', cb_ext_loader: '🌐 EXTREME Pollinations' }, hint: 'Who draws the pictures. The Stills Department needs the Revamped Image Gen extension.' },
             { toggle: 'cb_ext_bg' },
             { toggle: 'cb_ext_bridge' },
         ],

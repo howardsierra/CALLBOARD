@@ -42,6 +42,21 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 
 Everything else is optional: boards, story systems, spotlight and fame, chat panels, visuals and content modules.
 
+## 📸 Stills Department (images with Revamped Image Gen)
+
+An image module built on the **[Revamped Image Gen](https://github.com/howardsierra/revampedimagegen)** extension: real reference photos, Nano Banana / GPT Image and other providers, a queue, a gallery, and a full-screen viewer. Install that extension, then light **📸 Stills Department** (it's a pick-one with the EXTREME Pollinations loader).
+
+- **The extension owns the mechanics.** Its injected "[Image generation is available.]" block supplies the tag format, the per-reply limit, the names that have reference photos, and your example prompts; the Stills Department tells the model to follow it exactly (with the default tag format as a fallback if you turn those instructions off).
+- **CALLBOARD adds the direction:**
+  - when to shoot (reveals, entrances, outfits, performances, peaks, aftermaths, or whenever you ask)
+  - first names for everyone in frame, so reference photos match
+  - continuity: current outfits, hair, injuries, time and weather
+  - a default style for each of the 14 wings (period oil portrait for Regency, xianxia key art for Wuxia, neon noir for Cyberpunk, glossy concept photos with K-pop Idol…)
+  - aspect ratios by shot type
+  - in-story photos (Instagram, private photos, photocards) generated as the actual photo, right after their panel
+  - a 🖼️ cue slip before each image when Cue Calls is lit
+- The extension's Notes tab flags it if Revamped Image Gen isn't installed or enabled, or if its AI instructions are off.
+
 ## New in v1.5: apps
 
 Five new regex-drawn panels for modern wings, all off until you switch them on, in both Full and Lite:
