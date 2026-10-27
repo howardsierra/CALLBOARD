@@ -3,8 +3,8 @@
 A modular SillyTavern roleplay preset, plus **CALLBOARD Suite**, an extension that gives the preset a stage manager's control board. Your host is Xavi, the stage manager: he runs the show from the wings, calls the cues and stays out of the story.
 
 ```
-preset/CALLBOARD_v1_5_0.json        ← the full preset (prompts + all of its regex)
-preset/CALLBOARD_Lite_v1_5_0.json   ← the Lite preset: same show, ~2.9k tokens instead of ~13.7k
+preset/CALLBOARD_v1_6_0.json        ← the full preset (prompts + all of its regex)
+preset/CALLBOARD_Lite_v1_6_0.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
 index.js · style.css · src/         ← the CALLBOARD Suite extension
 ```
 
@@ -12,7 +12,7 @@ index.js · style.css · src/         ← the CALLBOARD Suite extension
 
 | | Full | Lite |
 |---|---|---|
-| Prompt tokens with the default toggles | ~13.7k | **~2.9k** |
+| Prompt tokens with the default toggles | ~14.2k | **~3k** |
 | Core charters + prose rules | 15 separate prompts | merged into 🫀 The Charter + ✒️ Prose That Hits |
 | Wings (all 14 + stackers) | ✓ | ✓ full strength |
 | Trackers, boards, chat panels, press, Y2K Comms | ✓ on by default: Twitch, Discord, X, Reddit, Press | ✓ same formats, shorter explanations, off until you want them |
@@ -25,7 +25,7 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 
 ## Setup
 
-1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_5_0.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
+1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_6_0.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
 2. **Allow its regex.** Every card, chat panel, STANDBY slip and the Program is drawn by regex that ships inside the preset. You don't import a separate bundle. SillyTavern ignores a preset's regex until you allow it, so say yes when it asks. You can also allow it under **Extensions → Regex → Preset scripts**. If you skip this step, the chat shows raw lines like `T>` and `CUE>` instead of cards.
 3. **Install the extension (optional, recommended).** Go to **Extensions → Install extension**, paste `https://github.com/howardsierra/callboard`, then open the board from the wand menu or with `/cb`. If you skipped step 2, the extension's Notes tab catches it and allows the regex in one click.
 
@@ -41,6 +41,19 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 | **CoT** (one or none) | Dramatic · Wholesome · Fantasy |
 
 Everything else is optional: boards, story systems, spotlight and fame, chat panels, visuals and content modules.
+
+## New in v1.6
+
+- **📸 Stills Department:** images through the Revamped Image Gen extension, with reference photos (below). It's a pick-one with the EXTREME Pollinations loader.
+- **🫰 K-pop Idol** flavor for the Fame Engine, and the **🫧 Fan Platform** panel (an idol's paid chat and livestreams).
+- **🖥️ Pure HTML** mode: every reply told through in-world objects, with no prose.
+- **⚙️ Gemini** and **⚙️ ChatGPT** model layers.
+- **📌 Callboard Notice:** an empty user-role slot at the very end of the prompt, for your own text. Post-History Instructions sits in its standard spot after Chat History.
+- **HTML modules:** a layout rule so phones and documents can't squash into a sliver. Length limits are loosened, so a long thread, feed or document can run in full when it *is* the scene.
+- **Sturdier panels:**
+  - a stray trailing `|` no longer breaks a line, in any panel
+  - optional last fields can be left out
+  - Instagram usernames drop a stray `@`
 
 ## 📸 Stills Department (images with Revamped Image Gen)
 
