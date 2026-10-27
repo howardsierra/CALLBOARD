@@ -7,12 +7,14 @@ import {
     SECTIONS, STRUCTURAL, GROUPS, REQUIRES, ADVISORIES, WING_TRACKER, STARTERS, shortName,
 } from './src/map.js';
 import { initStudio, renderStudio, onStudioClick, onStudioInput, openFor, studio } from './src/studio.js';
+import { initClover } from './src/clover.js';
 
 const MODULE = 'callboard';
 const PIN_KEY = 'callboard_pin';
 const DEFAULTS = Object.freeze({
     autoTracker: true,
     autoApplyPinned: true,
+    cloverDirect: true,
     loadouts: {},
     collapsed: {},
 });
@@ -712,6 +714,8 @@ function buildLaunchers() {
                     Switching wings switches the tracker to match (if one is lit)</label>
                 <label class="checkbox_label"><input type="checkbox" data-cb-opt="autoApplyPinned" ${s.autoApplyPinned ? 'checked' : ''}>
                     Re-dress the stage from a chat's pinned loadout when it opens</label>
+                <label class="checkbox_label"><input type="checkbox" data-cb-opt="cloverDirect" ${s.cloverDirect ? 'checked' : ''}>
+                    Send pasted Clover OOC orders straight to Revamped Image Gen (when 🍀 Clover OOC is lit)</label>
                 <small>Slash commands: /cb · /cb-load · /cb-pick · /cb-on · /cb-off · /cb-check</small>
             </div>
         </div>`;
@@ -844,6 +848,7 @@ async function init() {
             togglePanel(true);
         },
     });
+    initClover({ isOn: () => isLive() && has('cb_clover') && lit('cb_clover') && settings().cloverDirect !== false });
 
     const { eventSource, event_types: E } = ctx();
     for (const ev of [E.OAI_PRESET_CHANGED_AFTER, E.SETTINGS_UPDATED, E.MAIN_API_CHANGED, E.CHATCOMPLETION_SOURCE_CHANGED]) {

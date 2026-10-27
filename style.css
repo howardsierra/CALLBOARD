@@ -688,3 +688,20 @@
 #cb_board .cb-st-final summary { cursor: pointer; }
 #cb_board .cb-st-final div { margin-top: 6px; padding: 8px 10px; border-radius: 8px; background: rgba(0, 0, 0, .25); color: var(--cb-text); line-height: 1.5; }
 #cb_board a.cb-btn { text-decoration: none; }
+
+/* ── Clover orders on their way to Revamped Image Gen ───────────── */
+.cb-clover-status {
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    margin: 10px 0 2px;
+    padding: 9px 12px;
+    border: 1px dashed rgba(156, 224, 122, .5);
+    border-radius: 12px;
+    background: linear-gradient(90deg, rgba(156, 224, 122, .1), transparent);
+    font-size: 12.5px;
+    line-height: 1.45;
+    opacity: .9;
+}
+.cb-clover-leaf { font-size: 18px; animation: cb-develop 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .cb-clover-leaf { animation: none; } }
