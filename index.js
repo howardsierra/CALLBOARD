@@ -229,6 +229,8 @@ function lint() {
                 [{ label: 'Get the extension', run: () => window.open('https://github.com/howardsierra/revampedimagegen', '_blank', 'noopener') }]);
         } else if (iig && iig.enabled === false) {
             add('warn', 'Revamped Image Gen is installed but switched off in its own settings, so image tags will not be drawn.');
+        } else if (has('cb_pure_html') && lit('cb_pure_html') && iig && (Number(iig.injectMax) || 2) < 4) {
+            add('info', `Pure HTML + Stills Department: Revamped Image Gen allows ${Number(iig.injectMax) || 2} images per reply. For photo-heavy replies, raise "Max images per reply" in its Settings → AI instructions (up to 6).`);
         } else if (iig && iig.inject === false) {
             add('info', 'Revamped Image Gen\'s own AI instructions are off: the Stills Department uses its fallback tag format, without reference-photo names or your example prompts. Turn them back on in that extension for the best results.');
         }
