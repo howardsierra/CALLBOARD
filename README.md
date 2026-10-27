@@ -3,8 +3,8 @@
 A modular SillyTavern roleplay preset, plus **CALLBOARD Suite**, an extension that gives the preset a stage manager's control board. Your host is Xavi, the stage manager: he runs the show from the wings, calls the cues and stays out of the story.
 
 ```
-preset/CALLBOARD_v1_6_3.json        ← the full preset (prompts + all of its regex)
-preset/CALLBOARD_Lite_v1_6_3.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
+preset/CALLBOARD_v1_6_4.json        ← the full preset (prompts + all of its regex)
+preset/CALLBOARD_Lite_v1_6_4.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
 preset/archive/                     ← every earlier version (v1.3.0.1 original, v1.4.0, v1.5.0, v1.6.0, v1.6.1, v1.6.2)
 index.js · style.css · src/         ← the CALLBOARD Suite extension
 ```
@@ -26,7 +26,7 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 
 ## Setup
 
-1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_6_3.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
+1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_6_4.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
 2. **Allow its regex.** Every card, chat panel, STANDBY slip and the Program is drawn by regex that ships inside the preset. You don't import a separate bundle. SillyTavern ignores a preset's regex until you allow it, so say yes when it asks. You can also allow it under **Extensions → Regex → Preset scripts**. If you skip this step, the chat shows raw lines like `T>` and `CUE>` instead of cards.
 3. **Install the extension (optional, recommended).** Go to **Extensions → Install extension**, paste `https://github.com/howardsierra/callboard`, then open the board from the wand menu or with `/cb`. If you skipped step 2, the extension's Notes tab catches it and allows the regex in one click.
 
@@ -44,6 +44,11 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 Everything else is optional: boards, story systems, spotlight and fame, chat panels, visuals and content modules.
 
 ## New in v1.6
+
+**v1.6.4:**
+- **🍀 Clover orders are drawn by Revamped Image Gen itself** (version 1.1 or later). The order becomes an image tag in your message, so you get its placeholder, Cancel, retries and Edit, and the image still lands if you switch chats while it develops. With an older Revamped Image Gen, CALLBOARD draws it the v1.6.3 way.
+- **Mix your own image formats freely.** You can turn on **Process image tags in my messages** in Revamped Image Gen (Settings → Behaviour) and use `[IMG: …]`, `<image>…</image>` or full image tags in your own messages too. If its **Clover `<ooc>`** capture rule is also on, Revamped Image Gen draws `Image generation:` orders and CALLBOARD steps aside, so every order is still drawn exactly once.
+- **Restyles use the right photo:** a Restyle order that names nobody asks Revamped Image Gen for the character's reference photo.
 
 **v1.6.3:**
 - **🍀 Clover orders go straight to Revamped Image Gen.** With CALLBOARD Suite and Revamped Image Gen installed, a pasted Clover order is sent to the image generator the moment you send your message: Clover's own text, minus the `<ooc>` wrapper, the `Image generation:` command and `--ar` (which becomes the aspect ratio). The image appears under your message, and the chat model is told it's already drawn, so you get exactly one image per order.
@@ -74,7 +79,7 @@ Everything else is optional: boards, story systems, spotlight and fame, chat pan
 
 1. Light an image engine (**📸 Stills Department** with Revamped Image Gen, or EXTREME Pollinations) and **🍀 Clover OOC**.
 2. Copy a Clover prompt **unchanged**, including the `<ooc>` tags, and send it on its own or at the end of your message.
-   - **With CALLBOARD Suite + Revamped Image Gen installed** (the default): the order goes **straight to Revamped Image Gen** as you send it. A 🍀 card shows while it develops, and the finished image appears under your message. The chat model sees that it was sent and doesn't draw it again: a block sent on its own gets at most a line from Xavi, and an appended block lets the story continue. If the direct send fails, the chat model draws it instead. To turn direct sending off, untick it in Extensions → CALLBOARD Suite.
+   - **With CALLBOARD Suite + Revamped Image Gen installed** (the default): the order goes **straight to Revamped Image Gen** as you send it. Its placeholder shows while the image develops (Cancel and retry work as usual), and the finished image appears under your message, even if you've switched chats meanwhile. The chat model sees that it was sent and doesn't draw it again: a block sent on its own gets at most a line from Xavi, and an appended block lets the story continue. If the direct send fails, the chat model draws it instead. To turn direct sending off, untick it in Extensions → CALLBOARD Suite.
    - **Without them:** the chat model fills the order itself, as described below.
    - **On its own:** the reply is just the image.
    - **Appended to an in-character message:** the story continues, and the image lands at the beat it shows.
@@ -84,7 +89,8 @@ How each kind of Clover entry is used:
 - **`SCENE:`** prompts are staged with your characters cast by first name instead of "a figure".
 - **Fragments** (`pose:`, `clothes:`, `hairstyle:`, `makeup:`, effects, camera) are kept word for word and assigned to named characters. `clothes:` dresses them for that image only.
 - **`--ar X:Y`** sets the aspect ratio.
-- **Sent straight to Revamped Image Gen,** the prompt is Clover's text exactly as written, so its reference photos only kick in for names that appear in it. Add a name inside the block (for example a first line `Ciara:`) when you want her reference used.
+- **Sent straight to Revamped Image Gen,** the prompt is Clover's text exactly as written, so its reference photos only kick in for names that appear in it. Add a name inside the block (for example a first line `Ciara:`) when you want her reference used. A Restyle that names nobody gets the character's photo automatically.
+- **Using other image formats in your own messages too?** Turn on **Process image tags in my messages** in Revamped Image Gen. Either extension may then draw a Clover order, never both: with Revamped Image Gen's **Clover `<ooc>`** capture rule on, it takes the `Image generation:` orders and CALLBOARD handles the rest.
 - **Restyle** prompts transform a named character's **reference photo**. Revamped Image Gen sends the photos in its Refs tab, not images attached to a chat message, so name the character ("Ciara") and make sure she has a reference.
 
 Characters never react to the order, and it's never quoted back. Clover's prompts belong to aceenvw: see their [license](https://github.com/aceeenvw/clover-ooc#-license). CALLBOARD only teaches your model to read them.
