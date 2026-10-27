@@ -3,8 +3,9 @@
 A modular SillyTavern roleplay preset, plus **CALLBOARD Suite**, an extension that gives the preset a stage manager's control board. Your host is Xavi, the stage manager: he runs the show from the wings, calls the cues and stays out of the story.
 
 ```
-preset/CALLBOARD_v1_6_0.json        ← the full preset (prompts + all of its regex)
-preset/CALLBOARD_Lite_v1_6_0.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
+preset/CALLBOARD_v1_6_1.json        ← the full preset (prompts + all of its regex)
+preset/CALLBOARD_Lite_v1_6_1.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
+preset/archive/                     ← every earlier version (v1.3.0.1 original, v1.4.0, v1.5.0, v1.6.0)
 index.js · style.css · src/         ← the CALLBOARD Suite extension
 ```
 
@@ -25,7 +26,7 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 
 ## Setup
 
-1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_6_0.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
+1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_6_1.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
 2. **Allow its regex.** Every card, chat panel, STANDBY slip and the Program is drawn by regex that ships inside the preset. You don't import a separate bundle. SillyTavern ignores a preset's regex until you allow it, so say yes when it asks. You can also allow it under **Extensions → Regex → Preset scripts**. If you skip this step, the chat shows raw lines like `T>` and `CUE>` instead of cards.
 3. **Install the extension (optional, recommended).** Go to **Extensions → Install extension**, paste `https://github.com/howardsierra/callboard`, then open the board from the wand menu or with `/cb`. If you skipped step 2, the extension's Notes tab catches it and allows the regex in one click.
 
@@ -44,6 +45,12 @@ Everything else is optional: boards, story systems, spotlight and fame, chat pan
 
 ## New in v1.6
 
+**v1.6.1:**
+- **🖥️ Pure HTML** now uses photos: with the 📸 Stills Department on, image tags go wherever a real photo would be (inside a text thread, a feed post, a corkboard, a police file) or between artifacts.
+- **More artifacts per reply:** usually 3–6, up to 8 on busy beats (was 1–4).
+- **Raise the photo limit** in Revamped Image Gen: set **Max images per reply** in its Settings → AI instructions. CALLBOARD's Notes tab reminds you when it's low.
+
+**v1.6.0:**
 - **📸 Stills Department:** images through the Revamped Image Gen extension, with reference photos (below). It's a pick-one with the EXTREME Pollinations loader.
 - **🫰 K-pop Idol** flavor for the Fame Engine, and the **🫧 Fan Platform** panel (an idol's paid chat and livestreams).
 - **🖥️ Pure HTML** mode: every reply told through in-world objects, with no prose.
