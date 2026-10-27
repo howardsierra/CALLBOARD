@@ -161,6 +161,7 @@ export const SECTIONS = [
             { group: 'model', label: 'Model layer', none: 'None', pick: ['cb_model_claude', 'cb_model_glm', 'cb_model_mimo', 'cb_model_kimi', 'cb_model_gemini', 'cb_model_gpt'] },
             { group: 'cot', label: 'Callboard CoT', none: 'None', pick: ['cb_callboard_cot', 'cb_cot_wholesome', 'cb_cot_fantasy'] },
             { toggle: 'cb_ooc' },
+            { toggle: 'cb_clover' },
             { toggle: 'cb_momentum' },
             { toggle: 'cb_cast_echo' },
             { toggle: 'cb_persona_echo' },
@@ -202,6 +203,7 @@ export const REQUIRES = [
     { id: 'cb_js', any: ['cb_html_master'], why: "Xavi's Rigging needs the diegetic HTML master." },
     { id: 'cb_chapter_plates', any: ['cb_html_master'], why: 'Chapter Plates need the diegetic HTML master.' },
     { id: 'cb_scene_ledger', any: ['cb_html_master'], why: 'The Scene Ledger needs the diegetic HTML master.' },
+    { id: 'cb_clover', any: ['cb_iig', 'cb_ext_loader'], why: 'Clover OOC orders need an image engine: the 📸 Stills Department or EXTREME Pollinations.' },
     { id: 'cb_ext_bg', any: ['cb_ext_loader'], why: 'Background Injection reads the Pollinations loader\'s directives.' },
     { id: 'cb_ext_bridge', any: ['cb_ext_loader'], why: 'The JS Bridge reads the Pollinations loader\'s directives.' },
 ];

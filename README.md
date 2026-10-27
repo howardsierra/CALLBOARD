@@ -3,9 +3,9 @@
 A modular SillyTavern roleplay preset, plus **CALLBOARD Suite**, an extension that gives the preset a stage manager's control board. Your host is Xavi, the stage manager: he runs the show from the wings, calls the cues and stays out of the story.
 
 ```
-preset/CALLBOARD_v1_6_1.json        ← the full preset (prompts + all of its regex)
-preset/CALLBOARD_Lite_v1_6_1.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
-preset/archive/                     ← every earlier version (v1.3.0.1 original, v1.4.0, v1.5.0, v1.6.0)
+preset/CALLBOARD_v1_6_2.json        ← the full preset (prompts + all of its regex)
+preset/CALLBOARD_Lite_v1_6_2.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
+preset/archive/                     ← every earlier version (v1.3.0.1 original, v1.4.0, v1.5.0, v1.6.0, v1.6.1)
 index.js · style.css · src/         ← the CALLBOARD Suite extension
 ```
 
@@ -26,7 +26,7 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 
 ## Setup
 
-1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_6_1.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
+1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_6_2.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
 2. **Allow its regex.** Every card, chat panel, STANDBY slip and the Program is drawn by regex that ships inside the preset. You don't import a separate bundle. SillyTavern ignores a preset's regex until you allow it, so say yes when it asks. You can also allow it under **Extensions → Regex → Preset scripts**. If you skip this step, the chat shows raw lines like `T>` and `CUE>` instead of cards.
 3. **Install the extension (optional, recommended).** Go to **Extensions → Install extension**, paste `https://github.com/howardsierra/callboard`, then open the board from the wand menu or with `/cb`. If you skipped step 2, the extension's Notes tab catches it and allows the regex in one click.
 
@@ -45,6 +45,9 @@ Everything else is optional: boards, story systems, spotlight and fame, chat pan
 
 ## New in v1.6
 
+**v1.6.2:**
+- **🍀 Clover OOC:** paste prompts from the [Clover OOC](https://github.com/aceeenvw/clover-ooc) library (by **aceenvw**) straight into the chat, and they become images. See [Clover OOC prompts](#-clover-ooc-prompts) below.
+
 **v1.6.1:**
 - **🖥️ Pure HTML** now uses photos: with the 📸 Stills Department on, image tags go wherever a real photo would be (inside a text thread, a feed post, a corkboard, a police file) or between artifacts.
 - **More artifacts per reply:** usually 3–6, up to 8 on busy beats (was 1–4).
@@ -61,6 +64,24 @@ Everything else is optional: boards, story systems, spotlight and fame, chat pan
   - a stray trailing `|` no longer breaks a line, in any panel
   - optional last fields can be left out
   - Instagram usernames drop a stray `@`
+
+## 🍀 Clover OOC prompts
+
+[Clover OOC](https://github.com/aceeenvw/clover-ooc) by **aceenvw** is a library of image-generation prompts for roleplay: a catalogue of directed shots, scenes, restyles, poses, outfits, hair, makeup, wardrobe pieces, camera terms and effects. Its prompts are `<ooc>Image generation: …</ooc>` blocks you paste into the chat, and its guide says your preset must teach the model to treat those blocks as image orders. **🍀 Clover OOC** does that.
+
+1. Light an image engine (**📸 Stills Department** with Revamped Image Gen, or EXTREME Pollinations) and **🍀 Clover OOC**.
+2. Copy a Clover prompt **unchanged**, including the `<ooc>` tags, and send it on its own or at the end of your message.
+   - **On its own:** the reply is just the image.
+   - **Appended to an in-character message:** the story continues, and the image lands at the beat it shows.
+
+How each kind of Clover entry is used:
+- **Catalogue briefs** ("think like a director…") are applied to the **current moment** of your story.
+- **`SCENE:`** prompts are staged with your characters cast by first name instead of "a figure".
+- **Fragments** (`pose:`, `clothes:`, `hairstyle:`, `makeup:`, effects, camera) are kept word for word and assigned to named characters. `clothes:` dresses them for that image only.
+- **`--ar X:Y`** sets the aspect ratio.
+- **Restyle** prompts transform a named character's **reference photo**. Revamped Image Gen sends the photos in its Refs tab, not images attached to a chat message, so name the character ("Ciara") and make sure she has a reference.
+
+Characters never react to the order, and it's never quoted back. Clover's prompts belong to aceenvw: see their [license](https://github.com/aceeenvw/clover-ooc#-license). CALLBOARD only teaches your model to read them.
 
 ## 📸 Stills Department (images with Revamped Image Gen)
 
