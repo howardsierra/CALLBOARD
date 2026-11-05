@@ -79,6 +79,7 @@ export const SECTIONS = [
             { toggle: 'cb_worthy_adversary' },
             { toggle: 'cb_promise_shelf' },
             { toggle: 'cb_mystery' },
+            { toggle: 'cb_private_scenes' },
             { toggle: 'cb_moments_peace' },
             { toggle: 'cb_wagers' },
             { toggle: 'cb_condition' },

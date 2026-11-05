@@ -237,6 +237,18 @@ function lint() {
             add('info', 'Revamped Image Gen\'s own AI instructions are off: the Stills Department uses its fallback tag format, without reference-photo names or your example prompts. Turn them back on in that extension for the best results.');
         }
     }
+    const ps = privateScenes();
+    if (has('cb_private_scenes') && lit('cb_private_scenes')) {
+        if (!ps) {
+            add('warn', 'Private Scenes is lit, but the Private Scenes extension is not installed or not enabled, so nothing in the chat is marked private.',
+                [{ label: 'Get the extension', run: () => window.open('https://github.com/howardsierra/summary-books', '_blank', 'noopener') }, turn('cb_private_scenes', false)]);
+        } else if (!ps.enabled) {
+            add('warn', 'Private Scenes is lit, but the extension is switched off in its own settings.');
+        }
+    } else if (has('cb_private_scenes') && (ps?.scene || ps?.secrets)) {
+        add('info', `This chat keeps ${ps.scene ? 'a private scene' : `${ps.secrets} secret${ps.secrets === 1 ? '' : 's'}`} in Private Scenes. Light 🤫 Private Scenes so panels, boards and the press keep them too.`,
+            [turn('cb_private_scenes', true)]);
+    }
     const rank = { error: 0, warn: 1, info: 2 };
     return notes.sort((a, b) => rank[a.level] - rank[b.level]);
 }
@@ -476,7 +488,26 @@ function renderMarquee() {
         ${cue('mode', 'core', '—')}
         ${cue('tracker', 'state', 'No tracker')}
         ${cue('cot', 'utils', 'No CoT')}
-        ${cue('model', 'utils', 'No model layer')}`;
+        ${cue('model', 'utils', 'No model layer')}
+        ${privateScenesCue()}`;
+}
+
+/** The Private Scenes extension's state for this chat, or null when it isn't installed. */
+function privateScenes() {
+    try {
+        return window.PrivateScenes?.status?.() ?? null;
+    } catch {
+        return null;
+    }
+}
+
+/** Marquee cue for Private Scenes: the scene that's running, or how many secrets the chat keeps. */
+function privateScenesCue() {
+    const ps = privateScenes();
+    if (!ps?.enabled) return '';
+    const value = ps.scene ? `Live: ${ps.scene.members.join(' & ')}` : ps.secrets ? `${ps.secrets} secret${ps.secrets === 1 ? '' : 's'}` : 'No secrets yet';
+    return `<button class="cb-cue ${ps.scene || ps.secrets ? '' : 'is-dark'}" data-cb-secrets title="Open Private Scenes · Who knows what" style="--cb-accent:${hue('systems')}">
+            <span class="cb-cue-k">🤫 Private Scenes</span><span class="cb-cue-v">${esc(value)}</span></button>`;
 }
 
 function renderMeter() {
@@ -582,6 +613,7 @@ function onClick(ev) {
     if ('cbClose' in d) return togglePanel(false);
     if (d.cbTab) { tab = d.cbTab; return render(); }
     if (d.cbJump) return jumpTo(d.cbJump);
+    if ('cbSecrets' in d) return window.PrivateScenes?.openMemory?.('secrets');
     if (onStudioClick(ev, render)) return;
     if (d.cbPeek) { ev.preventDefault(); return peek(d.cbPeek); }
     if (d.cbPick !== undefined) {
@@ -855,6 +887,10 @@ async function init() {
         if (ev) eventSource.on(ev, queueRefresh);
     }
     eventSource.on(E.CHAT_CHANGED, onChatChanged);
+    // Keep the Private Scenes cue current as scenes start, end and get saved.
+    for (const ev of [E.MESSAGE_SENT, E.MESSAGE_RECEIVED]) {
+        if (ev) eventSource.on(ev, () => window.PrivateScenes && queueRefresh());
+    }
 }
 
 jQuery(init);

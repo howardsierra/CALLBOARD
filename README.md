@@ -3,8 +3,8 @@
 A modular SillyTavern roleplay preset, plus **CALLBOARD Suite**, an extension that gives the preset a stage manager's control board. Your host is Xavi, the stage manager: he runs the show from the wings, calls the cues and stays out of the story.
 
 ```
-preset/CALLBOARD_v1_6_4.json        ← the full preset (prompts + all of its regex)
-preset/CALLBOARD_Lite_v1_6_4.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
+preset/CALLBOARD_v1_6_5.json        ← the full preset (prompts + all of its regex)
+preset/CALLBOARD_Lite_v1_6_5.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
 preset/archive/                     ← every earlier version (v1.3.0.1 original, v1.4.0, v1.5.0, v1.6.0, v1.6.1, v1.6.2)
 index.js · style.css · src/         ← the CALLBOARD Suite extension
 ```
@@ -26,7 +26,7 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 
 ## Setup
 
-1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_6_4.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
+1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_6_5.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
 2. **Allow its regex.** Every card, chat panel, STANDBY slip and the Program is drawn by regex that ships inside the preset. You don't import a separate bundle. SillyTavern ignores a preset's regex until you allow it, so say yes when it asks. You can also allow it under **Extensions → Regex → Preset scripts**. If you skip this step, the chat shows raw lines like `T>` and `CUE>` instead of cards.
 3. **Install the extension (optional, recommended).** Go to **Extensions → Install extension**, paste `https://github.com/howardsierra/callboard`, then open the board from the wand menu or with `/cb`. If you skipped step 2, the extension's Notes tab catches it and allows the regex in one click.
 
@@ -44,6 +44,9 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 Everything else is optional: boards, story systems, spotlight and fame, chat panels, visuals and content modules.
 
 ## New in v1.6
+
+**v1.6.5:**
+- **🤫 Private Scenes:** works with the [Private Scenes](https://github.com/howardsierra/summary-books) extension, so secrets stay secret on every panel, board and headline. See [Private Scenes](#-private-scenes) below.
 
 **v1.6.4:**
 - **🍀 Clover orders are drawn by Revamped Image Gen itself** (version 1.1 or later). The order becomes an image tag in your message, so you get its placeholder, Cancel, retries and Edit, and the image still lands if you switch chats while it develops. With an older Revamped Image Gen, CALLBOARD draws it the v1.6.3 way.
@@ -94,6 +97,27 @@ How each kind of Clover entry is used:
 - **Restyle** prompts transform a named character's **reference photo**. Revamped Image Gen sends the photos in its Refs tab, not images attached to a chat message, so name the character ("Ciara") and make sure she has a reference.
 
 Characters never react to the order, and it's never quoted back. Clover's prompts belong to aceenvw: see their [license](https://github.com/aceeenvw/clover-ooc#-license). CALLBOARD only teaches your model to read them.
+
+## 🤫 Private Scenes
+
+[Private Scenes](https://github.com/howardsierra/summary-books) marks parts of your chat as private between certain characters, or as common knowledge (news, announcements, rumors), and keeps the story's memory in a lorebook. CALLBOARD and Private Scenes work together:
+
+1. Install Private Scenes (Extensions → Install extension → `https://github.com/howardsierra/summary-books`).
+2. Light **🤫 Private Scenes** under Story Systems (Full and Lite).
+
+With it lit:
+- **Every panel keeps the secret.** Texts, feeds, comments, the browser, press clippings and fan chats only hold what their author knows. A secret reaches a headline or a post only by leaking, and a leak has fallout.
+- **Boards follow knowledge.** Affinity, mood and the relationship web move for a character only on what she knows.
+- **DMs and Private Photos are private by nature,** even without marking them, until someone shares a screenshot or gets caught.
+- **News and rumors travel.** Anyone can gossip about common knowledge, and the press can run it.
+- **One clock.** The tracker continues from Private Scenes' story time and place.
+- **When a secret gets out,** a 🤫 cue tells you who found out, so you can record the reveal in Private Scenes.
+
+What the extensions do for each other:
+- **Board:** a 🤫 cue in the marquee shows the private scene that's running, or how many secrets the chat keeps. Tap it to open *Who knows what*.
+- **Notes:** warns you if the toggle is lit without the extension, and suggests lighting it when a chat already has secrets.
+- **Private Scenes reads CALLBOARD's tracker card** for the story clock, with no extra generation.
+- **Its summaries and leak checks read CALLBOARD replies as plain text.** Panels become short lines; HTML, images, cue lines and the CoT are left out. That saves tokens and keeps a cheaper sidecar model on track.
 
 ## 📸 Stills Department (images with Revamped Image Gen)
 
