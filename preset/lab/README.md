@@ -2,18 +2,18 @@
 
 An experimental copy of CALLBOARD for trying ideas before they reach the real preset. Expect things to change, break, or disappear between versions.
 
-- **Current:** `CALLBOARD_Lab_v0_2.json`, built on CALLBOARD v1.6.7 (Full). Everything in v1.6.7 is here and works the same.
+- **Current:** `CALLBOARD_Lab_v0_3.json`, built on CALLBOARD v1.6.7 (Full). Everything in v1.6.7 is here and works the same.
 - **The stable presets** in `preset/` are never changed by Lab work. What proves itself here gets moved over deliberately.
 - Older Lab versions will be kept in `preset/lab/archive/`.
 
 ## How to test
 
-1. Import `CALLBOARD_Lab_v0_2.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
+1. Import `CALLBOARD_Lab_v0_3.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
 2. Set it up as you would CALLBOARD (wing, tracker, model layer…).
 3. In the CALLBOARD Suite board, open **🧪 Lab**. Everything there is **off**.
 4. Light **one** switch, play a few replies, and compare. Then keep it, turn it off, or try the next.
 
-## v0.1 switches
+## Switches
 
 All of them sit in the 🧪 LAB section of the prompt list, right after the prose charter, except the MiMo one, which sits with the model layers.
 
@@ -29,9 +29,13 @@ All of them sit in the 🧪 LAB section of the prompt list, right after the pros
 | 🚪 Fresh Openers | Each reply opens differently from the last | every reply starts the same way | Sola |
 | 🎵 Voice Under Pressure | Anger, fear, grief, exhaustion, desire and lying bend how people talk | everyone sounds composed no matter what | Sun Rider |
 | 👁️ Thoughts, Rationed | At most one or two italic thoughts, never recaps | italic thoughts pile up or repeat the scene | Sun Rider |
+| 🪞 Fresh Traits | Known looks, traits and facts only come up when they matter, in fresh words | "her green eyes" and "his signature smirk" every reply (Kimi K3 recall) | microcot |
+| 💍 No Fidgeting | Rings, scars, jewelry and pockets aren't fiddled with to show feeling | characters keep twisting rings or tracing scars | microcot |
+| 🔁 No Echo | Your words and actions aren't quoted or recapped back at you | replies parrot what you just wrote | microcot |
+| ✅ Say What Happens | No "he didn't answer / nobody moved"; narrate what does happen | narration is full of things not happening | microcot |
 | 🃏 MiMo 2.6 — Clean Handoff | Planning stays out of the visible reply; CALLBOARD's output order is kept | you run MiMo 2.6 and planning leaks into replies. Needs ⚙️ Model — MiMo | Sun Rider |
 
-Some overlap on purpose, so they can be compared: POV Fusion, Anti-Robot and the Kimi switches (🧠 Remember, Don't Recite; 🎙️ Narration With a Pulse) all go after flat narration from different angles. Test them separately before stacking.
+Some overlap on purpose, so they can be compared: POV Fusion, Anti-Robot, Say It Once, Fresh Traits and the Kimi switches (🧠 Remember, Don't Recite; 🎙️ Narration With a Pulse) all go after flat narration from different angles. Test them separately before stacking.
 
 ## 🧪 Slots A–D: your own rewrites
 
@@ -39,10 +43,10 @@ Four empty prompts, off by default, for rewriting other presets' jailbreaks and 
 
 | Slot | Role | Where in the prompt | Fits rewrites of |
 |---|---|---|---|
-| **A — Opening statement** | system | top, right after the Read Me | Deus Ex Machina's `\| Content Policy \|`, Princess Honey's `👑\| Kingdom`, LeForkoQuantum's `Core Directive`, Sola's `Optional JB` |
+| **A — Opening statement** | system | top, right after the Read Me | Deus Ex Machina's `\| Content Policy \|`, Princess Honey's `👑\| Kingdom`, LeForkoQuantum's `Core Directive`, Sola's `Optional JB`, microcot's `Main Co-writer Var` / `Main Guidelines Var` |
 | **B — Narrator's vow** | assistant | top, right after Slot A | Deus Ex Machina's `\| Phi's Vow \|` (the narrator speaking in its own voice) |
-| **C — Closing note** | system | right after Chat History, before the prose charter | Deus Ex Machina's `! Hard Jailbreak !`, Sola's `Policy Scan`, Princess Honey's `💉\| Pos Smasher` |
-| **D — Prefill** | assistant | the very end, after 📌 Callboard Notice | Sun Rider's `🧟 DANGEROUS ZOMBIE GASHAT`, Princess Honey's "GMbot" prefill and `👑\|Prefill`, LeForkoQuantum's `Claude Variable Prefil` |
+| **C — Closing note** | system | right after Chat History, before the prose charter | Deus Ex Machina's `! Hard Jailbreak !`, Sola's `Policy Scan`, Princess Honey's `💉\| Pos Smasher`, microcot's `⑱ Structured Prefill` |
+| **D — Prefill** | assistant | the very end, after 📌 Callboard Notice | Sun Rider's `🧟 DANGEROUS ZOMBIE GASHAT`, Princess Honey's "GMbot" prefill and `👑\|Prefill`, LeForkoQuantum's `Claude Variable Prefil`, microcot's `⑱ Prefill Part 1/2`, `⑱ Prefill Pre-train` and `㉑ NSFW 21 On / Prefill` |
 
 Fill one, light it, and test it like any other Lab switch.
 
@@ -59,6 +63,8 @@ From Deus Ex Machina V3's model notes (these are connection settings, not prompt
 
 ## Ideas for later versions
 
+- microcot's **Character Secrets**: hidden motives written inside `<…>` and hidden from view by a regex. Could pair with Private Scenes.
+
 - A self-check that lists only the lit switches, like Sola's Story Review, built into 🔔 The Last Check.
 - A visible scene plan before each reply, and an open-threads footer (Deus Ex Machina V3). These overlap the CoT, 🗝️ Promise Shelf and Private Scenes, so they'd replace something rather than stack.
 - Switches that adjust each other with SillyTavern 1.19's `{{#if}}` macros, for example the Kimi switches softening 🧵 Memory Like Glue automatically. Needs SillyTavern 1.19 or later.
@@ -72,3 +78,4 @@ The Lab's switches are rewritten in CALLBOARD's own voice from ideas in these pr
 - **Sola V4 Flame:** Flowing Actions (Anti-Staccato), Bad at Comfort (Anti-Therapy Speech), Spotlight (Anti-Orbiting), Plain Speech (Occam's Razor), Fresh Openers (Story Rhythm).
 - **Sun Rider v1.1:** Say It Once (from its anti-slop module), Voice Under Pressure (Onkaku), Thoughts, Rationed (Ghost Eyecon), MiMo 2.6 Clean Handoff (Final Vent).
 - **Deus Ex Machina V3:** model settings notes.
+- **microcot** by aimicrocot ([github.com/aimicrocot/microcot-preset](https://github.com/aimicrocot/microcot-preset)): Fresh Traits and No Fidgeting (from its Gemini/GLM/Kimi version), No Echo, Say What Happens (from "No Negatives"). microcot in turn credits Boringdommer, rarestmeow, Celia (Leafcanfly) and blader's Humanizer. Its repository has no license file, so only ideas are reused here, in CALLBOARD's own words.
