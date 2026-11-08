@@ -340,7 +340,7 @@ function matches(id) {
 const SECTION_HUES = {
     stage: '#c9a6ff', core: '#e0b46c', prose: '#7fc8b8', wings: '#e58f74', systems: '#8fb4ff',
     spotlight: '#ff9fd0', content: '#ff6f7d', state: '#9ce07a', panels: '#b48cff', visuals: '#6fd0ff',
-    utils: '#d8c9a3', unsorted: '#9a92a8',
+    utils: '#d8c9a3', lab: '#7ef0c8', unsorted: '#9a92a8',
 };
 const hue = (key) => SECTION_HUES[key] ?? SECTION_HUES.unsorted;
 

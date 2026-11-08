@@ -55,6 +55,22 @@ export const SECTIONS = [
         ],
     },
     {
+        key: 'lab', title: 'Lab', icon: '🧪',
+        hint: 'CALLBOARD Lab only: experimental switches. Light one at a time, play a few replies, keep what helps.',
+        items: [
+            { toggle: 'cb_lab_povfusion' },
+            { toggle: 'cb_lab_antirobot' },
+            { toggle: 'cb_lab_sayonce' },
+            { toggle: 'cb_lab_flow' },
+            { toggle: 'cb_lab_comfort' },
+            { toggle: 'cb_lab_spotlight' },
+            { toggle: 'cb_lab_plainspeech' },
+            { toggle: 'cb_lab_openers' },
+            { toggle: 'cb_lab_pressure' },
+            { toggle: 'cb_lab_thoughts' },
+        ],
+    },
+    {
         key: 'wings', title: 'Setting', icon: '🏛️',
         hint: 'One wing. College stacks on Modern or Y2K; Magic stacks on Fantasy, Urban, Paranormal or Wuxia; Omegaverse stacks on anything.',
         items: [
@@ -162,6 +178,7 @@ export const SECTIONS = [
             { group: 'model', label: 'Model layer', none: 'None', pick: ['cb_model_claude', 'cb_model_glm', 'cb_model_mimo', 'cb_model_kimi', 'cb_model_gemini', 'cb_model_gpt'] },
             { toggle: 'cb_kimi_recall' },
             { toggle: 'cb_kimi_pulse' },
+            { toggle: 'cb_lab_mimo_handoff' },
             { group: 'cot', label: 'Callboard CoT', none: 'None', pick: ['cb_callboard_cot', 'cb_cot_wholesome', 'cb_cot_fantasy'] },
             { toggle: 'cb_ooc' },
             { toggle: 'cb_clover' },
@@ -203,6 +220,7 @@ export const REQUIRES = [
     { id: 'cb_fame_rock', any: ['cb_fame'], why: 'The Rockstar flavor rides on the Fame Engine.' },
     { id: 'cb_fame_kpop', any: ['cb_fame'], why: 'The K-pop Idol flavor rides on the Fame Engine.' },
     { id: 'cb_kimi_recall', any: ['cb_model_kimi'], why: 'Remember, Don\'t Recite is a Kimi K3 tuning; it rides on the Kimi model layer.' },
+    { id: 'cb_lab_mimo_handoff', any: ['cb_model_mimo'], why: 'The MiMo 2.6 Clean Handoff rides on the MiMo model layer.' },
     { id: 'cb_kimi_pulse', any: ['cb_model_kimi'], why: 'Narration With a Pulse is a Kimi K3 tuning; it rides on the Kimi model layer.' },
     { id: 'cb_css_mood', any: ['cb_html_master'], why: 'CSS Mood Effects needs the diegetic HTML master.' },
     { id: 'cb_js', any: ['cb_html_master'], why: "Xavi's Rigging needs the diegetic HTML master." },

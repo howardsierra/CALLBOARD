@@ -5,6 +5,7 @@ A modular SillyTavern roleplay preset, plus **CALLBOARD Suite**, an extension th
 ```
 preset/CALLBOARD_v1_6_7.json        ← the full preset (prompts + all of its regex)
 preset/CALLBOARD_Lite_v1_6_7.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
+preset/lab/                         ← 🧪 CALLBOARD Lab: an experimental copy for trying new ideas (see its README)
 preset/archive/                     ← every earlier version (v1.3.0.1 original, v1.4.0, v1.5.0, v1.6.0, v1.6.1, v1.6.2)
 index.js · style.css · src/         ← the CALLBOARD Suite extension
 ```
