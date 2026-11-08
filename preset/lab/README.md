@@ -2,13 +2,13 @@
 
 An experimental copy of CALLBOARD for trying ideas before they reach the real preset. Expect things to change, break, or disappear between versions.
 
-- **Current:** `CALLBOARD_Lab_v0_1.json`, built on CALLBOARD v1.6.7 (Full). Everything in v1.6.7 is here and works the same.
+- **Current:** `CALLBOARD_Lab_v0_2.json`, built on CALLBOARD v1.6.7 (Full). Everything in v1.6.7 is here and works the same.
 - **The stable presets** in `preset/` are never changed by Lab work. What proves itself here gets moved over deliberately.
 - Older Lab versions will be kept in `preset/lab/archive/`.
 
 ## How to test
 
-1. Import `CALLBOARD_Lab_v0_1.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
+1. Import `CALLBOARD_Lab_v0_2.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
 2. Set it up as you would CALLBOARD (wing, tracker, model layer…).
 3. In the CALLBOARD Suite board, open **🧪 Lab**. Everything there is **off**.
 4. Light **one** switch, play a few replies, and compare. Then keep it, turn it off, or try the next.
@@ -33,6 +33,23 @@ All of them sit in the 🧪 LAB section of the prompt list, right after the pros
 
 Some overlap on purpose, so they can be compared: POV Fusion, Anti-Robot and the Kimi switches (🧠 Remember, Don't Recite; 🎙️ Narration With a Pulse) all go after flat narration from different angles. Test them separately before stacking.
 
+## 🧪 Slots A–D: your own rewrites
+
+Four empty prompts, off by default, for rewriting other presets' jailbreaks and prefills into writing instructions. Each sits where that kind of prompt normally goes:
+
+| Slot | Role | Where in the prompt | Fits rewrites of |
+|---|---|---|---|
+| **A — Opening statement** | system | top, right after the Read Me | Deus Ex Machina's `\| Content Policy \|`, Princess Honey's `👑\| Kingdom`, LeForkoQuantum's `Core Directive`, Sola's `Optional JB` |
+| **B — Narrator's vow** | assistant | top, right after Slot A | Deus Ex Machina's `\| Phi's Vow \|` (the narrator speaking in its own voice) |
+| **C — Closing note** | system | right after Chat History, before the prose charter | Deus Ex Machina's `! Hard Jailbreak !`, Sola's `Policy Scan`, Princess Honey's `💉\| Pos Smasher` |
+| **D — Prefill** | assistant | the very end, after 📌 Callboard Notice | Sun Rider's `🧟 DANGEROUS ZOMBIE GASHAT`, Princess Honey's "GMbot" prefill and `👑\|Prefill`, LeForkoQuantum's `Claude Variable Prefil` |
+
+Fill one, light it, and test it like any other Lab switch.
+
+- **Slot D (prefill)** makes the prompt end on an assistant message, which the model then continues. Claude handles that well. Some other models and providers ignore it or answer oddly, so test it on your model.
+- SillyTavern also has a preset-wide **Assistant Prefill** box (AI Response Configuration, shown for Claude). Princess Honey uses it for its "GMbot" line. The Lab leaves it empty.
+- **📌 Callboard Notice** (the user-role slot at the very end, from CALLBOARD itself) is still there for your own note.
+
 ## Model settings worth trying
 
 From Deus Ex Machina V3's model notes (these are connection settings, not prompts):
@@ -48,7 +65,7 @@ From Deus Ex Machina V3's model notes (these are connection settings, not prompt
 
 ## Sources and thanks
 
-The Lab's switches are rewritten in CALLBOARD's own voice from ideas in these presets, with their makers' permission to reuse and edit:
+The Lab's switches are rewritten in CALLBOARD's own voice from ideas in these presets. All are fine to reuse and edit; Sola V4 Flame and Deus Ex Machina V3 are open practice presets from a creators' Discord.
 
 - **Princess Honey v2.5:** POV Fusion (from "Princess Style"). Princess Honey also credits Sel, monogatar1 and Knottydog for some of its prompts.
 - **LeForkoQuantum** by u/Leafcanfly, with pieces by Quantum and others: Anti-Robot.

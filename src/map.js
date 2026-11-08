@@ -68,6 +68,10 @@ export const SECTIONS = [
             { toggle: 'cb_lab_openers' },
             { toggle: 'cb_lab_pressure' },
             { toggle: 'cb_lab_thoughts' },
+            { toggle: 'cb_lab_slot_open' },
+            { toggle: 'cb_lab_slot_vow' },
+            { toggle: 'cb_lab_slot_close' },
+            { toggle: 'cb_lab_slot_prefill' },
         ],
     },
     {
