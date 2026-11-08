@@ -3,8 +3,8 @@
 A modular SillyTavern roleplay preset, plus **CALLBOARD Suite**, an extension that gives the preset a stage manager's control board. Your host is Xavi, the stage manager: he runs the show from the wings, calls the cues and stays out of the story.
 
 ```
-preset/CALLBOARD_v1_6_6.json        ← the full preset (prompts + all of its regex)
-preset/CALLBOARD_Lite_v1_6_6.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
+preset/CALLBOARD_v1_6_7.json        ← the full preset (prompts + all of its regex)
+preset/CALLBOARD_Lite_v1_6_7.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
 preset/archive/                     ← every earlier version (v1.3.0.1 original, v1.4.0, v1.5.0, v1.6.0, v1.6.1, v1.6.2)
 index.js · style.css · src/         ← the CALLBOARD Suite extension
 ```
@@ -26,7 +26,7 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 
 ## Setup
 
-1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_6_6.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
+1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_6_7.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
 2. **Allow its regex.** Every card, chat panel, STANDBY slip and the Program is drawn by regex that ships inside the preset. You don't import a separate bundle. SillyTavern ignores a preset's regex until you allow it, so say yes when it asks. You can also allow it under **Extensions → Regex → Preset scripts**. If you skip this step, the chat shows raw lines like `T>` and `CUE>` instead of cards.
 3. **Install the extension (optional, recommended).** Go to **Extensions → Install extension**, paste `https://github.com/howardsierra/callboard`, then open the board from the wand menu or with `/cb`. If you skipped step 2, the extension's Notes tab catches it and allows the regex in one click.
 
@@ -44,6 +44,12 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 Everything else is optional: boards, story systems, spotlight and fame, chat panels, visuals and content modules.
 
 ## New in v1.6
+
+**v1.6.7:**
+- **Two Kimi K3 switches** that stack on ⚙️ Model — Kimi (Full and Lite), right under the model layer on the board:
+  - **🧠 Remember, Don't Recite:** for when narration keeps restating everything it remembers (clothes, the room, the time, earlier lines). The model still keeps track of all of it, but only brings up what the moment needs, at most one callback per reply.
+  - **🎙️ Narration With a Pulse:** for when narration reads flat or report-like next to good dialogue. Narration takes on the POV character's mood, picks a telling detail instead of listing everything, and drops "she noted / registered" and clinical numbers.
+- The Kimi model layer now covers K3 as well as K2.5 Thinking.
 
 **v1.6.6:**
 - **🤫 Private Scenes runs itself.** With 🤫 Private Scenes lit, the model starts a private scene when the story cuts to one and ends it when the story goes back out, and it marks short private moments (a whisper, a passed note) inside a busier reply. You get an Undo every time. Needs Private Scenes 0.11 or later.
