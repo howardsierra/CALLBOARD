@@ -75,6 +75,12 @@ export const SECTIONS = [
             { toggle: 'cb_lab_hidden' },
             { toggle: 'cb_lab_kinetic' },
             { toggle: 'cb_lab_notify' },
+            { toggle: 'cb_lab_iceberg' },
+            { toggle: 'cb_lab_desires' },
+            { toggle: 'cb_lab_fewwords' },
+            { toggle: 'cb_lab_needs' },
+            { toggle: 'cb_lab_sync' },
+            { toggle: 'cb_lab_goblins' },
             { toggle: 'cb_lab_slot_open' },
             { toggle: 'cb_lab_slot_vow' },
             { toggle: 'cb_lab_slot_close' },
@@ -250,6 +256,9 @@ export const ADVISORIES = [
     { when: ['cb_dating_rx'], unless: ['cb_wing_modern', 'cb_wing_y2k', 'cb_wing_urban', 'cb_wing_paranormal', 'cb_wing_cyberpunk', 'cb_wing_scifi'], text: 'The Dating App is lit on a wing without dating apps.' },
     { when: ['cb_pure_html'], unless: [], text: 'Pure HTML is lit: every reply will be in-world objects only, with no prose. It overrides the prose rules of HTML Fun, Text Messages, and the Last Check.' },
     { when: ['cb_deaddove', 'cb_trauma_guards'], text: 'Dead Dove and Trauma Guards are both lit — the Guards win where they overlap.' },
+    { when: ['cb_lab_goblins', 'cb_callboard_cot'], text: 'The Goblin Council and a Callboard CoT are both lit — they\'d both write a <think> block. Keep one.' },
+    { when: ['cb_lab_goblins', 'cb_cot_wholesome'], text: 'The Goblin Council and a Callboard CoT are both lit — they\'d both write a <think> block. Keep one.' },
+    { when: ['cb_lab_goblins', 'cb_cot_fantasy'], text: 'The Goblin Council and a Callboard CoT are both lit — they\'d both write a <think> block. Keep one.' },
     { when: ['cb_cot_fantasy'], unless: ['cb_wing_fantasy', 'cb_wing_westeros', 'cb_wing_medieval', 'cb_wing_wuxia', 'cb_wing_urban', 'cb_wing_paranormal'], text: 'The Fantasy CoT is lit on a non-fantasy wing.' },
 ];
 

@@ -2,13 +2,13 @@
 
 An experimental copy of CALLBOARD for trying ideas before they reach the real preset. Expect things to change, break, or disappear between versions.
 
-- **Current:** `CALLBOARD_Lab_v0_4.json`, built on CALLBOARD v1.6.7 (Full). Everything in v1.6.7 is here and works the same.
+- **Current:** `CALLBOARD_Lab_v0_5.json`, built on CALLBOARD v1.6.7 (Full). Everything in v1.6.7 is here and works the same.
 - **The stable presets** in `preset/` are never changed by Lab work. What proves itself here gets moved over deliberately.
 - Older Lab versions will be kept in `preset/lab/archive/`.
 
 ## How to test
 
-1. Import `CALLBOARD_Lab_v0_4.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
+1. Import `CALLBOARD_Lab_v0_5.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
 2. Set it up as you would CALLBOARD (wing, tracker, model layer…).
 3. In the CALLBOARD Suite board, open **🧪 Lab**. Everything there is **off**.
 4. Light **one** switch, play a few replies, and compare. Then keep it, turn it off, or try the next.
@@ -36,6 +36,12 @@ All of them sit in the 🧪 LAB section of the prompt list, right after the pros
 | 🔍 Hidden Layers | Tap-to-reveal extras inside the prose: unspoken thoughts, body tells, lore notes, translations, swallowed words | you want subtext you can peek at | Sola |
 | ⚡ Kinetic Type | A few words per reply that slam, shake, glitch, pulse, glow or drift | you want sound and impact on the page | Sola |
 | 📳 Push Notifications | Phone alerts drawn as a notification card | phones buzz a lot in your story | Sola |
+| 🧊 Iceberg | Show, don't tell: feelings and motives stay under the surface | characters announce how they feel | microcot |
+| 🫀 Hidden Desires | Narration follows what people secretly want; they misread themselves, lie and contradict their words | characters feel too self-aware or tidy | microcot |
+| 🤐 Few Words | Characters say little, stay warm, and don't narrate or judge themselves | characters monologue or explain themselves | microcot |
+| 🍞 Daily Needs | Food, sleep, hygiene and routine shape scenes | nobody ever eats, sleeps or showers | microcot |
+| 🕰️ Scenes in Sync | Characters apart share one clock; show what they do in parallel | others freeze whenever she leaves the room | microcot |
+| 🐾 Goblin Council | A chaotic CoT: inner goblins argue in lowercase slang and kaomoji in `<think>`, then the reply is written. Use instead of a Callboard CoT (Notes warns if both are lit) | you want a looser, funnier planning step | microcot |
 | 🃏 MiMo 2.6 — Clean Handoff | Planning stays out of the visible reply; CALLBOARD's output order is kept | you run MiMo 2.6 and planning leaks into replies. Needs ⚙️ Model — MiMo | Sun Rider |
 
 Some overlap on purpose, so they can be compared: POV Fusion, Anti-Robot, Say It Once, Fresh Traits and the Kimi switches (🧠 Remember, Don't Recite; 🎙️ Narration With a Pulse) all go after flat narration from different angles. Test them separately before stacking.
@@ -107,4 +113,4 @@ The Lab's switches are rewritten in CALLBOARD's own voice from ideas in these pr
 - **Sola V4 Flame:** Flowing Actions (Anti-Staccato), Bad at Comfort (Anti-Therapy Speech), Spotlight (Anti-Orbiting), Plain Speech (Occam's Razor), Fresh Openers (Story Rhythm); Hidden Layers (Interactive Mechanics), Kinetic Type (Kinetic Tonal Emphasis) and Push Notifications, with their regex rebuilt for CALLBOARD; the context-saver idea, shared with Sun Rider and Deus Ex Machina.
 - **Sun Rider v1.1:** Say It Once (from its anti-slop module), Voice Under Pressure (Onkaku), Thoughts, Rationed (Ghost Eyecon), MiMo 2.6 Clean Handoff (Final Vent).
 - **Deus Ex Machina V3:** model settings notes.
-- **microcot** by aimicrocot ([github.com/aimicrocot/microcot-preset](https://github.com/aimicrocot/microcot-preset)): Fresh Traits and No Fidgeting (from its Gemini/GLM/Kimi version), No Echo, Say What Happens (from "No Negatives"). microcot in turn credits Boringdommer, rarestmeow, Celia (Leafcanfly) and blader's Humanizer. Its repository has no license file, so only ideas are reused here, in CALLBOARD's own words.
+- **microcot** by Stray ([github.com/aimicrocot/microcot-preset](https://github.com/aimicrocot/microcot-preset)), used with permission and credit: Fresh Traits and No Fidgeting (from its Gemini/GLM/Kimi version), No Echo, Say What Happens ("No Negatives"), Iceberg ("Iceberg Style" + "Hints Style"), Hidden Desires ("Character Depth"), Few Words ("No Blabbing"), Daily Needs ("Character Needs"), Scenes in Sync ("Scenes Sync") and Goblin Council ("Vibe Think"), several in close to Stray's own words. microcot in turn credits Boringdommer, rarestmeow, Celia (Leafcanfly) and blader's Humanizer.
