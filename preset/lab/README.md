@@ -2,13 +2,13 @@
 
 An experimental copy of CALLBOARD for trying ideas before they reach the real preset. Expect things to change, break, or disappear between versions.
 
-- **Current:** `CALLBOARD_Lab_v0_3.json`, built on CALLBOARD v1.6.7 (Full). Everything in v1.6.7 is here and works the same.
+- **Current:** `CALLBOARD_Lab_v0_4.json`, built on CALLBOARD v1.6.7 (Full). Everything in v1.6.7 is here and works the same.
 - **The stable presets** in `preset/` are never changed by Lab work. What proves itself here gets moved over deliberately.
 - Older Lab versions will be kept in `preset/lab/archive/`.
 
 ## How to test
 
-1. Import `CALLBOARD_Lab_v0_3.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
+1. Import `CALLBOARD_Lab_v0_4.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
 2. Set it up as you would CALLBOARD (wing, tracker, model layer…).
 3. In the CALLBOARD Suite board, open **🧪 Lab**. Everything there is **off**.
 4. Light **one** switch, play a few replies, and compare. Then keep it, turn it off, or try the next.
@@ -33,9 +33,38 @@ All of them sit in the 🧪 LAB section of the prompt list, right after the pros
 | 💍 No Fidgeting | Rings, scars, jewelry and pockets aren't fiddled with to show feeling | characters keep twisting rings or tracing scars | microcot |
 | 🔁 No Echo | Your words and actions aren't quoted or recapped back at you | replies parrot what you just wrote | microcot |
 | ✅ Say What Happens | No "he didn't answer / nobody moved"; narrate what does happen | narration is full of things not happening | microcot |
+| 🔍 Hidden Layers | Tap-to-reveal extras inside the prose: unspoken thoughts, body tells, lore notes, translations, swallowed words | you want subtext you can peek at | Sola |
+| ⚡ Kinetic Type | A few words per reply that slam, shake, glitch, pulse, glow or drift | you want sound and impact on the page | Sola |
+| 📳 Push Notifications | Phone alerts drawn as a notification card | phones buzz a lot in your story | Sola |
 | 🃏 MiMo 2.6 — Clean Handoff | Planning stays out of the visible reply; CALLBOARD's output order is kept | you run MiMo 2.6 and planning leaks into replies. Needs ⚙️ Model — MiMo | Sun Rider |
 
 Some overlap on purpose, so they can be compared: POV Fusion, Anti-Robot, Say It Once, Fresh Traits and the Kimi switches (🧠 Remember, Don't Recite; 🎙️ Narration With a Pulse) all go after flat narration from different angles. Test them separately before stacking.
+
+## On-screen effects
+
+🔍 Hidden Layers, ⚡ Kinetic Type and 📳 Push Notifications come with regex that draws them, built into the Lab preset. The switches teach the model the tags; the regex is always ready, so tags you type yourself work too.
+
+| You or the model write | You see |
+|---|---|
+| `<subtext thought="If he finds the letter, I'm finished.">"Everything's fine," she said.</subtext>` | the line, dotted-underlined; tap it for a ☁ *Unspoken* card |
+| `<tell note="Pulse jumping at his jaw">smoothed his collar</tell>` | tap for a ✋ *Tell* card |
+| `<lore entry="Salt marshes abandoned after the flood.">the Sallow Reach</lore>` | tap for a 📜 *Lore* card |
+| `<translate meaning="Peace in the shadow">"Pax sub umbra"</translate>` | tap for a 🗣 *Meaning* card |
+| `<retract>I missed you.</retract>` | blurred words that sharpen when tapped |
+| `<heavy>`, `<stretch>`, `<tilt>`, `<crush>`, `<fracture>`, `<echo>`, `<shake>`, `<glitch>`, `<pulse>`, `<ember>`, `<drift>` | bold, spaced, tilted, squeezed, skewed, faded, shaking, glitching, beating, glowing, floating words |
+| `<notification app="Messages" from="Jun" time="9:41 PM">don't open the door</notification>` | a phone notification card |
+
+Cards open in place, so they work the same on a phone. Animations stop if your device is set to reduce motion.
+
+## Context savers
+
+Three prompt-only regex scripts in the Lab preset shrink what's sent to the model, without changing your chat:
+
+- **Old tracker and board cards:** `<cb_state>` blocks older than the last few messages are left out. The newest ones stay, so numbers like affinity carry on correctly.
+- **Old cue legends:** older Xavi cue lines keep their name and reason but drop the long explanation. The newest cue keeps it, so the model still knows what it has already explained.
+- **Old HTML styles:** `<style>` blocks in older messages are left out. The artifacts' text stays.
+
+They're on by default. Turn any of them off under **Extensions → Regex → Preset scripts** (look for **CB LAB · Context saver**). CALLBOARD already collapses old chat panels the same way.
 
 ## 🧪 Slots A–D: your own rewrites
 
@@ -75,7 +104,7 @@ The Lab's switches are rewritten in CALLBOARD's own voice from ideas in these pr
 
 - **Princess Honey v2.5:** POV Fusion (from "Princess Style"). Princess Honey also credits Sel, monogatar1 and Knottydog for some of its prompts.
 - **LeForkoQuantum** by u/Leafcanfly, with pieces by Quantum and others: Anti-Robot.
-- **Sola V4 Flame:** Flowing Actions (Anti-Staccato), Bad at Comfort (Anti-Therapy Speech), Spotlight (Anti-Orbiting), Plain Speech (Occam's Razor), Fresh Openers (Story Rhythm).
+- **Sola V4 Flame:** Flowing Actions (Anti-Staccato), Bad at Comfort (Anti-Therapy Speech), Spotlight (Anti-Orbiting), Plain Speech (Occam's Razor), Fresh Openers (Story Rhythm); Hidden Layers (Interactive Mechanics), Kinetic Type (Kinetic Tonal Emphasis) and Push Notifications, with their regex rebuilt for CALLBOARD; the context-saver idea, shared with Sun Rider and Deus Ex Machina.
 - **Sun Rider v1.1:** Say It Once (from its anti-slop module), Voice Under Pressure (Onkaku), Thoughts, Rationed (Ghost Eyecon), MiMo 2.6 Clean Handoff (Final Vent).
 - **Deus Ex Machina V3:** model settings notes.
 - **microcot** by aimicrocot ([github.com/aimicrocot/microcot-preset](https://github.com/aimicrocot/microcot-preset)): Fresh Traits and No Fidgeting (from its Gemini/GLM/Kimi version), No Echo, Say What Happens (from "No Negatives"). microcot in turn credits Boringdommer, rarestmeow, Celia (Leafcanfly) and blader's Humanizer. Its repository has no license file, so only ideas are reused here, in CALLBOARD's own words.
