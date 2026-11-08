@@ -2,13 +2,13 @@
 
 An experimental copy of CALLBOARD for trying ideas before they reach the real preset. Expect things to change, break, or disappear between versions.
 
-- **Current:** `CALLBOARD_Lab_v0_5.json`, built on CALLBOARD v1.6.7 (Full). Everything in v1.6.7 is here and works the same.
+- **Current:** `CALLBOARD_Lab_v0_6.json`, built on CALLBOARD v1.6.7 (Full). Everything in v1.6.7 is here and works the same.
 - **The stable presets** in `preset/` are never changed by Lab work. What proves itself here gets moved over deliberately.
 - Older Lab versions will be kept in `preset/lab/archive/`.
 
 ## How to test
 
-1. Import `CALLBOARD_Lab_v0_5.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
+1. Import `CALLBOARD_Lab_v0_6.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
 2. Set it up as you would CALLBOARD (wing, tracker, model layer…).
 3. In the CALLBOARD Suite board, open **🧪 Lab**. Everything there is **off**.
 4. Light **one** switch, play a few replies, and compare. Then keep it, turn it off, or try the next.
@@ -41,12 +41,20 @@ All of them sit in the 🧪 LAB section of the prompt list, right after the pros
 | 🤐 Few Words | Characters say little, stay warm, and don't narrate or judge themselves | characters monologue or explain themselves | microcot |
 | 🍞 Daily Needs | Food, sleep, hygiene and routine shape scenes | nobody ever eats, sleeps or showers | microcot |
 | 🕰️ Scenes in Sync | Characters apart share one clock; show what they do in parallel | others freeze whenever she leaves the room | microcot |
+| 🪧 Immersive Objects | With HTML Fun, the world itself becomes artifacts: signs, seals, terminals, crests, menus, labels, in the setting's own style and tech level, some of them touchable | you want the scenery on the page, not just documents. Needs 🖼️ HTML Fun or 🖥️ Pure HTML | LeForkoQuantum |
+| 🏛️ The Coalition | Society as a coalition that props up "how things are": where people stand, what they have at stake, how power hardens or softens, and how the order buys, disciplines or expels whoever threatens it | you want the world to push back on her for real | Moirai Clause |
+| 🔥 Act on It | Feelings become actions in the same reply; blocks show as what people do instead; no plot armor; injuries as processes | characters dither, explain themselves, or never follow through | Moirai Clause |
+| 🎲 Chance Dice | Two dice each turn nudge one thing in the world (never her), shown as a small slip; type `[WILD]` for a third die | you want a little luck in the world's response | Moirai Clause |
+| 🆕 New Faces | A card for each new named character: look, stake, ties, wants, contradiction | new characters feel generic or forgettable | Moirai Clause |
+| 🪓 Strict Anti-Slop | A hard banned list checked every reply: no narration negatives or comparisons, no stock body language, banned words, dialogue rules | the model keeps falling into stock phrasing. Strict: it also bans similes and em-dash asides | Moirai Clause |
 | 🐾 Goblin Council | A chaotic CoT: inner goblins argue in lowercase slang and kaomoji in `<think>`, then the reply is written. Use instead of a Callboard CoT (Notes warns if both are lit) | you want a looser, funnier planning step | microcot |
 | 🃏 MiMo 2.6 — Clean Handoff | Planning stays out of the visible reply; CALLBOARD's output order is kept | you run MiMo 2.6 and planning leaks into replies. Needs ⚙️ Model — MiMo | Sun Rider |
 
 Some overlap on purpose, so they can be compared: POV Fusion, Anti-Robot, Say It Once, Fresh Traits and the Kimi switches (🧠 Remember, Don't Recite; 🎙️ Narration With a Pulse) all go after flat narration from different angles. Test them separately before stacking.
 
 ## On-screen effects
+
+🎲 Chance Dice and 🆕 New Faces also come with their regex: the dice line becomes a small 🎲 slip, and the `[[NEWFACE]]` lines become a character card.
 
 🔍 Hidden Layers, ⚡ Kinetic Type and 📳 Push Notifications come with regex that draws them, built into the Lab preset. The switches teach the model the tags; the regex is always ready, so tags you type yourself work too.
 
@@ -69,6 +77,7 @@ Three prompt-only regex scripts in the Lab preset shrink what's sent to the mode
 - **Old tracker and board cards:** `<cb_state>` blocks older than the last few messages are left out. The newest ones stay, so numbers like affinity carry on correctly.
 - **Old cue legends:** older Xavi cue lines keep their name and reason but drop the long explanation. The newest cue keeps it, so the model still knows what it has already explained.
 - **Old HTML styles:** `<style>` blocks in older messages are left out. The artifacts' text stays.
+- **Old dice slips:** older 🎲 lines are left out; the newest stays.
 
 They're on by default. Turn any of them off under **Extensions → Regex → Preset scripts** (look for **CB LAB · Context saver**). CALLBOARD already collapses old chat panels the same way.
 
@@ -106,11 +115,14 @@ From Deus Ex Machina V3's model notes (these are connection settings, not prompt
 
 ## Sources and thanks
 
-The Lab's switches are rewritten in CALLBOARD's own voice from ideas in these presets. All are fine to reuse and edit; Sola V4 Flame and Deus Ex Machina V3 are open practice presets from a creators' Discord.
+Every Lab prompt is written in CALLBOARD's own voice, so the Lab reads as one preset. The ideas come from these presets:
+
+All are fine to reuse and edit; Sola V4 Flame and Deus Ex Machina V3 are open practice presets from a creators' Discord.
 
 - **Princess Honey v2.5:** POV Fusion (from "Princess Style"). Princess Honey also credits Sel, monogatar1 and Knottydog for some of its prompts.
-- **LeForkoQuantum** by u/Leafcanfly, with pieces by Quantum and others: Anti-Robot.
+- **LeForkoQuantum** by u/Leafcanfly, with pieces by Quantum and others: Anti-Robot; Immersive Objects (from Quality HTML and Interactive HTML).
 - **Sola V4 Flame:** Flowing Actions (Anti-Staccato), Bad at Comfort (Anti-Therapy Speech), Spotlight (Anti-Orbiting), Plain Speech (Occam's Razor), Fresh Openers (Story Rhythm); Hidden Layers (Interactive Mechanics), Kinetic Type (Kinetic Tonal Emphasis) and Push Notifications, with their regex rebuilt for CALLBOARD; the context-saver idea, shared with Sun Rider and Deus Ex Machina.
 - **Sun Rider v1.1:** Say It Once (from its anti-slop module), Voice Under Pressure (Onkaku), Thoughts, Rationed (Ghost Eyecon), MiMo 2.6 Clean Handoff (Final Vent).
 - **Deus Ex Machina V3:** model settings notes.
 - **microcot** by Stray ([github.com/aimicrocot/microcot-preset](https://github.com/aimicrocot/microcot-preset)), used with permission and credit: Fresh Traits and No Fidgeting (from its Gemini/GLM/Kimi version), No Echo, Say What Happens ("No Negatives"), Iceberg ("Iceberg Style" + "Hints Style"), Hidden Desires ("Character Depth"), Few Words ("No Blabbing"), Daily Needs ("Character Needs"), Scenes in Sync ("Scenes Sync") and Goblin Council ("Vibe Think"), several in close to Stray's own words. microcot in turn credits Boringdommer, rarestmeow, Celia (Leafcanfly) and blader's Humanizer.
+- **Moirai Clause V1**, a friend's private preset, used with permission: The Coalition (Coalition System and Deleuze Logic), Act on It (Compulsions), Chance Dice, New Faces (New NPC) and Strict Anti-Slop (SLOOOP and its final check). Moirai in turn credits Wireless/Ryah (FrankenSIM), Paperclip, the Freaky team, KinkyAlt_01, Semanel, notsocool (whose talk helped shape the coalition system), lSENNN (Deus Ex Machina), Pyropia (Sola), Nemo (Nemo's Engine) and xo.nara (GeminiOmega).
