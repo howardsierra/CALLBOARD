@@ -26,7 +26,7 @@ export const SECTIONS = [
         hint: 'House rules, who holds the pen, and the always-on charters.',
         items: [
             { toggle: 'cb_houserules' },
-            { group: 'mode', label: 'Mode', required: true, pick: ['cb_impersonate', 'cb_story_mode'], labels: { cb_impersonate: '🎭 Impersonate', cb_story_mode: '🖊️ Story Mode' }, hint: 'Impersonate: Xavi writes your character too. Story Mode: you write yours.' },
+            { group: 'mode', label: 'Mode', required: true, pick: ['cb_impersonate', 'cb_story_mode', 'cb_lab_assistant'], labels: { cb_impersonate: '🎭 Impersonate', cb_story_mode: '🖊️ Story Mode', cb_lab_assistant: '🧠 Assistant' }, hint: 'Impersonate: Xavi writes your character too. Story Mode: you write yours. Assistant (Lab): no scene—Xavi helps you plan.' },
             { toggle: 'cb_manual' },
             { toggle: 'cb_charter_lite' },
             { toggle: 'cb_alive' },

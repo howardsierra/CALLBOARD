@@ -2,13 +2,13 @@
 
 An experimental copy of CALLBOARD for trying ideas before they reach the real preset. Expect things to change, break, or disappear between versions.
 
-- **Current:** `CALLBOARD_Lab_v0_8.json`, built on CALLBOARD v1.6.8 (Full). Everything in v1.6.8 is here and works the same, including its regex fixes.
+- **Current:** `CALLBOARD_Lab_v0_9.json`, built on CALLBOARD v1.6.8 (Full). Everything in v1.6.8 is here and works the same, including its regex fixes.
 - **The stable presets** in `preset/` are never changed by Lab work. What proves itself here gets moved over deliberately.
 - Older Lab versions will be kept in `preset/lab/archive/`.
 
 ## How to test
 
-1. Import `CALLBOARD_Lab_v0_8.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
+1. Import `CALLBOARD_Lab_v0_9.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
 2. Set it up as you would CALLBOARD (wing, tracker, model layer…).
 3. In the CALLBOARD Suite board, open **🧪 Lab**. Everything there is **off**.
 4. Light **one** switch, play a few replies, and compare. Then keep it, turn it off, or try the next.
@@ -51,6 +51,18 @@ All of them sit in the 🧪 LAB section of the prompt list, right after the pros
 | 🃏 MiMo 2.6 — Clean Handoff | Planning stays out of the visible reply; CALLBOARD's output order is kept | you run MiMo 2.6 and planning leaks into replies. Needs ⚙️ Model — MiMo | Sun Rider |
 
 Some overlap on purpose, so they can be compared: POV Fusion, Anti-Robot, Say It Once, Fresh Traits and the Kimi switches (🧠 Remember, Don't Recite; 🎙️ Narration With a Pulse) all go after flat narration from different angles. Test them separately before stacking.
+
+## 🧠 Assistant Mode
+
+A third choice in the **Mode** band, next to 🎭 Impersonate and 🖊️ Story Mode. While it's lit, the curtain is down: there's no scene, and Xavi works with you directly as a story assistant.
+
+- **Ask for anything about your story:** brainstorm twists and endings, outline the next chapters, build or revise characters, cards, first messages and lore, ask who knows what or what was promised, get an honest critique, draft lorebook entries, or ask what a module does.
+- **Answers are a conversation,** with headers and lists where they help. Sample prose or a character's lines only when you ask, labelled as a sample.
+- **Nothing fires:** no tracker, boards, panels, cue lines, images, HTML or curtain, even if they're lit. The Final Standing Order, the Last Check and House Rules step aside while it's on.
+- **It still knows everything:** the story so far, the lit wing, your content settings, and even the secrets (you're the author).
+- **Back to the show:** pick 🎭 Impersonate or 🖊️ Story Mode again and the scene carries on where it stopped.
+
+About 530 tokens while lit; nothing when it isn't.
 
 ## 🎛️ The Board Console
 
