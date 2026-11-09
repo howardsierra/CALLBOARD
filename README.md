@@ -48,7 +48,7 @@ Everything else is optional: boards, story systems, spotlight and fame, chat pan
 
 **CALLBOARD Lab** is an experimental copy of CALLBOARD for trying ideas before they reach the real preset. It's built on the full v1.6.8 preset, so everything there works the same. It imports as its own preset, so your normal CALLBOARD is never touched. Expect things to change, break, or disappear between versions.
 
-- **Current:** [`preset/lab/CALLBOARD_Lab_v0_9_1.json`](preset/lab/CALLBOARD_Lab_v0_9_1.json). Older Lab versions are in `preset/lab/archive/`.
+- **Current:** [`preset/lab/CALLBOARD_Lab_v0_10.json`](preset/lab/CALLBOARD_Lab_v0_10.json). Older Lab versions are in `preset/lab/archive/`.
 - **How to test:** import it, set it up like CALLBOARD, then open **🧪 Lab** on the board. Every Lab switch starts **off**. Light one, play a few replies, compare, then keep it or try the next.
 
 What's in it:
@@ -57,7 +57,7 @@ What's in it:
 |---|---|
 | **Writing switches** | About 30 single-purpose fixes: POV Fusion, Anti-Robot, Say It Once, Fresh Traits, No Echo, Iceberg, Hidden Desires, Act on It, Strict Anti-Slop and more, each aimed at one habit (flat or robotic narration, parroting, stock phrasing, therapist-speak, crowded scenes) |
 | **🧠 Assistant Mode** | A third **Mode** pick next to Impersonate and Story Mode. No scene: Xavi helps you directly, in whichever personality you have lit, with brainstorming, outlines, characters and cards, lore, "who knows what", critiques and module questions. Switch the scene modules off while you use it. Pick Impersonate or Story Mode again to go back to the show |
-| **🎛️ Board Console** | The tracker and boards redrawn as a tap-to-open HUD: a one-line digest (time, place, mood, affinity) with drawers for cast, web, status, inventory and codex. Older consoles fold up on their own. Four skins in the extension settings: Console, Minimal, Parchment and Neon. Auto matches the wing: Parchment for period wings, Neon for Sci-Fi and Cyberpunk |
+| **🎛️ Board Console** | The tracker and boards redrawn as a tap-to-open HUD: a one-line digest (time, place, mood, affinity) with drawers for cast, web, status, inventory and codex. Xavi's board notes, curtain, OOC asides, cue slips and the Program get drawers too. Older consoles fold up on their own. Four skins in the extension settings: Console, Minimal, Parchment and Neon. Auto matches the wing: Parchment for period wings, Neon for Sci-Fi and Cyberpunk |
 | **On-screen effects** | 🔍 Hidden Layers (tap-to-reveal thoughts, tells and translations), ⚡ Kinetic Type, 📳 Push Notifications, 🎲 Chance Dice slips, 🆕 New Faces cards, 🪧 Immersive Objects |
 | **Context savers** | Regex that trims old state blocks, cue legends, stylesheets and dice slips from the prompt so long chats stay lean |
 | **Slots A–D** | Four empty prompts for your own rewrites of other presets' jailbreaks and prefills: an opening statement, a narrator's vow, a closing note and a prefill |

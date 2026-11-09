@@ -605,6 +605,11 @@ function foldOldConsoles() {
     const consoles = [...document.querySelectorAll('#chat .mes .mes_text details.custom-cbh')];
     const newest = consoles.at(-1);
     for (const c of consoles) if (c !== newest && c.open) c.open = false;
+    // Lab: Xavi's curtain and Program drawers stay open only on the newest message.
+    const last = document.querySelector('#chat .mes:last-child');
+    for (const d of document.querySelectorAll('#chat .mes .mes_text details.custom-cbh-fold[open]')) {
+        if (!last?.contains(d)) d.open = false;
+    }
 }
 
 function queueRefresh() {

@@ -2,13 +2,13 @@
 
 An experimental copy of CALLBOARD for trying ideas before they reach the real preset. Expect things to change, break, or disappear between versions.
 
-- **Current:** `CALLBOARD_Lab_v0_9_1.json`, built on CALLBOARD v1.6.8 (Full). Everything in v1.6.8 is here and works the same, including its regex fixes.
+- **Current:** `CALLBOARD_Lab_v0_10.json`, built on CALLBOARD v1.6.8 (Full). Everything in v1.6.8 is here and works the same, including its regex fixes.
 - **The stable presets** in `preset/` are never changed by Lab work. What proves itself here gets moved over deliberately.
 - Older Lab versions will be kept in `preset/lab/archive/`.
 
 ## How to test
 
-1. Import `CALLBOARD_Lab_v0_9_1.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
+1. Import `CALLBOARD_Lab_v0_10.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
 2. Set it up as you would CALLBOARD (wing, tracker, model layer…).
 3. In the CALLBOARD Suite board, open **🧪 Lab**. Everything there is **off**.
 4. Light **one** switch, play a few replies, and compare. Then keep it, turn it off, or try the next.
@@ -76,6 +76,21 @@ In the Lab, the tracker and boards are drawn as one console instead of separate 
 - Works on phones: cards wrap, nothing scrolls sideways.
 
 **Skins:** in **Extensions → CALLBOARD Suite → Console skin**, pick **Console** (CALLBOARD's plum and gold), **Minimal** (flat, uses your theme's quote color), **Parchment** (cream paper and serif type), **Neon** (dark glass, magenta and cyan, monospace), or **Auto**, which matches the lit wing (Parchment for Regency, Victorian, Twenties, Westeros, Medieval, Fantasy and Wuxia; Neon for Cyberpunk and Sci-Fi; Console for the rest). Without the extension, the console uses the Console skin.
+
+### 🎧 Xavi's drawers
+
+Xavi's own pieces use the same console look, and they change with the skin too:
+
+| Piece | Drawer | Starts |
+|---|---|---|
+| CoT plan (`<think>`) | 🎧 Xavi at the board | folded, tap to read |
+| OOC aside (`(OOC: … — X)`) | 🎧 Xavi · from the wings | open, so you don't miss a question |
+| Cue line with a legend | ● STANDBY with the cue and its reason | folded, tap for **what it means** |
+| Cue line without a legend | ● STANDBY slip | (nothing to open) |
+| Curtain note (`<xavi>`) | 🎧 Xavi · curtain | open on the newest reply, folded on older ones |
+| The Program | 🎟️ The Program, with the paper program inside | open on the newest reply, folded on older ones |
+
+With the extension installed, sending a new message also folds the curtain and Program on the message before it. Without it, they fold the next time the chat is reloaded. The model writes exactly what it did before, so these work with every Xavi personality and Curtain tier.
 
 ## On-screen effects
 
