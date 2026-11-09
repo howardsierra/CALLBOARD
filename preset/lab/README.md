@@ -2,13 +2,13 @@
 
 An experimental copy of CALLBOARD for trying ideas before they reach the real preset. Expect things to change, break, or disappear between versions.
 
-- **Current:** `CALLBOARD_Lab_v0_10.json`, built on CALLBOARD v1.6.8 (Full). Everything in v1.6.8 is here and works the same, including its regex fixes.
+- **Current:** `CALLBOARD_Lab_v0_11.json`, built on CALLBOARD v1.6.8 (Full). Everything in v1.6.8 is here and works the same, including its regex fixes.
 - **The stable presets** in `preset/` are never changed by Lab work. What proves itself here gets moved over deliberately.
 - Older Lab versions will be kept in `preset/lab/archive/`.
 
 ## How to test
 
-1. Import `CALLBOARD_Lab_v0_10.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
+1. Import `CALLBOARD_Lab_v0_11.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
 2. Set it up as you would CALLBOARD (wing, tracker, model layer…).
 3. In the CALLBOARD Suite board, open **🧪 Lab**. Everything there is **off**.
 4. Light **one** switch, play a few replies, and compare. Then keep it, turn it off, or try the next.
@@ -89,8 +89,30 @@ Xavi's own pieces use the same console look, and they change with the skin too:
 | Cue line without a legend | ● STANDBY slip | (nothing to open) |
 | Curtain note (`<xavi>`) | 🎧 Xavi · curtain | open on the newest reply, folded on older ones |
 | The Program | 🎟️ The Program, with the paper program inside | open on the newest reply, folded on older ones |
+| Your own `(OOC: …)` or `((OOC: …))` in a message | 🎬 Note to Xavi card | (nothing to open) |
 
 With the extension installed, sending a new message also folds the curtain and Program on the message before it. Without it, they fold the next time the chat is reloaded. The model writes exactly what it did before, so these work with every Xavi personality and Curtain tier.
+
+## 🎨 More from Sola (v0.11)
+
+Eight more switches, all **off** to start, each with its regex built in. Most are adapted from Sola V4 Flame's scene headers, voice and gradient typography, document tools, Thought Engine, Heart Engine, Wardrobe and Director Notebook, redone in CALLBOARD's look and wording.
+
+| Switch | What you see | Notes |
+|---|---|---|
+| 🎬 Scene Headers | A sky banner at the top of a reply when a scene opens: time, place in capitals, and a line of atmosphere | The sky follows the time: 🌅 dawn, ☀️ day, 🌇 dusk, 🌙 night with stars and a crescent moon. Rain, storm or fog turns it **noir**, with falling rain. The model can also pick a sky itself. One per scene |
+| 🗣️ Voice Tones | `<whisper>` soft and italic, `<bite>` heavy and sharp, `<tremble>` quivering, `<steady>` deliberate | Sits inside 🎨 Colored Dialogue, so each speaker keeps her color |
+| 🌅 Gradient Lines | One or two lines per reply glow in a two-color gradient: dusk, solstice, eclipse, wildwood, hearth, mistveil | For confessions, oaths and closing images. A tone can sit inside |
+| ✉️ Letters & Terminals | A letter arrives **sealed** with red wax; tap to break the seal and read it on lined paper. Screens show as a glowing terminal with a blinking cursor | No terminals on period wings |
+| 💭 Thought Cabinet | After the prose, Xavi pulls one character backstage for five quick questions. The last answer is what they'd say if nobody could hear | A folded drawer in Xavi's style. Nobody in the story knows it happened. Old cabinets are dropped from the prompt after three messages |
+| 🫀 Heart Check | A board drawer with each strained character's 🎭 ego, ⚡ nerve, 🫀 body and 🌙 psyche | Inside the Board Console |
+| 🧥 Wardrobe | A board drawer with what everyone is wearing and its condition | Stops clothes vanishing or changing on their own |
+| 📓 Xavi's Notebook | A board drawer with Xavi's open 🧵 threads, 🌱 seeds, 🗝️ motives and ⏳ horizon | Xavi's private continuity: secrets can be written here without being revealed |
+
+What I left out, and why:
+- **Sola's line unwrapping** (joins lines a model broke mid-sentence): it would also join CALLBOARD's data lines (`T>`, `C>`, chat panel rows) and break them.
+- **Feeling Engine, Bond Radar, Calendar, Scene Cast:** CALLBOARD's tracker, Cast and Relationship Web already cover them.
+- **Chatterbox** (Sola texting you a rolling feed) and the **Easel** (a director's chart each turn): big token costs. Xavi's curtain and OOC asides already do Chatterbox's job.
+- **Sola's 16-color voice palette:** 🎨 Colored Dialogue already gives every speaker a color of their own.
 
 ## On-screen effects
 
