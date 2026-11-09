@@ -2,13 +2,13 @@
 
 An experimental copy of CALLBOARD for trying ideas before they reach the real preset. Expect things to change, break, or disappear between versions.
 
-- **Current:** `CALLBOARD_Lab_v0_6.json`, built on CALLBOARD v1.6.7 (Full). Everything in v1.6.7 is here and works the same.
+- **Current:** `CALLBOARD_Lab_v0_7.json`, built on CALLBOARD v1.6.8 (Full). Everything in v1.6.8 is here and works the same, including its regex fixes.
 - **The stable presets** in `preset/` are never changed by Lab work. What proves itself here gets moved over deliberately.
 - Older Lab versions will be kept in `preset/lab/archive/`.
 
 ## How to test
 
-1. Import `CALLBOARD_Lab_v0_6.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
+1. Import `CALLBOARD_Lab_v0_7.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
 2. Set it up as you would CALLBOARD (wing, tracker, model layer…).
 3. In the CALLBOARD Suite board, open **🧪 Lab**. Everything there is **off**.
 4. Light **one** switch, play a few replies, and compare. Then keep it, turn it off, or try the next.

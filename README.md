@@ -3,10 +3,10 @@
 A modular SillyTavern roleplay preset, plus **CALLBOARD Suite**, an extension that gives the preset a stage manager's control board. Your host is Xavi, the stage manager: he runs the show from the wings, calls the cues and stays out of the story.
 
 ```
-preset/CALLBOARD_v1_6_7.json        ← the full preset (prompts + all of its regex)
-preset/CALLBOARD_Lite_v1_6_7.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
+preset/CALLBOARD_v1_6_8.json        ← the full preset (prompts + all of its regex)
+preset/CALLBOARD_Lite_v1_6_8.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
 preset/lab/                         ← 🧪 CALLBOARD Lab: an experimental copy for trying new ideas (see its README)
-preset/archive/                     ← every earlier version, from the v1.3.0.1 original to v1.6.6
+preset/archive/                     ← every earlier version, from the v1.3.0.1 original to v1.6.7
 index.js · style.css · src/         ← the CALLBOARD Suite extension
 ```
 
@@ -27,7 +27,7 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 
 ## Setup
 
-1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_6_7.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
+1. **Import a preset.** In SillyTavern, choose a Chat Completion API. Then import `preset/CALLBOARD_v1_6_8.json` (or the Lite one) from the preset dropdown (**AI Response Configuration → Import preset**).
 2. **Allow its regex.** Every card, chat panel, STANDBY slip and the Program is drawn by regex that ships inside the preset. You don't import a separate bundle. SillyTavern ignores a preset's regex until you allow it, so say yes when it asks. You can also allow it under **Extensions → Regex → Preset scripts**. If you skip this step, the chat shows raw lines like `T>` and `CUE>` instead of cards.
 3. **Install the extension (optional, recommended).** Go to **Extensions → Install extension**, paste `https://github.com/howardsierra/callboard`, then open the board from the wand menu or with `/cb`. If you skipped step 2, the extension's Notes tab catches it and allows the regex in one click.
 
@@ -45,6 +45,14 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 Everything else is optional: boards, story systems, spotlight and fame, chat panels, visuals and content modules.
 
 ## New in v1.6
+
+**v1.6.8:** fixes and polish, borrowed from the presets reviewed for the Lab (Full and Lite)
+- **🎨 Colored Dialogue actually shows its colors now.** SillyTavern paints quoted speech in its own quote color, which beat the `<span>` colors the preset asked for. Dialogue now uses `<font color>`, the one form SillyTavern lets win, and a regex converts older span colors too. Each speaker keeps one color for the whole chat, and no two share one.
+- **Fenced blocks render.** If the model wraps the state block, a panel or an HTML artifact in a ``` code fence, it's unwrapped and drawn instead of showing as code.
+- **Stray reasoning folds away.** Reasoning that ends with `</think>` but never opened one (common when the opener sits in a prefill) goes into Xavi's foldout and stays out of the prompt.
+- **Captioned scene breaks:** `↷ Three days later · the harbor`, `⁂ Westbrook, midnight` or `--- Act II` draw a labelled divider.
+- **Time-of-day icons** on the tracker's time line: 🌅 🌤️ ☀️ 🌇 🌙, from words like "dusk" or clock times like "11:40 PM".
+- **Older dialogue colors are left out of the prompt** after six messages, to save tokens.
 
 **v1.6.7:**
 - **Two Kimi K3 switches** that stack on ⚙️ Model — Kimi (Full and Lite), right under the model layer on the board:
