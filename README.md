@@ -5,7 +5,7 @@ A modular SillyTavern roleplay preset, plus **CALLBOARD Suite**, an extension th
 ```
 preset/CALLBOARD_v1_6_8.json        ← the full preset (prompts + all of its regex)
 preset/CALLBOARD_Lite_v1_6_8.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
-preset/lab/                         ← 🧪 CALLBOARD Lab: an experimental copy for trying new ideas, including the new 🎛️ Board Console (see its README)
+preset/lab/                         ← 🧪 CALLBOARD Lab: an experimental copy for trying new ideas, including the 🎛️ Board Console and 🧠 Assistant Mode (see below)
 preset/archive/                     ← every earlier version, from the v1.3.0.1 original to v1.6.7
 index.js · style.css · src/         ← the CALLBOARD Suite extension
 ```
@@ -43,6 +43,27 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 | **CoT** (one or none) | Dramatic · Wholesome · Fantasy |
 
 Everything else is optional: boards, story systems, spotlight and fame, chat panels, visuals and content modules.
+
+## 🧪 CALLBOARD Lab
+
+**CALLBOARD Lab** is an experimental copy of CALLBOARD for trying ideas before they reach the real preset. It's built on the full v1.6.8 preset, so everything there works the same. It imports as its own preset, so your normal CALLBOARD is never touched. Expect things to change, break, or disappear between versions.
+
+- **Current:** [`preset/lab/CALLBOARD_Lab_v0_9_1.json`](preset/lab/CALLBOARD_Lab_v0_9_1.json). Older Lab versions are in `preset/lab/archive/`.
+- **How to test:** import it, set it up like CALLBOARD, then open **🧪 Lab** on the board. Every Lab switch starts **off**. Light one, play a few replies, compare, then keep it or try the next.
+
+What's in it:
+
+| | |
+|---|---|
+| **Writing switches** | About 30 single-purpose fixes: POV Fusion, Anti-Robot, Say It Once, Fresh Traits, No Echo, Iceberg, Hidden Desires, Act on It, Strict Anti-Slop and more, each aimed at one habit (flat or robotic narration, parroting, stock phrasing, therapist-speak, crowded scenes) |
+| **🧠 Assistant Mode** | A third **Mode** pick next to Impersonate and Story Mode. No scene: Xavi helps you directly, in whichever personality you have lit, with brainstorming, outlines, characters and cards, lore, "who knows what", critiques and module questions. Switch the scene modules off while you use it. Pick Impersonate or Story Mode again to go back to the show |
+| **🎛️ Board Console** | The tracker and boards redrawn as a tap-to-open HUD: a one-line digest (time, place, mood, affinity) with drawers for cast, web, status, inventory and codex. Older consoles fold up on their own. Four skins in the extension settings: Console, Minimal, Parchment and Neon. Auto matches the wing: Parchment for period wings, Neon for Sci-Fi and Cyberpunk |
+| **On-screen effects** | 🔍 Hidden Layers (tap-to-reveal thoughts, tells and translations), ⚡ Kinetic Type, 📳 Push Notifications, 🎲 Chance Dice slips, 🆕 New Faces cards, 🪧 Immersive Objects |
+| **Context savers** | Regex that trims old state blocks, cue legends, stylesheets and dice slips from the prompt so long chats stay lean |
+| **Slots A–D** | Four empty prompts for your own rewrites of other presets' jailbreaks and prefills: an opening statement, a narrator's vow, a closing note and a prefill |
+| **Model tunings** | 🧠 Remember, Don't Recite and 🎙️ Narration With a Pulse for Kimi K3, plus 🃏 Clean Handoff for MiMo 2.6 |
+
+The full switch list, setup notes, ideas and credits (Princess Honey, LeForkoQuantum, Sola, Sun Rider, Deus Ex Machina, microcot by Stray, and Moirai Clause) are in the [Lab README](preset/lab/README.md).
 
 ## New in v1.6
 
