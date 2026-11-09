@@ -15,6 +15,7 @@ const DEFAULTS = Object.freeze({
     autoTracker: true,
     autoApplyPinned: true,
     cloverDirect: true,
+    consoleSkin: 'auto',
     loadouts: {},
     collapsed: {},
 });
@@ -573,7 +574,41 @@ function render() {
     }
 }
 
+// ─────────────────────────────── console skins ───────────────────────────────
+
+/** Console skins (CALLBOARD Lab's tracker console): which wings each one suits when the skin is Auto. */
+const SKINS = ['console', 'minimal', 'parchment', 'neon'];
+const WING_SKIN = {
+    cb_wing_regency: 'parchment', cb_wing_victorian: 'parchment', cb_wing_twenties: 'parchment', cb_wing_westeros: 'parchment',
+    cb_wing_medieval: 'parchment', cb_wing_fantasy: 'parchment', cb_wing_wuxia: 'parchment',
+    cb_wing_cyberpunk: 'neon', cb_wing_scifi: 'neon',
+};
+
+function resolveSkin() {
+    const chosen = settings().consoleSkin;
+    if (SKINS.includes(chosen)) return chosen;
+    const wing = isLive() ? GROUPS.wing.pick.find(id => has(id) && lit(id)) : null;
+    return WING_SKIN[wing] ?? 'console';
+}
+
+/** The console's colors come from CSS variables; the skin is a body attribute style.css keys on. */
+function applySkin() {
+    const skin = resolveSkin();
+    if (document.body.dataset.cbSkin !== skin) document.body.dataset.cbSkin = skin;
+}
+
+/**
+ * The console opens on the newest reply. SillyTavern draws a message once, so when a
+ * new one arrives the earlier consoles are folded back to their digest here.
+ */
+function foldOldConsoles() {
+    const consoles = [...document.querySelectorAll('#chat .mes .mes_text details.custom-cbh')];
+    const newest = consoles.at(-1);
+    for (const c of consoles) if (c !== newest && c.open) c.open = false;
+}
+
 function queueRefresh() {
+    applySkin();
     if (refreshQueued) return;
     refreshQueued = true;
     requestAnimationFrame(() => { refreshQueued = false; render(); });
@@ -748,11 +783,20 @@ function buildLaunchers() {
                     Re-dress the stage from a chat's pinned loadout when it opens</label>
                 <label class="checkbox_label"><input type="checkbox" data-cb-opt="cloverDirect" ${s.cloverDirect ? 'checked' : ''}>
                     Send pasted Clover OOC orders straight to Revamped Image Gen (when 🍀 Clover OOC is lit)</label>
+                <label class="cb-skin-pick">Console skin (CALLBOARD Lab's tracker console)
+                    <select class="text_pole" data-cb-skin>
+                        ${['auto', ...SKINS].map(k => `<option value="${k}" ${s.consoleSkin === k ? 'selected' : ''}>${k === 'auto' ? 'Auto — match the wing' : k[0].toUpperCase() + k.slice(1)}</option>`).join('')}
+                    </select></label>
                 <small>Slash commands: /cb · /cb-load · /cb-pick · /cb-on · /cb-off · /cb-check</small>
             </div>
         </div>`;
     box.querySelector('[data-cb-open]').addEventListener('click', () => togglePanel(true));
     box.addEventListener('change', (ev) => {
+        if ('cbSkin' in ev.target.dataset) {
+            settings().consoleSkin = ev.target.value;
+            save();
+            return applySkin();
+        }
         const key = ev.target.dataset.cbOpt;
         if (!key) return;
         settings()[key] = ev.target.checked;
@@ -880,6 +924,7 @@ async function init() {
             togglePanel(true);
         },
     });
+    applySkin();
     initClover({ isOn: () => isLive() && has('cb_clover') && lit('cb_clover') && settings().cloverDirect !== false });
 
     const { eventSource, event_types: E } = ctx();
@@ -887,6 +932,9 @@ async function init() {
         if (ev) eventSource.on(ev, queueRefresh);
     }
     eventSource.on(E.CHAT_CHANGED, onChatChanged);
+    for (const ev of [E.CHARACTER_MESSAGE_RENDERED, E.USER_MESSAGE_RENDERED]) {
+        if (ev) eventSource.on(ev, foldOldConsoles);
+    }
     // Keep the Private Scenes cue current as scenes start, end and get saved.
     for (const ev of [E.MESSAGE_SENT, E.MESSAGE_RECEIVED]) {
         if (ev) eventSource.on(ev, () => window.PrivateScenes && queueRefresh());

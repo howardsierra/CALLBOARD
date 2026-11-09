@@ -705,3 +705,49 @@
 }
 .cb-clover-leaf { font-size: 18px; animation: cb-develop 1.6s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .cb-clover-leaf { animation: none; } }
+
+/* ── Console skins (CALLBOARD Lab's tracker console) ──────────────────────────
+   The console draws itself with CSS variables; these override them per skin.
+   SillyTavern prefixes message classes with "custom-". Console is the default. */
+body[data-cb-skin="minimal"] .mes_text :is(.custom-cbh, .custom-cbh-drawer) {
+    --cbh-bg: transparent;
+    --cbh-bg2: transparent;
+    --cbh-line: rgba(127, 127, 127, .28);
+    --cbh-ink: inherit;
+    --cbh-dim: rgba(127, 127, 127, .95);
+    --cbh-acc: rgba(127, 127, 127, .95);
+    --cbh-acc2: var(--SmartThemeQuoteColor, #c9a6ff);
+    --cbh-meter: var(--SmartThemeQuoteColor, #c9a6ff);
+    --cbh-heat: rgba(127, 127, 127, .75);
+}
+body[data-cb-skin="minimal"] .mes_text .custom-cbh { box-shadow: none; }
+body[data-cb-skin="minimal"] .mes_text .custom-cbh-led { display: none; }
+
+body[data-cb-skin="parchment"] .mes_text :is(.custom-cbh, .custom-cbh-drawer) {
+    --cbh-bg: linear-gradient(160deg, #f4e9d2, #e7d5b0);
+    --cbh-bg2: rgba(255, 250, 238, .55);
+    --cbh-line: #c7ad83;
+    --cbh-ink: #3b2c1b;
+    --cbh-dim: #7b6446;
+    --cbh-acc: #8b5a2b;
+    --cbh-acc2: #6e2f4e;
+    --cbh-meter: linear-gradient(90deg, #a4373a, #6e2f4e);
+    --cbh-heat: linear-gradient(90deg, #b8862b, #a4373a);
+    --cbh-font: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+}
+
+body[data-cb-skin="neon"] .mes_text :is(.custom-cbh, .custom-cbh-drawer) {
+    --cbh-bg: linear-gradient(160deg, #060a14, #0c1426);
+    --cbh-bg2: rgba(54, 241, 205, .04);
+    --cbh-line: #1d3a55;
+    --cbh-ink: #dff6ff;
+    --cbh-dim: #7fa6c4;
+    --cbh-acc: #36f1cd;
+    --cbh-acc2: #ff3fd2;
+    --cbh-meter: linear-gradient(90deg, #ff3fd2, #36f1cd);
+    --cbh-heat: linear-gradient(90deg, #ffd23f, #ff3f6c);
+    --cbh-font: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+body[data-cb-skin="neon"] .mes_text .custom-cbh { box-shadow: 0 0 0 1px rgba(54, 241, 205, .12), 0 0 24px rgba(255, 63, 210, .12); }
+
+.cb-settings .cb-skin-pick { display: flex; flex-direction: column; gap: 4px; margin: 6px 0; }

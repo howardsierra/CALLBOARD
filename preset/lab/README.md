@@ -2,13 +2,13 @@
 
 An experimental copy of CALLBOARD for trying ideas before they reach the real preset. Expect things to change, break, or disappear between versions.
 
-- **Current:** `CALLBOARD_Lab_v0_7.json`, built on CALLBOARD v1.6.8 (Full). Everything in v1.6.8 is here and works the same, including its regex fixes.
+- **Current:** `CALLBOARD_Lab_v0_8.json`, built on CALLBOARD v1.6.8 (Full). Everything in v1.6.8 is here and works the same, including its regex fixes.
 - **The stable presets** in `preset/` are never changed by Lab work. What proves itself here gets moved over deliberately.
 - Older Lab versions will be kept in `preset/lab/archive/`.
 
 ## How to test
 
-1. Import `CALLBOARD_Lab_v0_7.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
+1. Import `CALLBOARD_Lab_v0_8.json` like any preset. It shows up as its own preset, so your normal CALLBOARD stays as it is.
 2. Set it up as you would CALLBOARD (wing, tracker, model layer…).
 3. In the CALLBOARD Suite board, open **🧪 Lab**. Everything there is **off**.
 4. Light **one** switch, play a few replies, and compare. Then keep it, turn it off, or try the next.
@@ -51,6 +51,19 @@ All of them sit in the 🧪 LAB section of the prompt list, right after the pros
 | 🃏 MiMo 2.6 — Clean Handoff | Planning stays out of the visible reply; CALLBOARD's output order is kept | you run MiMo 2.6 and planning leaks into replies. Needs ⚙️ Model — MiMo | Sun Rider |
 
 Some overlap on purpose, so they can be compared: POV Fusion, Anti-Robot, Say It Once, Fresh Traits and the Kimi switches (🧠 Remember, Don't Recite; 🎙️ Narration With a Pulse) all go after flat narration from different angles. Test them separately before stacking.
+
+## 🎛️ The Board Console
+
+In the Lab, the tracker and boards are drawn as one console instead of separate cards, inspired by Sola's HUD (with ideas from Deus Ex Machina's UI cards, Moirai's tracker console and Sun Rider's tracker skins). The model writes exactly the same data lines as before, so nothing about your prompts changes.
+
+- **A digest bar** shows the time (with its time-of-day icon), place, mood, and the focus character's affinity. Tap it to open the console.
+- **The newest reply's console opens by itself;** older replies fold back to their digest bar.
+- **Drawers** for each block: 📊 Tracker and 🪪 Cast open, 💞 Relationships, 🩹 Condition, 🎒 Inventory and 📓 Codex folded. Tap a drawer to open or close it.
+- **Tap-to-open cards:** each person shows their name, mood and affinity bar; tap for role and whereabouts. Pairings, conditions, items and codex entries open the same way. Items and codex entries get icons by kind (🗡️ weapon, 📜 quest, ❓ mystery…).
+- **Reputation** shows as a five-step ladder for both the Regency rungs (Spotless → Ruined) and the Fame Engine's (Under the radar → Scandal).
+- Works on phones: cards wrap, nothing scrolls sideways.
+
+**Skins:** in **Extensions → CALLBOARD Suite → Console skin**, pick **Console** (CALLBOARD's plum and gold), **Minimal** (flat, uses your theme's quote color), **Parchment** (cream paper and serif type), **Neon** (dark glass, magenta and cyan, monospace), or **Auto**, which matches the lit wing (Parchment for Regency, Victorian, Twenties, Westeros, Medieval, Fantasy and Wuxia; Neon for Cyberpunk and Sci-Fi; Console for the rest). Without the extension, the console uses the Console skin.
 
 ## On-screen effects
 
