@@ -5,6 +5,7 @@ A modular SillyTavern roleplay preset, plus **CALLBOARD Suite**, an extension th
 ```
 preset/CALLBOARD_v1_6_8.json        ← the full preset (prompts + all of its regex)
 preset/CALLBOARD_Lite_v1_6_8.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
+preset/lumiverse/                   ← 🎧 CALLBOARD for Lumiverse: the same preset as a native Lumiverse preset (see below)
 preset/lab/                         ← 🧪 CALLBOARD Lab: an experimental copy for trying new ideas, including the 🎛️ Board Console and 🧠 Assistant Mode (see below)
 preset/archive/                     ← every earlier version, from the v1.3.0.1 original to v1.6.7
 index.js · style.css · src/         ← the CALLBOARD Suite extension
@@ -43,6 +44,16 @@ Lite is for cheaper models, small context windows, or long chats where every mes
 | **CoT** (one or none) | Dramatic · Wholesome · Fantasy |
 
 Everything else is optional: boards, story systems, spotlight and fame, chat panels, visuals and content modules.
+
+## 🎧 CALLBOARD for Lumiverse
+
+Using [Lumiverse](https://github.com/prolix-oc/Lumiverse) instead of SillyTavern? Import [`preset/lumiverse/CALLBOARD_Lumiverse_v1_0.json`](preset/lumiverse/CALLBOARD_Lumiverse_v1_0.json) with **Preset → ⋮ → Import Loom JSON**. It's CALLBOARD v1.6.8 with all its regex, rebuilt the Lumiverse way:
+
+- **🎛️ The Board** is one panel in **Configure Prompt Variables** with every pick-one choice as a dropdown: Mode, Wing, Tracker, Model, CoT, Cue Calls, Pacing, Difficulty, Sensory, and Xavi's Patter, Mood and Curtain. No extension needed.
+- Everything else is an on/off block, grouped by section.
+- The 📸 Stills Department and 🤫 Private Scenes are left out because they need SillyTavern extensions. 🌐 EXTREME Pollinations covers images.
+
+Details in the [Lumiverse README](preset/lumiverse/README.md).
 
 ## 🧪 CALLBOARD Lab
 
