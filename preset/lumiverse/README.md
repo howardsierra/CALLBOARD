@@ -2,12 +2,12 @@
 
 CALLBOARD rebuilt as a native [Lumiverse](https://github.com/prolix-oc/Lumiverse) preset. It has the same Xavi, the same wings, trackers, boards, chat panels and press, and the same regex. Lumiverse handles the parts that the CALLBOARD Suite extension handles in SillyTavern.
 
-- **Current:** `CALLBOARD_Lumiverse_v1_0.json`, built from CALLBOARD v1.6.8 (Full).
+- **Current:** `CALLBOARD_Lumiverse_v1_1.json`, built from CALLBOARD v1.6.8 (Full).
 - **Tested** in a local Lumiverse 1.2.5: import, the Board dropdowns, the assembled prompt, and how replies render on desktop and phone.
 
 ## Setup
 
-1. In Lumiverse, open **Preset** (Loom) → **⋮** → **Import Loom JSON**, and pick `CALLBOARD_Lumiverse_v1_0.json`. The 180 regex scripts come with it, in a **CALLBOARD** folder. There's nothing to allow.
+1. In Lumiverse, open **Preset** (Loom) → **⋮** → **Import Loom JSON**, and pick `CALLBOARD_Lumiverse_v1_1.json`. The 180 regex scripts come with it, in a **CALLBOARD** folder. There's nothing to allow.
 2. Click **Configure Prompt Variables** above the block list and open **🎛️ The Board**.
 3. Set your loadout, then **Save**.
 
@@ -52,12 +52,15 @@ Everything else is an on/off block in the list, grouped the way the CALLBOARD bo
 
 ## What's different from SillyTavern
 
-- **No extension needed.** The Board replaces the CALLBOARD Suite's board. Its warnings don't come along, so mind the pairings yourself: the Kimi K3 tunings need Model → Kimi, College AU needs a modern wing, Magic With Laws a fantastical one, and the Fame flavors need the Fame Engine.
+- **No extension needed,** but there is one. The Board replaces the SillyTavern Suite's board. For chips instead of dropdowns, module switches with token costs, a checker with one-click fixes, and loadouts, install the [CALLBOARD Suite for Lumiverse](../../lumiverse/README.md). Without it, mind the pairings yourself: the Kimi K3 tunings need Model → Kimi, College AU needs a modern wing, Magic With Laws a fantastical one, and the Fame flavors need the Fame Engine.
 - **The CoT shows in Lumiverse's own "Thinking" foldout.** Lumiverse pulls `<think>` out of the reply itself.
 - **Not included:** 📸 Stills Department and 🤫 Private Scenes, which need SillyTavern extensions (Revamped Image Gen and Private Scenes). 🌐 EXTREME Pollinations draws images instead, with the preset's built-in key, and 🍀 Clover OOC orders go through it.
 - **Lab:** the CALLBOARD Lab has its own Lumiverse build, with extras like real dice, model auto-detect and choice buttons. See [lab/](lab/README.md).
 - **Same formats:** the data lines and regex output match v1.6.8, so the cards and panels look the same in both apps.
 
 ## Updates
+
+**v1.1:** the preset now carries a small `callboard` map in its metadata, which the CALLBOARD Suite for Lumiverse uses to find each block. The prompts are unchanged. v1.0 is in `archive/`.
+
 
 The Lumiverse version is built from the SillyTavern preset, so future CALLBOARD fixes carry over to it. Block ids stay the same between versions, so your Board choices survive an update.

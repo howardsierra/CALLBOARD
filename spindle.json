@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "name": "CALLBOARD Suite",
+  "identifier": "callboard",
+  "author": "howardsierra",
+  "github": "https://github.com/howardsierra/callboard",
+  "homepage": "https://github.com/howardsierra/callboard/blob/claude/tender-fermat-yfudjd/lumiverse/README.md",
+  "description": "Xavi's board for the CALLBOARD preset: pick-one bands as chips, every module by section with token costs, a checker with one-click fixes, and loadouts.",
+  "permissions": ["presets"],
+  "entry_frontend": "lumiverse/frontend.js",
+  "minimum_lumiverse_version": "1.2.0"
+}

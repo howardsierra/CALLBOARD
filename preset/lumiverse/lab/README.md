@@ -2,7 +2,7 @@
 
 The [CALLBOARD Lab](../../lab/README.md) (v0.11) rebuilt for [Lumiverse](https://github.com/prolix-oc/Lumiverse). It adds extras that only Lumiverse can do, with ideas taken from the KittyLotus preset. It's experimental: expect changes between versions.
 
-- **Current:** `CALLBOARD_Lab_Lumiverse_v0_1.json`
+- **Current:** `CALLBOARD_Lab_Lumiverse_v0_2.json`
 - **Tested** in a local Lumiverse 1.2.5:
   - import, the Board and its settings
   - the assembled prompt
@@ -38,14 +38,21 @@ A section of its own in the block list:
 |---|---|
 | 🃏 **Plot Twists** | Lumiverse rolls a real d20 every reply. On a hit (5% Rare, 15% Regular, 25% Frequent), one twist from Xavi's list lands in the story: an unexpected arrival, a secret out early, a snag in the plan, a debt called in, and so on. It happens to the world, never to your choices. |
 | 📣 **Xavi's Check-in** | On the Board's schedule, Xavi adds one short `(OOC: … — X)` aside: a reaction, or a question about where you want the story to go. |
-| 🧭 **Choices** (off by default) | Each reply ends with two to four options drawn as buttons. Tap one and it's sent as your next message. Buttons only work on the newest reply. Old choice lists are dropped from the prompt. |
+| 🧭 **Choices** (off by default) | Each reply ends with two to four options, built with Lumiverse's interactive regex:<br>• **Tap** a choice to send it as your next message.<br>• **✏️** puts it in your message box to edit first.<br>• **🌿** branches the story: Lumiverse forks the chat at that reply and opens the branch with the choice ready.<br>• **🎬 Steer chips** (🐢 Slow down, ⏩ Move it along, 🔥 Raise the stakes, 💬 More dialogue, 🌙 A quiet beat, 😂 Lighter, 🖤 Darker, 🎧 Xavi, weigh in): pick up to three. They ride along with your next message as hidden director's notes, whether you tap a choice or type your own.<br>Buttons only work on the newest reply. Old choice lists are dropped from the prompt. |
 | 🔁 **Fresh Take** | Only sent when you **regenerate or swipe**: keep what happened, but find a new angle, opening and dialogue. |
 | 📏 **Reply Length**, 🌐 **Language** | Follow the Board. With the defaults, they add nothing to the prompt. |
+
+## v0.2
+
+- 🧭 Choices gained ✏️ edit-first, 🌿 branch and 🎬 steer chips.
+- The preset carries the `callboard` map for the [CALLBOARD Suite for Lumiverse](../../../lumiverse/README.md), which runs this Lab's Board, modules, checker and loadouts.
+
+v0.1 is in `archive/`.
 
 ## What's different from the SillyTavern Lab
 
 - **Everything draws in Lumiverse.** Lumiverse isolates styled HTML, so the Lab wraps any reply that uses its visuals (Board Console, effects, letters, cabinet, Xavi's drawers, choices) in one message-wide island, and the stylesheets reach the whole reply.
-- **Skins come from the Board**, not the extension's settings. The Board saves the choice to the chat each time a reply is generated, and the reply reads it from there.
+- **Skins come from the Board**, not the SillyTavern extension's settings. The Board saves the choice to the chat each time a reply is generated, and the reply reads it from there.
 - **Older consoles and curtains fold** by message depth. The extension's "fold when a new message arrives" isn't there.
 - **Not included:** 📸 Stills Department and 🤫 Private Scenes, which need SillyTavern extensions.
 - **Slots A–D** are here and empty, waiting for your rewrites.

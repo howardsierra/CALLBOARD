@@ -8,7 +8,8 @@ preset/CALLBOARD_Lite_v1_6_8.json   ← the Lite preset: same show, ~3k tokens i
 preset/lumiverse/                   ← 🎧 CALLBOARD for Lumiverse (and lab/, the Lab for Lumiverse): native Lumiverse presets (see below)
 preset/lab/                         ← 🧪 CALLBOARD Lab: an experimental copy for trying new ideas, including the 🎛️ Board Console and 🧠 Assistant Mode (see below)
 preset/archive/                     ← every earlier version, from the v1.3.0.1 original to v1.6.7
-index.js · style.css · src/         ← the CALLBOARD Suite extension
+index.js · style.css · src/         ← the CALLBOARD Suite extension (SillyTavern)
+spindle.json · lumiverse/           ← the CALLBOARD Suite for Lumiverse
 ```
 
 ## Full or Lite?
@@ -47,7 +48,7 @@ Everything else is optional: boards, story systems, spotlight and fame, chat pan
 
 ## 🎧 CALLBOARD for Lumiverse
 
-Using [Lumiverse](https://github.com/prolix-oc/Lumiverse) instead of SillyTavern? Import [`preset/lumiverse/CALLBOARD_Lumiverse_v1_0.json`](preset/lumiverse/CALLBOARD_Lumiverse_v1_0.json) with **Preset → ⋮ → Import Loom JSON**. It's CALLBOARD v1.6.8 with all its regex, rebuilt the Lumiverse way:
+Using [Lumiverse](https://github.com/prolix-oc/Lumiverse) instead of SillyTavern? Import [`preset/lumiverse/CALLBOARD_Lumiverse_v1_1.json`](preset/lumiverse/CALLBOARD_Lumiverse_v1_1.json) with **Preset → ⋮ → Import Loom JSON**. It's CALLBOARD v1.6.8 with all its regex, rebuilt the Lumiverse way:
 
 - **🎛️ The Board** is one panel in **Configure Prompt Variables** with every pick-one choice as a dropdown: Mode, Wing, Tracker, Model, CoT, Cue Calls, Pacing, Difficulty, Sensory, and Xavi's Patter, Mood and Curtain. No extension needed.
 - Everything else is an on/off block, grouped by section.
@@ -55,11 +56,13 @@ Using [Lumiverse](https://github.com/prolix-oc/Lumiverse) instead of SillyTavern
 
 Details in the [Lumiverse README](preset/lumiverse/README.md).
 
+**CALLBOARD Suite for Lumiverse:** the board as a Lumiverse extension. It has Board chips, module switches with token costs, the checker with one-click fixes, and loadouts with the 16 starters. In Lumiverse, install from this same link, `https://github.com/howardsierra/callboard`, and grant the Presets permission. See [`lumiverse/README.md`](lumiverse/README.md).
+
 The Lab has a Lumiverse build too, in [`preset/lumiverse/lab/`](preset/lumiverse/lab/README.md). Besides every Lab switch, it adds Lumiverse-only extras:
 - ✨ Model Auto: reads your connection and picks the matching tuning.
 - 🃏 Plot Twists on real dice rolls.
 - 📣 Xavi check-ins every N replies.
-- 🧭 tap-to-pick Choice buttons.
+- 🧭 Choice buttons: tap to send, ✏️ edit first, 🌿 branch the story, and 🎬 steer chips that add hidden director's notes.
 - 🔁 a Fresh Take note that applies only on regenerate or swipe.
 - Reply length, language and console skin on the Board.
 
