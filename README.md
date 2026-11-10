@@ -5,7 +5,7 @@ A modular SillyTavern roleplay preset, plus **CALLBOARD Suite**, an extension th
 ```
 preset/CALLBOARD_v1_6_8.json        ← the full preset (prompts + all of its regex)
 preset/CALLBOARD_Lite_v1_6_8.json   ← the Lite preset: same show, ~3k tokens instead of ~14.2k
-preset/lumiverse/                   ← 🎧 CALLBOARD for Lumiverse: the same preset as a native Lumiverse preset (see below)
+preset/lumiverse/                   ← 🎧 CALLBOARD for Lumiverse (and lab/, the Lab for Lumiverse): native Lumiverse presets (see below)
 preset/lab/                         ← 🧪 CALLBOARD Lab: an experimental copy for trying new ideas, including the 🎛️ Board Console and 🧠 Assistant Mode (see below)
 preset/archive/                     ← every earlier version, from the v1.3.0.1 original to v1.6.7
 index.js · style.css · src/         ← the CALLBOARD Suite extension
@@ -54,6 +54,14 @@ Using [Lumiverse](https://github.com/prolix-oc/Lumiverse) instead of SillyTavern
 - The 📸 Stills Department and 🤫 Private Scenes are left out because they need SillyTavern extensions. 🌐 EXTREME Pollinations covers images.
 
 Details in the [Lumiverse README](preset/lumiverse/README.md).
+
+The Lab has a Lumiverse build too, in [`preset/lumiverse/lab/`](preset/lumiverse/lab/README.md). Besides every Lab switch, it adds Lumiverse-only extras:
+- ✨ Model Auto: reads your connection and picks the matching tuning.
+- 🃏 Plot Twists on real dice rolls.
+- 📣 Xavi check-ins every N replies.
+- 🧭 tap-to-pick Choice buttons.
+- 🔁 a Fresh Take note that applies only on regenerate or swipe.
+- Reply length, language and console skin on the Board.
 
 ## 🧪 CALLBOARD Lab
 

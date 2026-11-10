@@ -55,7 +55,7 @@ Everything else is an on/off block in the list, grouped the way the CALLBOARD bo
 - **No extension needed.** The Board replaces the CALLBOARD Suite's board. Its warnings don't come along, so mind the pairings yourself: the Kimi K3 tunings need Model → Kimi, College AU needs a modern wing, Magic With Laws a fantastical one, and the Fame flavors need the Fame Engine.
 - **The CoT shows in Lumiverse's own "Thinking" foldout.** Lumiverse pulls `<think>` out of the reply itself.
 - **Not included:** 📸 Stills Department and 🤫 Private Scenes, which need SillyTavern extensions (Revamped Image Gen and Private Scenes). 🌐 EXTREME Pollinations draws images instead, with the preset's built-in key, and 🍀 Clover OOC orders go through it.
-- **Lab:** the CALLBOARD Lab's experiments aren't in the Lumiverse version yet.
+- **Lab:** the CALLBOARD Lab has its own Lumiverse build, with extras like real dice, model auto-detect and choice buttons. See [lab/](lab/README.md).
 - **Same formats:** the data lines and regex output match v1.6.8, so the cards and panels look the same in both apps.
 
 ## Updates
